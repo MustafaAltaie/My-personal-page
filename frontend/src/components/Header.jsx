@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import '../styles/header.css';
+import { motion } from 'framer-motion';
 
 const Header = ({ toggleMode, darkMode }) => {
     const [nav, setNav] = useState(false);
@@ -19,6 +20,8 @@ const Header = ({ toggleMode, darkMode }) => {
     useEffect(() => {
         const handleResize = () => {
             if(window.innerWidth >= 1024) {
+                setNav(true);
+            } else {
                 setNav(false);
             }
         }
@@ -46,14 +49,19 @@ const Header = ({ toggleMode, darkMode }) => {
                 </div>
             </div>
             <nav ref={navRef}>
-                <ul>
+                <motion.ul
+                    initial={{ opacity: 0, x: 100 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, ease: 'easeInOut' }}
+                    viewport={{ once: true, amount: 0 }}
+                >
                     <li onClick={() => setNavOption('Home')} className={navOption === 'Home' ? 'actionNavOption' : ''}>Home</li>
                     <li onClick={() => setNavOption('Educations')} className={navOption === 'Educations' ? 'actionNavOption' : ''}>Educations</li>
                     <li onClick={() => setNavOption('Skills')} className={navOption === 'Skills' ? 'actionNavOption' : ''}>Skills</li>
                     <li onClick={() => setNavOption('Experience')} className={navOption === 'Experience' ? 'actionNavOption' : ''}>Experience</li>
                     <li onClick={() => setNavOption('Projects')} className={navOption === 'Projects' ? 'actionNavOption' : ''}>Projects</li>
                     <li onClick={() => setNavOption('Contact')} className={navOption === 'Contact' ? 'actionNavOption' : ''}>Contact</li>
-                </ul>
+                </motion.ul>
             </nav>
         </header>
     )

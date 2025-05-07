@@ -1,0 +1,68 @@
+.educationSection {
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+}
+.lightMode .educationSection {
+    border-top: solid 0.5px #00000088;
+}
+.educationWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.darkMode .educationWrapper {
+    border-left: solid 0.5px #ffffff88;
+}
+.lightMode .educationWrapper {
+    border-left: solid 0.5px #00000088;
+}
+.educationText, .educationText5 {
+    padding-left: 20px;
+}
+.educationText5 {
+    padding-top: 20px;
+}
+p.educationText {
+    padding-bottom: 30px;
+}
+.darkMode .educationText {
+    color: #ffffff99;
+}
+.darkMode .educationText5 {
+    color: #ffffff55;
+    border-top: solid 0.5px #ffffff88;
+}
+.lightMode .educationText5 {
+    color: rgb(205, 161, 100);
+    border-top: solid 0.5px #00000088;
+}
+h3.educationText {
+    position: relative;
+}
+.darkMode h3.educationText {
+    color: #a70;
+}
+.lightMode h3.educationText {
+    color: #004ccf;
+}
+h3.educationText::before, h3.educationText::before {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #888;
+    top: 50%;
+    left: 0;
+    transform: translate(-50%, -50%);
+}
+
+
+/* Laptop scale */
+@media (min-width: 1024px) {
+    .educationSection {
+        width: 60%;
+        margin: 0 auto;
+    }
+}

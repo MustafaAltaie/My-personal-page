@@ -2,11 +2,12 @@
     padding-top: 25px;
     display: flex;
     flex-direction: column;
+    border-bottom: solid 0.5px #ffffff88;
 }
 .homeImageWrapper {
-    height: 70vh;
     display: flex;
     align-items: flex-end;
+    height: 70vh;
 }
 .homeImageWrapper > img {
     width: 100%;
@@ -14,18 +15,9 @@
     object-fit: cover;
     pointer-events: none;
 }
-.darkMode .homeImageWrapper > img {
-    object-position: 40%;
-}
-.lightMode .homeImageWrapper > img {
-    object-position: 30%;
-}
 .homeProfileWrapper {
     bottom: 0;
     padding: 30px;
-}
-.darkMode .homeProfileWrapper {
-    background: #000;
 }
 .darkMode .homeProfileWrapper > p {
     color: #ffffffaa;
@@ -38,8 +30,8 @@
     .homeSection {
         flex-direction: row;
     }
-    .homeImageWrapper {
-        height: 80vh;
+    .homeSection > div {
+        height: 90vh;
     }
     .homeImageWrapper, .homeProfileWrapper {
         width: 50%;
@@ -51,16 +43,10 @@
         text-align: center;
         padding: 100px;
     }
-    .homeImageWrapper > img {
-        object-fit: contain;
-    }
     .darkMode .homeImageWrapper {
         background: #000;
     }
     .lightMode .homeImageWrapper {
         background: #fff;
-    }
-    .lightMode .homeProfileWrapper, .lightMode .homeImageWrapper {
-        border-bottom: solid 0.5px #000;
     }
 }
