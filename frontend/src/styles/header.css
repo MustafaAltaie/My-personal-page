@@ -1,0 +1,191 @@
+header {
+    position: fixed;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+body.darkMode header {
+    border-bottom: solid 0.5px #ffffff55;
+    background-color: var(--darkBG);
+}
+body.lightMode header {
+    border-bottom: solid 0.5px #00000055;
+    background-color: var(--lightBG);
+}
+
+.headerPart1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.toggleModeWrapper {
+    gap: 10px;
+}
+
+.toggleModeButton {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 2px;
+    width: 50px;
+    height: 30px;
+    border-radius: 30px;
+    cursor: pointer;
+}
+body.darkMode .toggleModeButton {
+    border: solid 1px #ffffff77;
+}
+body.lightMode .toggleModeButton {
+    border: solid 1px #00000055;
+}
+
+.toggleModeButton > div {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #0064b6;
+    transition: 0.2s;
+}
+.darkToggleThumb {
+    left: calc(0% + 2px);
+}
+.lightToggleThumb {
+    left: calc(100% - 2px);
+    transform: translateX(-100%);
+}
+
+.navToggle {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    width: 25px;
+    cursor: pointer;
+}
+.navToggle > div {
+    width: 100%;
+    height: 1px;
+    transition: transform 0.4s;
+}
+body.darkMode .navToggle > div {
+    background: #fff;
+}
+body.lightMode .navToggle > div {
+    background: #000;
+}
+
+nav {
+    overflow: hidden;
+    transition: 0.5s;
+}
+nav > ul {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+nav > ul > li {
+    position: relative;
+    padding: 20px;
+    cursor: pointer;
+}
+body.darkMode nav > ul > li {
+    border-top: solid 0.5px #ffffffaa;
+}
+body.lightMode nav > ul > li {
+    border-top: solid 0.5px #00000055;
+}
+body.darkMode .actionNavOption,
+body.lightMode .actionNavOption {
+    border: 1px solid transparent;
+    border-image: linear-gradient(to right, #0064b6, #8c00ff, #ff9100);
+    border-image-slice: 1;
+}
+
+
+/* Desktop scale */
+@media (min-width: 1024px) {
+    header {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    body.lightMode header {
+        border-top: solid 0.5px #00000055;
+    }
+    .headerPart1 {
+        width: 100%;
+    }
+    .toggleModeWrapper {
+        padding: 1.5px 30px;
+        font-size: 12px;
+    }
+    body.darkMode .toggleModeWrapper {
+        border-right: solid 0.5px #ffffff55;
+        border-left: solid 0.5px #ffffff55;
+    }
+    body.lightMode .toggleModeWrapper {
+        border-right: solid 0.7px #00000055;
+        border-left: solid 0.7px #00000055;
+    }
+    .toggleModeButton {
+        width: 35px;
+        height: 25px;
+    }
+    body.darkMode .toggleModeButton {
+        border: solid 0.7px #0064b6;
+    }
+    body.lightMode .toggleModeButton {
+        border: solid 0.7px #00000055;
+    }
+    .toggleModeButton > div {
+        width: 19px;
+        height: 19px;
+    }
+    .navToggle {
+        display: none;
+    }
+    nav {
+        overflow: unset;
+    }
+    nav > ul {
+        flex-direction: row;
+    }
+    nav > ul > li {
+        font-size: 14px;
+        transition: 0.2s;
+    }
+    nav > ul > li:hover {
+        padding: 18px 20px 22px 20px;
+    }
+    body.darkMode nav > ul > li,
+    body.lightMode nav > ul > li {
+        border-top: none;
+    }
+    body.darkMode .actionNavOption::after,
+    body.lightMode .actionNavOption::after {
+        content: '';
+        position: absolute;
+        width: 70%;
+        height: 2px;
+        left: 50%;
+        top: 80%;
+        transform: translateX(-50%);
+    }
+    body.darkMode .actionNavOption::after {
+        background: #c58c28;
+        box-shadow: 0 0 5px 1px #c58c28;
+    }
+    body.lightMode .actionNavOption::after {
+        background: #0064b6;
+    }
+    body.darkMode .actionNavOption,
+    body.lightMode .actionNavOption {
+        border: none;
+        border-image: none;
+        color: #ebab3c;
+    }
+    body.lightMode .actionNavOption {
+        color: #0064b6;
+    }
+}

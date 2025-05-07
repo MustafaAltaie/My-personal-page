@@ -1,0 +1,38 @@
+:root {
+    /* FONT FAMILIES */
+    --thinFont: 'Thasadith', sans-serif;
+    --formalFont: "Dosis", sans-serif;
+
+    /* Background colors */
+    --darkBG: #000;
+    --lightBG: #fff;
+
+    /* Colors */
+    --darkText: #fff;
+    --lightText: #000;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    text-decoration: none;
+    list-style: none;
+}
+body.darkMode * {
+    font-family: var(--thinFont);
+    color: var(--darkText);
+}
+body.lightMode * {
+    font-family: var(--formalFont);
+    color: var(--lightText);
+}
+.flexMiddle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.flexColumn {
+    display: flex;
+    flex-direction: column;
+}
