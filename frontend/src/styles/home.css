@@ -1,0 +1,66 @@
+.homeSection {
+    padding-top: 25px;
+    display: flex;
+    flex-direction: column;
+}
+.homeImageWrapper {
+    height: 70vh;
+    display: flex;
+    align-items: flex-end;
+}
+.homeImageWrapper > img {
+    width: 100%;
+    height: 95%;
+    object-fit: cover;
+    pointer-events: none;
+}
+.darkMode .homeImageWrapper > img {
+    object-position: 40%;
+}
+.lightMode .homeImageWrapper > img {
+    object-position: 30%;
+}
+.homeProfileWrapper {
+    bottom: 0;
+    padding: 30px;
+}
+.darkMode .homeProfileWrapper {
+    background: #000;
+}
+.darkMode .homeProfileWrapper > p {
+    color: #ffffffaa;
+    margin-top: 10px;
+}
+
+
+/* Laptop scale */
+@media (min-width: 1024px) {
+    .homeSection {
+        flex-direction: row;
+    }
+    .homeImageWrapper {
+        height: 80vh;
+    }
+    .homeImageWrapper, .homeProfileWrapper {
+        width: 50%;
+    }
+    .homeProfileWrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        padding: 100px;
+    }
+    .homeImageWrapper > img {
+        object-fit: contain;
+    }
+    .darkMode .homeImageWrapper {
+        background: #000;
+    }
+    .lightMode .homeImageWrapper {
+        background: #fff;
+    }
+    .lightMode .homeProfileWrapper, .lightMode .homeImageWrapper {
+        border-bottom: solid 0.5px #000;
+    }
+}

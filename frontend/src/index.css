@@ -19,11 +19,11 @@
     text-decoration: none;
     list-style: none;
 }
-body.darkMode * {
+.darkMode * {
     font-family: var(--thinFont);
     color: var(--darkText);
 }
-body.lightMode * {
+.lightMode * {
     font-family: var(--formalFont);
     color: var(--lightText);
 }
@@ -35,4 +35,7 @@ body.lightMode * {
 .flexColumn {
     display: flex;
     flex-direction: column;
+}
+.darkMode h1 {
+    font-weight: normal;
 }

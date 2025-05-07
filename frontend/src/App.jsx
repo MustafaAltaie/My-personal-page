@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import Header from './components/Header';
+import Home from './components/Home';
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -24,6 +25,7 @@ function App() {
   return (
     <>
       <Header toggleMode={toggleMode} darkMode={darkMode} />
+      <Home darkMode={darkMode} />
     </>
   )
 }
