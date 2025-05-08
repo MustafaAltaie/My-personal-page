@@ -67,7 +67,7 @@ const Educations = ({ darkMode }) => {
                 )}
             </div>
             <div className="educationIconWrapper flexMiddle">
-                <img src={darkMode ? "../../public/images/educationDark.png" : "../../public/images/educationLight.png"} alt="Education" />
+                <img src={darkMode ? "../../images/educationDark.png" : "../../images/educationLight.png"} alt="Education" />
             </div>
         </section>
     )

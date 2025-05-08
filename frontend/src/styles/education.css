@@ -81,6 +81,6 @@ h3.educationText::before, h3.educationText::before {
     .educationIconWrapper > img {
         display: block;
         width: 70%;
-        opacity: 0.05;
+        opacity: 0.07;
     }
 }
