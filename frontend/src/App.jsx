@@ -27,7 +27,7 @@ function App() {
     <>
       <Header toggleMode={toggleMode} darkMode={darkMode} />
       <Home darkMode={darkMode} />
-      <Educations />
+      <Educations darkMode={darkMode} />
     </>
   )
 }

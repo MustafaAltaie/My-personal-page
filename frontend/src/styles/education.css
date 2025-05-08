@@ -1,4 +1,5 @@
 .educationSection {
+    position: relative;
     display: flex;
     flex-direction: column;
     padding: 40px;
@@ -6,39 +7,43 @@
 .lightMode .educationSection {
     border-top: solid 0.5px #00000088;
 }
+.educationIconWrapper, .educationIconWrapper > img {
+    display: none;
+}
 .educationWrapper {
     display: flex;
     flex-direction: column;
-    gap: 15px;
 }
 .darkMode .educationWrapper {
-    border-left: solid 0.5px #ffffff88;
+    border-left: solid 0.7px #ffffff55;
 }
 .lightMode .educationWrapper {
-    border-left: solid 0.5px #00000088;
+    border-left: solid 0.7px #00000055;
 }
 .educationText, .educationText5 {
     padding-left: 20px;
 }
 .educationText5 {
     padding-top: 20px;
+    margin-bottom: 15px;
 }
 p.educationText {
-    padding-bottom: 30px;
+    padding-bottom: 60px;
 }
 .darkMode .educationText {
     color: #ffffff99;
 }
 .darkMode .educationText5 {
-    color: #ffffff55;
-    border-top: solid 0.5px #ffffff88;
+    color: #ffffff55 !important;
+    border-top: solid 0.7px #ffffff55;
 }
 .lightMode .educationText5 {
-    color: rgb(205, 161, 100);
-    border-top: solid 0.5px #00000088;
+    color: rgb(205, 161, 100) !important;
+    border-top: solid 0.7px #00000055;
 }
 h3.educationText {
     position: relative;
+    transform: translateY(-20px);
 }
 .darkMode h3.educationText {
     color: #a70;
@@ -52,9 +57,9 @@ h3.educationText::before, h3.educationText::before {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: #888;
+    background-color: #999;
     top: 50%;
-    left: 0;
+    left: -0.5px;
     transform: translate(-50%, -50%);
 }
 
@@ -62,7 +67,20 @@ h3.educationText::before, h3.educationText::before {
 /* Laptop scale */
 @media (min-width: 1024px) {
     .educationSection {
-        width: 60%;
-        margin: 0 auto;
+        flex-direction: row;
+    }
+    .educationMainWrapper {
+        width: 50%;
+    }
+    h3.educationText {
+        transform: translateY(-10px);
+    }
+    .educationIconWrapper {
+        width: 50%;
+    }
+    .educationIconWrapper > img {
+        display: block;
+        width: 70%;
+        opacity: 0.05;
     }
 }
