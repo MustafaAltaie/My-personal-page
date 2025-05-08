@@ -2,7 +2,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    padding: 40px;
+    padding: 40px 40px 0 40px;
 }
 .lightMode .educationSection {
     border-top: solid 0.5px #00000088;
@@ -15,7 +15,7 @@
     flex-direction: column;
 }
 .darkMode .educationWrapper {
-    border-left: solid 0.7px #ffffff55;
+    border-left: solid 0.5px #ffffff55;
 }
 .lightMode .educationWrapper {
     border-left: solid 0.7px #00000055;
@@ -31,14 +31,15 @@ p.educationText {
     padding-bottom: 60px;
 }
 .darkMode .educationText {
-    color: #ffffff99;
+    color: #ffffffcc !important;
 }
 .darkMode .educationText5 {
     color: #ffffff55 !important;
-    border-top: solid 0.7px #ffffff55;
+    border-top: solid 0.5px #ffffff55;
 }
 .lightMode .educationText5 {
-    color: rgb(205, 161, 100) !important;
+    color: #0066ba !important;
+    font-weight: normal;
     border-top: solid 0.7px #00000055;
 }
 h3.educationText {
@@ -46,10 +47,10 @@ h3.educationText {
     transform: translateY(-20px);
 }
 .darkMode h3.educationText {
-    color: #a70;
+    color: #d69600 !important;
 }
 .lightMode h3.educationText {
-    color: #004ccf;
+    color: #004ccf !important;
 }
 h3.educationText::before, h3.educationText::before {
     content: '';
@@ -82,5 +83,6 @@ h3.educationText::before, h3.educationText::before {
         display: block;
         width: 70%;
         opacity: 0.07;
+        pointer-events: none;
     }
 }

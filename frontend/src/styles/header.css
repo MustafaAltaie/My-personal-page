@@ -6,7 +6,7 @@ header {
     flex-direction: column;
 }
 body.darkMode header {
-    border-bottom: solid 0.5px #ffffffaa;
+    border-bottom: solid 0.5px #ffffff55;
     background-color: var(--darkBG);
 }
 body.lightMode header {
@@ -92,7 +92,7 @@ nav > ul > li {
     cursor: pointer;
 }
 body.darkMode nav > ul > li {
-    border-top: solid 0.5px #ffffffaa;
+    border-top: solid 0.5px #ffffff55;
 }
 body.lightMode nav > ul > li {
     border-top: solid 0.5px #000000aa;
@@ -100,7 +100,7 @@ body.lightMode nav > ul > li {
 body.darkMode .actionNavOption,
 body.lightMode .actionNavOption {
     border: 1px solid transparent;
-    border-image: linear-gradient(to right, #0064b6, #8c00ff, #ff9100);
+    border-image: linear-gradient(130deg, #ffd000, #0064b6, #8c00ff, #ff8000);
     border-image-slice: 1;
 }
 

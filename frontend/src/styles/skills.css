@@ -1,0 +1,83 @@
+.skillSection {
+    padding: 40px;
+    overflow-x: hidden;
+}
+.darkMode .skillSection {
+    border-top: solid 1px #ffffff;
+}
+.lightMode .skillSection {
+    border-top: solid 0.5px #00000088;
+}
+.skillSection > h1 {
+    margin-bottom: 20px;
+}
+.skillsMainWrapper {
+    gap: 30px;
+}
+/* Frontend */
+.darkMode .skillsContainer {
+    border-bottom: solid 0.5px #ffffff55;
+}
+.lightMode .skillsContainer {
+    border-bottom: solid 0.5px #000000aa;
+}
+.skillMainTitle {
+    font-weight: normal;
+    padding: 10px 0 10px 20px;
+}
+.darkMode .skillMainTitle {
+    border-left: solid 0.5px #ffffff55;
+    border-top: solid 0.5px #ffffff55;
+    border-bottom: solid 0.5px #ffffff55;
+    color: #009dff !important;
+}
+.lightMode .skillMainTitle {
+    border-left: solid 0.5px #000000aa;
+    border-top: solid 0.5px #000000aa;
+    border-bottom: solid 0.5px #000000aa;
+    color: #a70 !important;
+}
+.skill {
+    display: flex;
+    gap: 5px;
+    padding: 10px 0 10px 20px;
+}
+.darkMode .skill {
+    position: relative;
+    border-left: solid 0.5px #ffffff55;
+}
+.lightMode .skill {
+    position: relative;
+    border-left: solid 0.5px #000000aa;
+}
+.skill::before {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #aaa;
+    top: 10px;
+    left: 0;
+    transform: translate(-50%, 75%);
+}
+.skill > p > span {
+    font-weight: bold;
+}
+.darkMode .skill > p > span {
+    color: #d69600;
+}
+.darkMode .skill > p {
+    color: #ffffffaa;
+}
+.lightMode .skill > p > span {
+    color: #07a;
+}
+
+
+/* Laptop scale */
+@media (min-width: 1024px) {
+    .skillsContainer {
+        width: 50%;
+    }
+}

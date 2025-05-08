@@ -3,6 +3,7 @@ import './App.css';
 import Header from './components/Header';
 import Home from './components/Home';
 import Educations from './components/Educations';
+import Skills from './components/Skills';
 
 function App() {
   const [darkMode, setDarkMode] = useState(true);
@@ -28,6 +29,7 @@ function App() {
       <Header toggleMode={toggleMode} darkMode={darkMode} />
       <Home darkMode={darkMode} />
       <Educations darkMode={darkMode} />
+      <Skills />
     </>
   )
 }
