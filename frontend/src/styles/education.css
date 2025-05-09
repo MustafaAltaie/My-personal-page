@@ -53,12 +53,6 @@ h3.educationText {
     color: #004ccf !important;
 }
 h3.educationText::before, h3.educationText::before {
-    content: '';
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: #999;
     top: 50%;
     left: -0.5px;
     transform: translate(-50%, -50%);

@@ -4,33 +4,33 @@ import { motion } from 'framer-motion';
 
 const Skills = () => {
     const [frontendList, setFrontendList] = useState([
-        { title: 'React.js', description: '(including Hooks, Context API, and Functional Components)' },
-        { title: 'Next.js', description: '(Server-side rendering, Static site generation, API routes, File-based routing)' },
-        { title: 'Redux', description: '(State management, Action creators, Reducers, Thunk)' },
-        { title: 'RTK Query', description: '(Efficient data fetching, Caching, and API integration with Redux)' },
-        { title: 'JavaScript (ES6+)', description: '(Async/Await, Promises, Arrow functions, Destructuring)' },
-        { title: 'CSS3 / HTML5', description: '(Responsive design, Flexbox, Grid, Media Queries)' },
+        { title: 'React.js', description: '(inklusive Hooks, Context API och funktionella komponenter)' },
+        { title: 'Next.js', description: '(Server-side rendering, statisk sidgenerering, API-rutter, filbaserad routing)' },
+        { title: 'Redux', description: '(State management, actions, reducers, Thunk)' },
+        { title: 'RTK Query', description: '(Effektiv datahämtning, caching och API-integration med Redux)' },
+        { title: 'JavaScript (ES6+)', description: '(Async/Await, Promises, pilfunktioner, destrukturering)' },
+        { title: 'CSS3 / HTML5', description: '(Responsiv design, Flexbox, Grid, media queries)' },
     ]);
     const [backendList, setBackendList] = useState([
-        { title: 'Node.js', description: '(Server-side JavaScript runtime, REST API development)' },
-        { title: 'Express.js', description: '(Web framework for building RESTful APIs)' },
-        { title: 'MongoDB', description: '(NoSQL database, Mongoose ORM for managing data models)' },
-        { title: 'GraphQL', description: '(API querying language for optimized data fetching)' },
-        { title: 'PostgreSQL', description: '(SQL database, pgAdmin)' },
+        { title: 'Node.js', description: '(JavaScript-miljö för serversidan, utveckling av REST API)' },
+        { title: 'Express.js', description: '(Webbramverk för att bygga RESTfulla API:er)' },
+        { title: 'MongoDB', description: '(NoSQL-databas, hantering av datamodeller med Mongoose)' },
+        { title: 'GraphQL', description: '(Frågespråk för API:er som möjliggör optimerad datahämtning)' },
+        { title: 'PostgreSQL', description: '(Relationsdatabas, användning av pgAdmin)' },
     ]);
     const [otherList, setOtherList] = useState([
-        { title: 'Redux Toolkit', description: '(Modern Redux with less boilerplate, RTK Query for data fetching)' },
-        { title: 'Git', description: '(Version control, Branching, Merging, Rebase)' },
-        { title: 'Postman', description: '(API testing and documentation)' },
-        { title: 'Agile', description: '(Scrum, Sprint Planning, Jira)' },
-        { title: 'CI/CD', description: '(Continuous Integration, Continuous Deployment using GitHub Actions, Jenkins)' },
-        { title: 'RESTful API Design', description: '(CRUD operations, Authorization, and Authentication)' },
-        { title: 'Version Control with Git', description: '(Collaboration and managing feature branches)' },
+        { title: 'Redux Toolkit', description: '(Modern Redux med mindre boilerplate, RTK Query för datahämtning)' },
+        { title: 'Git', description: '(Versionshantering, branching, merging, rebase)' },
+        { title: 'Postman', description: '(Testning och dokumentation av API:er)' },
+        { title: 'Agilt arbetssätt', description: '(Scrum, sprintplanering, Jira)' },
+        { title: 'CI/CD', description: '(Kontinuerlig integration och leverans med GitHub Actions, Jenkins)' },
+        { title: 'REST API-design', description: '(CRUD-operationer, autentisering och auktorisering)' },
+        { title: 'Versionshantering med Git', description: '(Samarbete och hantering av feature branches)' },
     ]);
     const [softList, setSoftList] = useState([
-        { title: 'Svenska & Engelska', description: 'Mycket goda kommunikativa färdigheter i tal och skrift' },
-        { title: 'Samarbetsförmåga / problemlösning', description: 'Är bekväm att jobba i grupp eller självständigt och har mycket bra problemlösningsförmåga' },
-        { title: 'Adaptability', description: 'Quick to learn and implement new technologies' },
+        { title: 'Svenska & Engelska', description: 'Mycket goda kommunikativa färdigheter i både tal och skrift' },
+        { title: 'Samarbete & problemlösning', description: 'Trivs att arbeta både självständigt och i team, med stark problemlösningsförmåga' },
+        { title: 'Anpassningsförmåga', description: 'Snabblärd och lätt att ta till sig nya teknologier' },
     ]);
     const [draggedIndex, setDraggedIndex] = useState(null);
 
@@ -62,14 +62,14 @@ const Skills = () => {
                 transition={{ duration: 0.5 }}
                 viewport={{ once: true, amount: 0.4 }}
             ><i className="fa-solid fa-user-gear"></i>Kunskaper</motion.h1>
-            <div className='skillsMainWrapper flexColumn'>
+            <div className='skillsMainWrapper'>
                 {/* Frontend */}
                 <div className="skillsContainer">
                     <h3 className='skillMainTitle'>Frontend-utveckling</h3>
                     {frontendList.map((frontendSkill, index) => 
                     <motion.div
                         key={index}
-                        className="skill"
+                        className="skill dottedElement"
                         initial={{ opacity: 0, x: -100 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8 }}
@@ -89,7 +89,7 @@ const Skills = () => {
                     {backendList.map((backendSkill, index) => 
                     <motion.div
                         key={index}
-                        className="skill"
+                        className="skill dottedElement"
                         initial={{ opacity: 0, x: 100 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8 }}
@@ -109,7 +109,7 @@ const Skills = () => {
                     {otherList.map((otherSkill, index) => 
                     <motion.div
                         key={index}
-                        className="skill"
+                        className="skill dottedElement"
                         initial={{ opacity: 0, scale: 1.4 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.8 }}
@@ -129,7 +129,7 @@ const Skills = () => {
                     {softList.map((softSkill, index) => 
                     <motion.div
                         key={index}
-                        className="skill"
+                        className="skill dottedElement"
                         initial={{ opacity: 0, scale: 0.6 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.8 }}

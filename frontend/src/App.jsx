@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Home from './components/Home';
 import Educations from './components/Educations';
 import Skills from './components/Skills';
+import Experiences from './components/Experiences';
 
 function App() {
   const [darkMode, setDarkMode] = useState(true);
@@ -30,6 +31,7 @@ function App() {
       <Home darkMode={darkMode} />
       <Educations darkMode={darkMode} />
       <Skills />
+      <Experiences />
     </>
   )
 }

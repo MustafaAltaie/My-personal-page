@@ -46,9 +46,9 @@ i {
     background-attachment: fixed;
 }
 .lightMode section, .lightMode header, body.lightMode {
-    background-image: radial-gradient(circle at 0 0, #0070b633, transparent 40%),
-    radial-gradient(circle at 50% 110%, #b6920033, transparent 30%),
-    radial-gradient(circle at 100% 50%, #4000ff33, transparent 60%);
+    background-image: radial-gradient(circle at 0 0, #0080ff28, transparent 40%),
+    radial-gradient(circle at 50% 110%, #e4cb6a27, transparent 30%),
+    radial-gradient(circle at 120% 50%, #1de5ff34, transparent 40%);
     background-attachment: fixed;
 }
 section {
@@ -68,4 +68,12 @@ section {
 }
 .sectionTitle {
     margin-left: 20px;
+}
+.dottedElement::before {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #999;
 }

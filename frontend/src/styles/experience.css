@@ -1,0 +1,72 @@
+.experienceSection {
+    padding: 40px 10px;
+    overflow-x: hidden;
+}
+.darkMode .experienceSection {
+    border-top: solid 1px #ffffff;
+}
+.lightMode .experienceSection {
+    border-top: solid 0.5px #00000088;
+}
+.experienceMainWrapper {
+    margin-top: 30px;
+}
+.experience {
+    display: flex;
+}
+.experience > div {
+    padding: 0 20px 40px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.experienceColumn1 {
+    width: 35%;
+    text-align: right;
+}
+.experienceColumn2 {
+    position: relative;
+    width: 65%;
+}
+.experienceColumn2::before {
+    left: -0.5px;
+    top: 0;
+    transform: translate(-50%, 50%);
+}
+.darkMode .experienceColumn2 {
+    border-left: solid 0.7px #ffffff55;
+}
+.lightMode .experienceColumn2 {
+    border-left: solid 0.7px #00000055;
+}
+.experience > div h5 {
+    font-size: 16px;
+}
+.experience > div h5:nth-child(1), .experience > div p:nth-child(1) {
+    color: #009de0;
+    font-weight: bold;
+}
+.darkMode .experience > div h5:nth-child(2) {
+    color: #d69600;
+}
+
+
+/* Laptop scale */
+@media (min-width: 1024px) {
+    .experienceSection {
+        padding: 40px;
+        overflow-x: hidden;
+    }
+    .experienceMainWrapper {
+        width: 70%;
+        margin: 40px auto 0 auto;
+    }
+    .experienceColumn1 {
+        width: 30%;
+        text-align: right;
+    }
+    .experienceColumn2 {
+        position: relative;
+        width: 70%;
+    }
+}

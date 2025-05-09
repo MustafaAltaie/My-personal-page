@@ -60,7 +60,7 @@ const Educations = ({ darkMode }) => {
                     onDragOver={e => handleDragOver(e, index)}
                     onDrop={handleDrop}
                 >
-                    <h3 className='educationText'>{education.title}</h3>
+                    <h3 className='educationText dottedElement'>{education.title}</h3>
                     <h5 className='educationText5'>{education.date}</h5>
                     <p className='educationText'>{education.content}</p>
                 </motion.div>
