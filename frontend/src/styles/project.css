@@ -1,0 +1,97 @@
+.projectSection {
+    padding: 40px 20px;
+    overflow-x: hidden;
+}
+.darkMode .projectSection {
+    border-top: solid 1px #fff;
+}
+.lightMode .projectSection {
+    border-top: solid 1px #000;
+}
+.projectSection > p {
+    padding: 20px;
+}
+.projectMainWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 0 10px;
+}
+.project {
+    width: 100%;
+    padding: 20px;
+    border-radius: 15px;
+    gap: 20px;
+    justify-content: space-between;
+}
+.darkMode .project {
+    background-color: #99999917;
+}
+.lightMode .project {
+    background-color: #00000011;
+}
+.project > div {
+    gap: 15px;
+}
+.project > div > div {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+.darkMode .project > div h3, .lightMode .project > div h3 {
+    color: #b3810b;
+}
+.project > button {
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+}
+.project > button > i {
+    transform: translateX(15px);
+    animation: arrowLeft 8s ease-in-out infinite;
+}
+.darkMode .project > button {
+    background: #00000077;
+    color: #e3a20a;
+}
+.lightMode .project > button {
+    background: #000000aa;
+    color: #fff;
+    font-family: var(--thinFont);
+}
+@keyframes arrowLeft {
+    0% {
+        transform: translateX(15px);
+    } 3% {
+        transform: translateX(30px);
+    } 6% {
+        transform: translateX(15px);
+    } 9% {
+        transform: translateX(30px);
+    } 12% {
+        transform: translateX(15px);
+    }
+}
+.lightMode .project > button > i {
+    color: #fff;
+}
+.darkMode .project > button > i {
+    color: #e3a20a;
+}
+
+
+/* Laptop scale */
+@media (min-width: 1024px) {
+    .projectSection {
+        padding: 40px;
+        overflow-x: hidden;
+    }
+    .projectMainWrapper {
+        gap: 40px;
+        padding: 0 10px;
+    }
+    .project {
+        width: calc(100%/3 - 80px/3);
+        padding: 30px;
+    }
+}

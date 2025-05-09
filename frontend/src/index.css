@@ -8,8 +8,8 @@
     --lightBG: #fff;
 
     /* Colors */
-    --darkText: #fff;
-    --lightText: #000;
+    --darkText: #ffffffaa;
+    --lightText: #000000aa;
 }
 * {
     margin: 0;
@@ -34,6 +34,9 @@
 }
 i {
     margin-right: 10px;
+}
+button {
+    cursor: pointer;
 }
 .darkMode i {
     color: #ffffffaa;
@@ -76,4 +79,16 @@ section {
     height: 10px;
     border-radius: 50%;
     background-color: #999;
+}
+
+@media (min-width: 1024px) {
+    p {
+        font-size: 14px;
+    }
+    h3 {
+        font-size: 16px;
+    }
+    h5 {
+        font-size: 12px;
+    }
 }

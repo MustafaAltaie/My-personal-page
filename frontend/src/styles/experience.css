@@ -1,12 +1,12 @@
 .experienceSection {
-    padding: 40px 10px;
+    padding: 40px 10px 0 10px;
     overflow-x: hidden;
 }
 .darkMode .experienceSection {
     border-top: solid 1px #ffffff;
 }
 .lightMode .experienceSection {
-    border-top: solid 0.5px #00000088;
+    border-top: solid 1px #000;
 }
 .experienceMainWrapper {
     margin-top: 30px;
@@ -21,12 +21,12 @@
     gap: 30px;
 }
 .experienceColumn1 {
-    width: 35%;
+    width: 33%;
     text-align: right;
 }
 .experienceColumn2 {
     position: relative;
-    width: 65%;
+    width: 67%;
 }
 .experienceColumn2::before {
     left: -0.5px;
@@ -66,7 +66,6 @@
         text-align: right;
     }
     .experienceColumn2 {
-        position: relative;
         width: 70%;
     }
 }

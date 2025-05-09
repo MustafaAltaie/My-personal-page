@@ -2,7 +2,6 @@
     padding-top: 25px;
     display: flex;
     flex-direction: column;
-    border-bottom: solid 1px #ffffff;
 }
 .homeImageWrapper {
     display: flex;
@@ -20,7 +19,6 @@
     padding: 30px;
 }
 .darkMode .homeProfileWrapper > p {
-    color: #ffffffaa;
     margin-top: 10px;
 }
 

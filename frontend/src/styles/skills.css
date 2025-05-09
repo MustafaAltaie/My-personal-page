@@ -6,7 +6,7 @@
     border-top: solid 1px #ffffff;
 }
 .lightMode .skillSection {
-    border-top: solid 0.5px #00000088;
+    border-top: solid 1px #000;
 }
 .skillSection > h1 {
     margin-bottom: 20px;
@@ -61,9 +61,6 @@
 }
 .darkMode .skill > p > span {
     color: #d69600;
-}
-.darkMode .skill > p {
-    color: #ffffffaa;
 }
 .lightMode .skill > p > span {
     color: #07a;

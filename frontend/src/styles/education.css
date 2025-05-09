@@ -4,8 +4,11 @@
     flex-direction: column;
     padding: 40px 40px 0 40px;
 }
+.darkMode .educationSection {
+    border-top: solid 1px #fff;
+}
 .lightMode .educationSection {
-    border-top: solid 0.5px #00000088;
+    border-top: solid 1px #000;
 }
 .educationIconWrapper, .educationIconWrapper > img {
     display: none;
