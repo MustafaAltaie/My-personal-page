@@ -2,7 +2,7 @@ import { useState } from 'react';
 import '../styles/education.css';
 import { motion } from 'framer-motion';
 
-const Educations = ({ darkMode }) => {
+const Educations = () => {
     const [list, setList] = useState([
         {
             title: 'Fullstack - JavaScript | Yrkeshögskoleutbildning',
@@ -65,9 +65,6 @@ const Educations = ({ darkMode }) => {
                     <p className='educationText'>{education.content}</p>
                 </motion.div>
                 )}
-            </div>
-            <div className="educationIconWrapper flexMiddle">
-                <img src={darkMode ? "../../images/educationDark.png" : "../../images/educationLight.png"} alt="Education" />
             </div>
         </section>
     )

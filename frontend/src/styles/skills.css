@@ -1,6 +1,11 @@
 .skillSection {
     padding: 40px;
     overflow-x: hidden;
+    background-image: url('../../images/skillsIcon.png');
+    background-attachment: fixed;
+    background-size: 90% 40%;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 .darkMode .skillSection {
     border-top: solid 1px #ffffff;
@@ -69,6 +74,9 @@
 
 /* Laptop scale */
 @media (min-width: 1024px) {
+    .skillSection {
+        background-size: 40% 70%;
+    }
     .skillsMainWrapper {
         flex-direction: row;
         flex-wrap: wrap;

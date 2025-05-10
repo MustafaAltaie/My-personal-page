@@ -1,5 +1,4 @@
 .educationSection {
-    position: relative;
     display: flex;
     flex-direction: column;
     padding: 40px 40px 0 40px;
@@ -9,9 +8,6 @@
 }
 .lightMode .educationSection {
     border-top: solid 1px #000;
-}
-.educationIconWrapper, .educationIconWrapper > img {
-    display: none;
 }
 .educationWrapper {
     display: flex;
@@ -65,21 +61,16 @@ h3.educationText::before, h3.educationText::before {
 /* Laptop scale */
 @media (min-width: 1024px) {
     .educationSection {
-        flex-direction: row;
+        background-image: url('../../images/educationIcon.png');
+        background-attachment: fixed;
+        background-size: 40% 70%;
+        background-repeat: no-repeat;
+        background-position: right;
     }
     .educationMainWrapper {
         width: 50%;
     }
     h3.educationText {
         transform: translateY(-10px);
-    }
-    .educationIconWrapper {
-        width: 50%;
-    }
-    .educationIconWrapper > img {
-        display: block;
-        width: 70%;
-        opacity: 0.07;
-        pointer-events: none;
     }
 }

@@ -17,11 +17,11 @@
     box-sizing: border-box;
     outline: none;
     text-decoration: none;
-    list-style: none;
     line-height: 1.5rem;
     word-spacing: 0.2rem;
     user-select: none;
     -webkit-user-select: none;
+    resize: none;
 }
 .darkMode *:not([class*="fa-"]) {
     font-family: var(--thinFont);
@@ -44,11 +44,11 @@ button {
 .lightMode i {
     color: #000000aa;
 }
-.darkMode section, .darkMode header, body.darkMode {
+.darkMode header, body.darkMode {
     background-image: linear-gradient(150deg, #000000, #0b1f42, #0b1f42, #000000);
     background-attachment: fixed;
 }
-.lightMode section, .lightMode header, body.lightMode {
+.lightMode header, body.lightMode {
     background-image: radial-gradient(circle at 0 0, #0080ff28, transparent 40%),
     radial-gradient(circle at 50% 110%, #e4cb6a27, transparent 30%),
     radial-gradient(circle at 120% 50%, #1de5ff34, transparent 40%);

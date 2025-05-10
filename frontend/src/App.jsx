@@ -6,6 +6,7 @@ import Educations from './components/Educations';
 import Skills from './components/Skills';
 import Experiences from './components/Experiences';
 import Projects from './components/Projects';
+import Footer from './components/Footer';
 
 function App() {
   const [darkMode, setDarkMode] = useState(true);
@@ -30,10 +31,11 @@ function App() {
     <>
       <Header toggleMode={toggleMode} darkMode={darkMode} />
       <Home darkMode={darkMode} />
-      <Educations darkMode={darkMode} />
+      <Educations />
       <Skills />
       <Experiences />
       <Projects />
+      <Footer />
     </>
   )
 }

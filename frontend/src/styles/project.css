@@ -1,6 +1,12 @@
+/* project section */
 .projectSection {
     padding: 40px 20px;
     overflow-x: hidden;
+    background-image: url('../../images/nodejs-logo.png');
+    background-position: center;
+    background-attachment: fixed;
+    background-size: 90% 30%;
+    background-repeat: no-repeat;
 }
 .darkMode .projectSection {
     border-top: solid 1px #fff;
@@ -8,56 +14,162 @@
 .lightMode .projectSection {
     border-top: solid 1px #000;
 }
+/* project section text */
 .projectSection > p {
     padding: 20px;
 }
+.darkMode .projectSection > p {
+    color: #f3ac08;
+}
+.lightMode .projectSection > p {
+    color: #1d72c1;
+    font-weight: bold;
+}
+.projectSection > p i {
+    margin: 0 5px;
+    color: inherit;
+}
+/* projectMainWrapper */
 .projectMainWrapper {
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
-    padding: 0 10px;
+    padding: 10px;
 }
+/* project */
 .project {
+    position: relative;
     width: 100%;
     padding: 20px;
     border-radius: 15px;
-    gap: 20px;
+    gap: 10px;
     justify-content: space-between;
 }
 .darkMode .project {
-    background-color: #99999917;
+    background-image:
+    radial-gradient(circle at -10% -10%, #fff70022, transparent 30%),
+    radial-gradient(circle at 80% -30%, #0095ff5c, transparent 30%),
+    radial-gradient(circle at 60% 120%, #ffffff22, transparent 30%),
+    radial-gradient(circle at -20% 100%, #0095ff3f, transparent 30%);
+    border: solid 0.5px #ffffff22;
+    backdrop-filter: blur(10px);
 }
 .lightMode .project {
-    background-color: #00000011;
+    background-image:
+    radial-gradient(circle at -10% -10%, #189bff48, transparent 30%),
+    radial-gradient(circle at 80% -30%, #6565653b, transparent 30%),
+    radial-gradient(circle at 60% 120%, #0062ff22, transparent 30%),
+    radial-gradient(circle at -20% 100%, #0095ff3f, transparent 30%);
+    background-color: #dddddd22;
+    border: solid 0.7px #fff;
+    backdrop-filter: blur(10px);
 }
-.project > div {
+/* projectLabel the bag icon */
+.projectLabel {
+    position: absolute;
+    top: 7px;
+    right: 0;
+}
+.darkMode .projectLabel {
+    color: #b3852f;
+}
+.lightMode .projectLabel {
+    color: #1d72c1;
+}
+/* projectUpperPart */
+.projectUpperPart {
     gap: 15px;
 }
-.project > div > div {
+.projectUpperPart > div {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     gap: 20px;
 }
-.darkMode .project > div h3, .lightMode .project > div h3 {
-    color: #b3810b;
+.darkMode .projectUpperPart h3 {
+    color: #e3a209;
+    font-weight: normal;
 }
-.project > button {
+.lightMode .projectUpperPart h3 {
+    color: #1d72c1;
+}
+.darkMode .projectUpperPart p {
+    color: #ffffff88;
+    line-height: 1.2rem;
+}
+.lightMode .projectUpperPart p {
+    color: #00000099;
+    line-height: 1.2rem;
+}
+.darkMode .projectUpperPart i {
+    color: #ffffff55;
+}
+/* project TechStack list */
+.projectTechStack {
+    padding: 10px 0;
+}
+.darkMode .projectTechStack {
+    border-top: solid 0.5px #ffffff33;
+    border-bottom: solid 0.5px #ffffff33;
+}
+.lightMode .projectTechStack {
+    border-top: solid 0.5px #00000055;
+    border-bottom: solid 0.5px #00000055;
+}
+.projectTechStack > h5 {
+    padding-bottom: 5px;
+    font-weight: normal;
+}
+.darkMode .projectTechStack > h5 {
+    color: #e3a20a;
+}
+.lightMode .projectTechStack > h5 {
+    color: #1d72c1;
+}
+.projectTechStack > li {
+    font-size: 12px;
+    line-height: 1.1rem;
+    margin-left: 10px;
+}
+.darkMode .projectTechStack > li {
+    color: #ffffff77;
+}
+/* projectLowerPart button and date */
+.projectLowerPart {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.darkMode .project h6 {
+    color: #ffffff44;
+}
+.project > .projectLowerPart > button {
     border-radius: 5px;
     border: none;
     padding: 5px;
+    width: 80%;
 }
-.project > button > i {
-    transform: translateX(15px);
-    animation: arrowLeft 8s ease-in-out infinite;
+.project > .projectLowerPart > h6 {
+    white-space: nowrap;
 }
-.darkMode .project > button {
+.darkMode .project > .projectLowerPart > button {
     background: #00000077;
     color: #e3a20a;
 }
-.lightMode .project > button {
+.lightMode .project > .projectLowerPart > button {
     background: #000000aa;
     color: #fff;
     font-family: var(--thinFont);
+}
+.lightMode .project > .projectLowerPart > button > i {
+    color: #fff;
+}
+.darkMode .project > .projectLowerPart > button > i {
+    color: #e3a20a;
+}
+.project > .projectLowerPart > button > i {
+    transform: translateX(15px);
+    animation: arrowLeft 8s ease-in-out infinite;
 }
 @keyframes arrowLeft {
     0% {
@@ -72,26 +184,19 @@
         transform: translateX(15px);
     }
 }
-.lightMode .project > button > i {
-    color: #fff;
-}
-.darkMode .project > button > i {
-    color: #e3a20a;
-}
 
 
 /* Laptop scale */
 @media (min-width: 1024px) {
     .projectSection {
         padding: 40px;
-        overflow-x: hidden;
-    }
-    .projectMainWrapper {
-        gap: 40px;
-        padding: 0 10px;
+        background-size: 50% 60%;
     }
     .project {
-        width: calc(100%/3 - 80px/3);
         padding: 30px;
+        width: calc(100%/3 - 60px/3);
+    }
+    .projectLabel {
+        top: 10px;
     }
 }
