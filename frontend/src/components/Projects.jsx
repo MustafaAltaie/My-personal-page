@@ -9,6 +9,7 @@ const Projects = forwardRef((props, ref) => {
             createdDate: '9 maj 2025',
             content: 'Jag utvecklade applikationen med (MERN-stack). Applikationen innehåller ett administrativt dashboard där ägaren kan skapa, uppdatera och ta bort innehåll.',
             techStack: ['MongoDB - database', 'Express - backend framework', 'React.js - frontend framework', 'Node.js - servermiljö för JavaScript', 'Redux och RTK Query - datahämtning', 'Vonage + tar emot sms från appen', 'CSS3 & HTML5'],
+            appLink: '',
             isProfessional: true
         },
         {
@@ -16,6 +17,7 @@ const Projects = forwardRef((props, ref) => {
             createdDate: '9 maj 2025',
             content: 'Jag utvecklade appen som ett hobbyprojekt. Applikationen är byggd för att beställa elektronikprodukter online och innehåller ett administrativt dashboard där man kan skapa, uppdatera och radera produkter.',
             techStack: ['MongoDB - database', 'Express - backend framework', 'React.js - frontend framework', 'Node.js - servermiljö för JavaScript', 'Redux och RTK Query - datahämtning', 'Resend - tar emot meddelanden från kontaktformulär', 'CSS3 & HTML5'],
+            appLink: '',
             isProfessional: false
         },
         {
@@ -23,6 +25,7 @@ const Projects = forwardRef((props, ref) => {
             createdDate: '9 maj 2025',
             content: 'Jag utvecklade denna frontend-applikation under min utbildning. Applikationen fungerar enligt Scrum-principen, där användaren kan lägga till uppgifter och flytta dem mellan olika kolumner. All data sparas i webbläsarens localStorage.',
             techStack: ['React.js - frontend framework', 'Redux  - state management', 'CSS3 & HTML5', 'localStorage - spara data'],
+            appLink: '',
             isProfessional: false
         },
         {
@@ -30,6 +33,7 @@ const Projects = forwardRef((props, ref) => {
             createdDate: '9 maj 2025',
             content: 'Jag utvecklade denna frontend-applikation med ren JavaScript. Applikationen fungerar som en sociala medier-liknande tjänst där användare kan hitta personer från hela världen baserat på sina sökfilter – likt en dejtingapp. Sökfunktionen är redan förberedd för att kunna kopplas till ett backend, om jag i framtiden väljer att bygga ut den till en fullstack-applikation.',
             techStack: ['Vanilla JavaScript', 'CSS3 & HTML5'],
+            appLink: '',
             isProfessional: false
         },
         {
@@ -37,6 +41,7 @@ const Projects = forwardRef((props, ref) => {
             createdDate: '9 maj 2025',
             content: 'Jag utvecklade denna Quire-liknande frontend-applikation med ren JavaScript under min utbildning. Användaren kan lägga till anteckningar, redigera dem och all data sparas lokalt i webbläsarens localStorage.',
             techStack: ['Vanilla JavaScript', 'CSS3 & HTML5', 'localStorage - spara data'],
+            appLink: '',
             isProfessional: false
         },
         {
@@ -44,6 +49,7 @@ const Projects = forwardRef((props, ref) => {
             createdDate: '9 maj 2025',
             content: 'Jag utvecklade denna fullstack-applikation för Järvenskolorna i Katrineholm, där jag arbetade. Syftet var att underlätta för eleverna att beställa från skolans kafeteria via sina mobiltelefoner eller direkt från en skärm i kafeterian. Beställningarna tas emot av personalen i realtid via Socket.io.',
             techStack: ['MongoDB: spara föremål', 'Express: backend framework', 'Vanilla JavaScript', 'Node.js: servermiljö för JavaScript', 'Socket.js: Tar emot order', 'CSS3 & HTML5'],
+            appLink: '',
             isProfessional: true
         },
     ]);
@@ -116,7 +122,7 @@ const Projects = forwardRef((props, ref) => {
                     </div>
                     <div className='projectLowerPart'>
                         <h6>Skapad: {project.createdDate}</h6>
-                        <button>Gå till GitHub<i className="fa-solid fa-arrow-right"></i></button>
+                        <button>Visa på GitHub<i className="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </div>)}
             </div>

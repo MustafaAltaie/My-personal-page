@@ -6,6 +6,8 @@ const Header = (props) => {
     const [nav, setNav] = useState(false);
     const navRef = useRef(null);
     const [navOption, setNavOption] = useState('Home');
+    const lastScrollYRef = useRef(window.scrollY);
+    const [showHeader, setShowHeader] = useState(true);
 
     useEffect(() => {
         if(nav) {
@@ -18,6 +20,12 @@ const Header = (props) => {
     }, [nav]);
 
     useEffect(() => {
+        const handleScroll = () => {
+            setShowHeader(window.scrollY < lastScrollYRef.current);
+            lastScrollYRef.current = window.scrollY;
+        }
+        window.addEventListener('scroll', handleScroll);
+        
         const handleResize = () => {
             if(window.innerWidth >= 1024) {
                 setNav(true);
@@ -25,14 +33,16 @@ const Header = (props) => {
                 setNav(false);
             }
         }
-
         handleResize();
         window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+            window.removeEventListener('scroll', handleScroll);
+        }
     }, []);
 
     return (
-        <header>
+        <header className={!showHeader ? 'hideHeader' : ''}>
             <div className="headerPart1">
                 <h2><span>Mustafa</span> Altaie</h2>
                 <div className='toggleModeWrapper flexMiddle'>

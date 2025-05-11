@@ -1,9 +1,17 @@
 header {
     z-index: 100;
     position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     width: 100%;
     display: flex;
     flex-direction: column;
+    transform: translateY(0);
+    transition: transform 0.2s;
+}
+.hideHeader {
+    transform: translateY(-100%);
 }
 body.darkMode header {
     border-bottom: solid 0.5px #ffffff55;

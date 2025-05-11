@@ -39,9 +39,9 @@ footer > div:first-child {
     border-radius: 10px;
     background-image:
     radial-gradient(circle at -20% -30%, #ffffff6c, transparent 40%),
-    radial-gradient(circle at 140% 70%, #ffffff6c, transparent 40%),
-    radial-gradient(circle at -40% 140%, #ffffff6c, transparent 40%);
+    radial-gradient(circle at 140% 70%, #ffffff6c, transparent 40%);
     background-color: #29292955;
+    transition: 0.2s;
 }
 .footerTop > div > a > i {
     font-size: 20px;
@@ -84,15 +84,14 @@ footer > div:first-child {
     border-radius: 10px;
     border: none;
     padding: 10px;
+    font-family: var(--formalFont) !important;
 }
 .footerContactForm > textarea,
 .footerContactForm > input {
     color: #000 !important;
-    font-family: var(--formalFont) !important;
 }
 .footerContactForm > button {
     background: rgb(50, 59, 175);
-    font-size: 16px;
 }
 /* footer middle part */
 /* footerIconsMainWrapper */
@@ -129,6 +128,9 @@ footer > div:first-child {
 @media (min-width: 1024px) {
     .footerTop > div {
         gap: 25px;
+    }
+    .footerTop > div > a:hover {
+        transform: translateY(-5px);
     }
     .footerCenter {
         justify-content: center;

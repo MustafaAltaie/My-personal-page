@@ -169,17 +169,19 @@
 }
 .project > .projectLowerPart > button > i {
     transform: translateX(15px);
+}
+.project:hover > .projectLowerPart > button > i {
     animation: arrowLeft 8s ease-in-out infinite;
 }
 @keyframes arrowLeft {
     0% {
         transform: translateX(15px);
     } 3% {
-        transform: translateX(30px);
+        transform: translateX(20px);
     } 6% {
         transform: translateX(15px);
     } 9% {
-        transform: translateX(30px);
+        transform: translateX(20px);
     } 12% {
         transform: translateX(15px);
     }
