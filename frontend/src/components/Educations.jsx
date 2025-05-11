@@ -1,20 +1,23 @@
-import { useState, forwardRef } from 'react';
+import { useState, forwardRef, useEffect } from 'react';
 import '../styles/education.css';
 import { motion } from 'framer-motion';
+import { useReadEducationQuery } from '../features/portfolioApi.js';
 
 const Educations = forwardRef((props, ref) => {
-    const [list, setList] = useState([
-        {
-            title: 'Fullstack - JavaScript | Yrkeshögskoleutbildning',
-            date: '2023-09 - 2025-06 | Chas Academy, Linköping',
-            content: 'Jag studerade Fullstack JavaScript-utveckling på distans vid Chas Academy. Utbildningen var 100%. Studierna bedrevs både på svenska och engelska.'
-        },
-        {
-            title: '4-årig kandidatexamen inom IT',
-            date: '2012-09 - 2015-12 | Al-Rafidain universitet, Irak',
-            content: 'Jag studerade 4 år på fakulteten för datateknik. Utbildningen är validerad och godkänd i Sverige av UHR.'
+    const { data: educations, isLoading } = useReadEducationQuery();
+    const [list, setList] = useState([]);
+
+    useEffect(() => {
+        if(Array.isArray(educations) && !isLoading) {
+            const transformed = educations.map(edu => ({
+                id: edu._id,
+                title: edu.title,
+                date: `${edu.dateFrom} - ${edu.dateTo} | ${edu.school}, ${edu.city} - ${edu.country}`,
+                content: edu.content
+            }));
+            setList(transformed);
         }
-    ]);
+    }, [educations, isLoading]);
 
     return (
         <section ref={ref} className="educationSection">
@@ -27,6 +30,7 @@ const Educations = forwardRef((props, ref) => {
                     viewport={{ once: true, amount: 0.4 }}
                 ><i className="fa-solid fa-user-graduate"></i>Utbildningar</motion.h1>
                 <br /><br />
+                {isLoading && <p>Loading...</p>}
                 {list.map((education, index) => 
                 <motion.div
                     key={index}

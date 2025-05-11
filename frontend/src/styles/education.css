@@ -57,6 +57,11 @@ h3.educationText::before, h3.educationText::before {
     transform: translate(-50%, -50%);
 }
 
+/* Settings */
+.educationForm {
+    margin-bottom: 20px;
+}
+
 
 /* Laptop scale */
 @media (min-width: 1024px) {
@@ -72,5 +77,9 @@ h3.educationText::before, h3.educationText::before {
     }
     h3.educationText {
         transform: translateY(-10px);
+    }
+    .educationForm {
+        width: 500px;
+        margin: 0 auto 20px auto;
     }
 }

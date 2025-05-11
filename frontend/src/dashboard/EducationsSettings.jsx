@@ -1,21 +1,54 @@
-import { useState, forwardRef } from 'react';
+import { useState, forwardRef, useRef, useEffect } from 'react';
 import '../styles/education.css';
 import { motion } from 'framer-motion';
+import { useCreateEducationMutation, useReadEducationQuery, useUpdateEducationMutation, useDeleteEducationMutation } from '../features/portfolioApi.js';
+import Education from './education.jsx';
 
 const Educations = forwardRef((props, ref) => {
-    const [list, setList] = useState([
-        {
-            title: 'Fullstack - JavaScript | Yrkeshögskoleutbildning',
-            date: '2023-09 - 2025-06 | Chas Academy, Linköping',
-            content: 'Jag studerade Fullstack JavaScript-utveckling på distans vid Chas Academy. Utbildningen var 100%. Studierna bedrevs både på svenska och engelska.'
-        },
-        {
-            title: '4-årig kandidatexamen inom IT',
-            date: '2012-09 - 2015-12 | Al-Rafidain universitet, Irak',
-            content: 'Jag studerade 4 år på fakulteten för datateknik. Utbildningen är validerad och godkänd i Sverige av UHR.'
-        }
-    ]);
     const [draggedIndex, setDraggedIndex] = useState(null);
+    const [createEducation] = useCreateEducationMutation();
+    const { data: educations, isLoading } = useReadEducationQuery();
+    const [updateEducation] = useUpdateEducationMutation();
+    const [deleteEducation] = useDeleteEducationMutation();
+    const [educationObj, setEducationObj] = useState({
+        id: '',
+        title: '',
+        dateFrom: '',
+        dateTo: '',
+        content: '',
+        city: '',
+        country: '',
+        school: ''
+    });
+    const formRef = useRef(null);
+    const [settings, setSettings] = useState(false);
+    const [disableBtn, setDisableBtn] = useState(false);
+    const [list, setList] = useState([]);
+
+    useEffect(() => {
+        if(Array.isArray(educations) && !isLoading) {
+            const transformed = educations.map(edu => ({
+                id: edu._id,
+                title: edu.title,
+                date: `${edu.dateFrom} - ${edu.dateTo} | ${edu.school}, ${edu.city} - ${edu.country}`,
+                content: edu.content
+            }));
+            setList(transformed);
+        }
+    }, [educations, isLoading]);
+
+    useEffect(() => {
+        if(formRef.current) {
+            if(settings) {
+                formRef.current.style.maxHeight = `${formRef.current.scrollHeight}px`;
+                setTimeout(() => {
+                    formRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 200);
+            } else {
+                formRef.current.style.maxHeight = '0px';
+            }
+        }
+    }, [settings]);
 
     const handleDragStart = (index) => {
         setDraggedIndex(index);
@@ -36,6 +69,68 @@ const Educations = forwardRef((props, ref) => {
         setDraggedIndex(null);
     }
 
+    const prepareEducation = (e) => {
+        setEducationObj(prev => ({
+            ...prev, [e.target.name]: e.target.value
+        }));
+    }
+
+    const prepareUpdate = (edu) => {
+        setEducationObj({
+            id: edu._id,
+            title: edu.title,
+            dateFrom: edu.dateFrom,
+            dateTo: edu.dateTo,
+            content: edu.content,
+            city: edu.city,
+            country: edu.country,
+            school: edu.school
+        });
+        setSettings(true);
+    }
+
+    const handleCreateUpdateEducations = async (e) => {
+        e.preventDefault();
+        setDisableBtn(true);
+        const { id, title, dateFrom, dateTo, content } = educationObj;
+        const isValid = title && content && dateFrom && dateTo;
+        if(!isValid) return;
+        try {
+            id ?
+            await updateEducation(educationObj).unwrap() :
+            await createEducation(educationObj).unwrap()
+            clearFields();
+            setSettings(false);
+            setDisableBtn(false);
+        } catch (err) {
+            console.error('Error saving data:', err);
+            alert('Error saving data');
+        }
+    }
+
+    const handleDelete = async (id) => {
+        if(!id) return;
+        try {
+            await deleteEducation(id).unwrap();
+        } catch (err) {
+            console.log('Error deleting education:', err);
+            alert('Error deleting education');
+        }
+    }
+
+    const clearFields = () => {
+        setEducationObj({
+            id: '',
+            title: '',
+            dateFrom: '',
+            dateTo: '',
+            content: '',
+            city: '',
+            country: '',
+            school: ''
+        });
+    }
+
     return (
         <section ref={ref} className="educationSection">
             <div className='educationMainWrapper'>
@@ -47,25 +142,45 @@ const Educations = forwardRef((props, ref) => {
                     viewport={{ once: true, amount: 0.4 }}
                 ><i className="fa-solid fa-user-graduate"></i>Utbildningar</motion.h1>
                 <br /><br />
-                {list.map((education, index) => 
-                <motion.div
-                    key={index}
-                    className='educationWrapper'
-                    initial={{ opacity: 0, x: -150 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.7 }}
-                    viewport={{ once: true, amount: 0.4 }}
-                    draggable
-                    onDragStart={() => handleDragStart(index)}
-                    onDragOver={e => handleDragOver(e, index)}
-                    onDrop={handleDrop}
-                >
-                    <h3 className='educationText dottedElement'>{education.title}</h3>
-                    <h5 className='educationText5'>{education.date}</h5>
-                    <p className='educationText'>{education.content}</p>
-                </motion.div>
+                {isLoading && <p>Loading...</p>}
+                {educations?.map((education, index) => 
+                    <Education
+                        key={index}
+                        education={education}
+                        index={index}
+                        handleDragStart={handleDragStart}
+                        handleDragOver={handleDragOver}
+                        handleDrop={handleDrop}
+                        prepareUpdate={prepareUpdate}
+                        handleDelete={handleDelete}
+                    />
                 )}
             </div>
+            <h1 className={`showEducationFormBtn showFormButton ${settings ? 'showFormButtonOn' : ''}`} onClick={() => {setSettings(!settings); clearFields()}}>+</h1>
+            <form ref={formRef} className='educationForm' onSubmit={handleCreateUpdateEducations}>
+                <div className='formTwoInputs'>
+                    <div>
+                        <p>Date from</p>
+                        <input type="date" name='dateFrom' placeholder='Date from' title='Date from' value={educationObj.dateFrom || ''} onChange={prepareEducation} />
+                    </div>
+                    <div>
+                        <p>Date to</p>
+                        <input type="date" name='dateTo' placeholder='Date to' title='Date to' value={educationObj.dateTo || ''} onChange={prepareEducation} />
+                    </div>
+                </div>
+                <div className='formTwoInputs'>
+                    <div>
+                        <input type="text" name='city' placeholder='City' title='City' value={educationObj.city || ''} onChange={prepareEducation} />
+                    </div>
+                    <div>
+                        <input type="text" name='country' placeholder='Country' title='Country' value={educationObj.country || ''} onChange={prepareEducation} />
+                    </div>
+                </div>
+                <input type="text" name='title' placeholder='Title' title='Title' value={educationObj.title || ''} onChange={prepareEducation} />
+                <input type="text" name='school' placeholder='School' title='School' value={educationObj.school || ''} onChange={prepareEducation} />
+                <textarea name="content" placeholder='Content' title='Content' value={educationObj.content || ''} onChange={prepareEducation}></textarea>
+                <button type='submit' disabled={disableBtn}>{educationObj?.id ? 'Update education' : 'Save education'}</button>
+            </form>
         </section>
     )
 });

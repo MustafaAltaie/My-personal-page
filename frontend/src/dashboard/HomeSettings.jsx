@@ -11,10 +11,13 @@ const Home = forwardRef((props, ref) => {
     const formRef = useRef(null);
 
     useEffect(() => {
-        if(settings) {
-            if(formRef.current) formRef.current.style.maxHeight = formRef.current.scrollHeight + 'px';
-        } else if (formRef.current) {
-            formRef.current.style.maxHeight = '0px';
+        if(formRef.current) {
+            if(settings) {
+                formRef.current.style.maxHeight = `${formRef.current.scrollHeight}px`;
+                formRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                formRef.current.style.maxHeight = '0px';
+            }
         }
     }, [settings]);
 
@@ -36,7 +39,6 @@ const Home = forwardRef((props, ref) => {
                 profile: profileText
             }
             await updateProfile(newProfile).unwrap();
-            setProfileText('');
             setSettings(false);
         } catch (err) {
             console.error('Error updating profile:', err);
@@ -62,7 +64,7 @@ const Home = forwardRef((props, ref) => {
                 <p>{profile?.profile}</p>
                 {/* settings */}
                 <form ref={formRef} className="profileForm homeFormOption" onSubmit={handleUpdate}>
-                    <textarea className='homeFormOption' placeholder='Profile text' title='Profile' name='profileText' value={profileText} onChange={e => setProfileText(e.target.value)}></textarea>
+                    <textarea className='homeFormOption' placeholder='Profile text' title='Profile' name='profileText' value={profile?.profile || profileText} onChange={e => setProfileText(e.target.value)}></textarea>
                     <button className='homeFormOption' type='submit'>Update</button>
                 </form>
             </motion.div>
