@@ -53,6 +53,26 @@ const Projects = forwardRef((props, ref) => {
             isProfessional: true
         },
     ]);
+    const [draggedIndex, setDraggedIndex] = useState(null);
+
+    const handleDragStart = (index) => {
+        setDraggedIndex(index);
+    }
+
+    const handleDragOver = (event, index) => {
+        event.preventDefault();
+        if (draggedIndex === null || draggedIndex === index) return;
+        const newList = [...list];
+        const draggedItem = newList[draggedIndex];
+        newList.splice(draggedIndex, 1);
+        newList.splice(index, 0, draggedItem);
+        setDraggedIndex(index);
+        setList(newList);
+    }
+
+    const handleDrop = () => {
+        setDraggedIndex(null);
+    }
 
     return (
         <section ref={ref} className="projectSection">
@@ -61,7 +81,14 @@ const Projects = forwardRef((props, ref) => {
             <div className="projectMainWrapper">
                 {/* Project */}
                 {list.map((project, index) => project.title && 
-                <div key={index} className="project flexColumn">
+                <div
+                    key={index}
+                    className="project flexColumn"
+                    draggable
+                    onDragStart={() => handleDragStart(index)}
+                    onDragOver={e => handleDragOver(e, index)}
+                    onDrop={handleDrop}
+                >
                     {project.isProfessional &&
                     <i className="fa-solid fa-briefcase projectLabel"></i>}
                     <div className='flexColumn projectUpperPart'>

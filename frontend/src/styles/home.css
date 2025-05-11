@@ -22,6 +22,11 @@
     margin-top: 10px;
 }
 
+/* settings */
+.homeSection form > textarea {
+    margin-top: 20px;
+}
+
 
 /* Laptop scale */
 @media (min-width: 1024px) {
@@ -39,7 +44,7 @@
         flex-direction: column;
         justify-content: center;
         text-align: center;
-        padding: 100px;
+        padding: 0 100px;
     }
     .darkMode .homeImageWrapper {
         background: #000;

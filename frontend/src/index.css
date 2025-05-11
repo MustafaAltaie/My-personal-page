@@ -23,12 +23,12 @@
     -webkit-user-select: none;
     resize: none;
 }
-.darkMode *:not([class*="fa-"]) {
+.darkMode * :not([class*="fa-"]):not(form textarea, form button) {
     font-family: var(--thinFont);
     letter-spacing: 0.3px;
     color: var(--darkText);
 }
-.lightMode *:not([class*="fa-"]) {
+.lightMode * :not([class*="fa-"]) {
     font-family: var(--formalFont);
     color: var(--lightText);
 }
@@ -79,6 +79,35 @@ section {
     height: 10px;
     border-radius: 50%;
     background-color: #999;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow: hidden;
+    transition: 0.5s;
+}
+form input, form textarea, form button {
+    border-radius: 10px;
+    padding: 10px;
+    color: black;
+    font-family: var(--formalFont);
+}
+form textarea {
+    min-height: 80px;
+}
+form button {
+    background-color: rgb(195, 160, 83);
+    border: none;
+}
+.darkMode form input,
+.darkMode form textarea {
+    border: none;
+}
+.lightMode form input,
+.lightMode form textarea {
+    border: solid 0.5px #00000055;
 }
 
 @media (min-width: 1024px) {

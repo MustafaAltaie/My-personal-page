@@ -15,6 +15,26 @@ const Educations = forwardRef((props, ref) => {
             content: 'Jag studerade 4 år på fakulteten för datateknik. Utbildningen är validerad och godkänd i Sverige av UHR.'
         }
     ]);
+    const [draggedIndex, setDraggedIndex] = useState(null);
+
+    const handleDragStart = (index) => {
+        setDraggedIndex(index);
+    }
+
+    const handleDragOver = (event, index) => {
+        event.preventDefault();
+        if (draggedIndex === null || draggedIndex === index) return;
+        const newList = [...list];
+        const draggedItem = newList[draggedIndex];
+        newList.splice(draggedIndex, 1);
+        newList.splice(index, 0, draggedItem);
+        setDraggedIndex(index);
+        setList(newList);
+    }
+
+    const handleDrop = () => {
+        setDraggedIndex(null);
+    }
 
     return (
         <section ref={ref} className="educationSection">
@@ -35,6 +55,10 @@ const Educations = forwardRef((props, ref) => {
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.7 }}
                     viewport={{ once: true, amount: 0.4 }}
+                    draggable
+                    onDragStart={() => handleDragStart(index)}
+                    onDragOver={e => handleDragOver(e, index)}
+                    onDrop={handleDrop}
                 >
                     <h3 className='educationText dottedElement'>{education.title}</h3>
                     <h5 className='educationText5'>{education.date}</h5>

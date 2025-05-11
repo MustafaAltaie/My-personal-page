@@ -11,6 +11,27 @@ const Experiences = forwardRef((props, ref) => {
         { company: 'Frilansfotograf', address: 'Mustafa Photography - Irak, Bagdad', date: '2008.06 – 2013.01', description: 'Fotograferade och videofilmade vid evenemang som bröllop, fester och dop. Arbetade med redigering och efterbearbetning av bilder i Photoshop.' },
     ]);
 
+    const [draggedIndex, setDraggedIndex] = useState(null);
+
+    const handleDragStart = (index) => {
+        setDraggedIndex(index);
+    }
+
+    const handleDragOver = (event, index) => {
+        event.preventDefault();
+        if (draggedIndex === null || draggedIndex === index) return;
+        const newList = [...list];
+        const draggedItem = newList[draggedIndex];
+        newList.splice(draggedIndex, 1);
+        newList.splice(index, 0, draggedItem);
+        setDraggedIndex(index);
+        setList(newList);
+    }
+
+    const handleDrop = () => {
+        setDraggedIndex(null);
+    }
+
     return (
         <section ref={ref} className="experienceSection">
             <motion.h1
@@ -23,7 +44,14 @@ const Experiences = forwardRef((props, ref) => {
             <div className="experienceMainWrapper flexColumn">
                 {/* Experience */}
                 {list.map((experience, index) => 
-                <div key={index} className="experience">
+                <div
+                    key={index}
+                    className="experience"
+                    draggable
+                    onDragStart={() => handleDragStart(index)}
+                    onDragOver={e => handleDragOver(e, index)}
+                    onDrop={handleDrop}
+                >
                     <motion.div
                         className="experienceColumn1"
                         initial={{ opacity: 0, x: -100 }}

@@ -32,6 +32,26 @@ const Skills = forwardRef((props, ref) => {
         { title: 'Samarbete & problemlösning', description: 'Trivs att arbeta både självständigt och i team, med stark problemlösningsförmåga' },
         { title: 'Anpassningsförmåga', description: 'Snabblärd och lätt att ta till sig nya teknologier' },
     ]);
+    const [draggedIndex, setDraggedIndex] = useState(null);
+
+    const handleDragStart = (index) => {
+        setDraggedIndex(index);
+    }
+
+    const handleDragOver = (event, index, list, set) => {
+        event.preventDefault();
+        if (draggedIndex === null || draggedIndex === index) return;
+        const newList = [...list];
+        const draggedItem = newList[draggedIndex];
+        newList.splice(draggedIndex, 1);
+        newList.splice(index, 0, draggedItem);
+        setDraggedIndex(index);
+        set(newList);
+    }
+
+    const handleDrop = () => {
+        setDraggedIndex(null);
+    }
 
     return (
         <section ref={ref} className='skillSection'>
@@ -54,6 +74,10 @@ const Skills = forwardRef((props, ref) => {
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8 }}
                         viewport={{ once: true, amount: 0.3 }}
+                        draggable
+                        onDragStart={() => handleDragStart(index)}
+                        onDragOver={e => handleDragOver(e, index, frontendList, setFrontendList)}
+                        onDrop={handleDrop}
                     >
                         <p><span>{frontendSkill.title}: </span>{frontendSkill.description}</p>
                     </motion.div>
@@ -70,6 +94,10 @@ const Skills = forwardRef((props, ref) => {
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8 }}
                         viewport={{ once: true, amount: 0.3 }}
+                        draggable
+                        onDragStart={() => handleDragStart(index)}
+                        onDragOver={e => handleDragOver(e, index, backendList, setBackendList)}
+                        onDrop={handleDrop}
                     >
                         <p><span>{backendSkill.title}: </span>{backendSkill.description}</p>
                     </motion.div>
@@ -86,6 +114,10 @@ const Skills = forwardRef((props, ref) => {
                         whileInView={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.8 }}
                         viewport={{ once: true, amount: 0.3 }}
+                        draggable
+                        onDragStart={() => handleDragStart(index)}
+                        onDragOver={e => handleDragOver(e, index, otherList, setOtherList)}
+                        onDrop={handleDrop}
                     >
                         <p><span>{otherSkill.title}: </span>{otherSkill.description}</p>
                     </motion.div>
@@ -102,6 +134,10 @@ const Skills = forwardRef((props, ref) => {
                         whileInView={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.8 }}
                         viewport={{ once: true, amount: 0.3 }}
+                        draggable
+                        onDragStart={() => handleDragStart(index)}
+                        onDragOver={e => handleDragOver(e, index, softList, setSoftList)}
+                        onDrop={handleDrop}
                     >
                         <p><span>{softSkill.title}: </span>{softSkill.description}</p>
                     </motion.div>

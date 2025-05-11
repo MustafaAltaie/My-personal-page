@@ -1,8 +1,11 @@
 import '../styles/home.css';
 import { motion } from 'framer-motion';
 import { forwardRef } from 'react';
+import { useReadProfileQuery } from '../features/portfolioApi.js';
 
 const Home = forwardRef((props, ref) => {
+    const { data: profile, isLoading, isError } = useReadProfileQuery();
+
     return (
         <section ref={ref} className="homeSection">
             <div className="homeImageWrapper">
@@ -16,7 +19,9 @@ const Home = forwardRef((props, ref) => {
                 viewport={{ once: true, amount: 0 }}
             >
                 <h1>Profile</h1>
-                <p>I'm a full-stack JavaScript developer passionate about building scalable, responsive web applications from front to back. I specialize in crafting clean, maintainable code using the MERN stack (MongoDB, Express, React, Node.js), with strong attention to performance, accessibility, and user experience. I’ve developed and deployed full-featured applications, including dashboards, e-commerce platforms, REST APIs, and modern SPAs. Whether building a project from scratch or optimizing existing codebases, I aim for elegant solutions and seamless functionality.</p>
+                {isLoading && <p>Loading profile...</p>}
+                {isError && <p>Error reading profile</p>}
+                <p>{profile?.profile}</p>
             </motion.div>
         </section>
     )
