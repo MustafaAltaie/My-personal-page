@@ -1,11 +1,12 @@
 import '../styles/home.css';
 import { motion } from 'framer-motion';
+import { forwardRef } from 'react';
 
-const Home = ({ darkMode }) => {
+const Home = forwardRef((props, ref) => {
     return (
-        <section className="homeSection">
+        <section ref={ref} className="homeSection">
             <div className="homeImageWrapper">
-                <img src={darkMode ? 'https://cdn.pixabay.com/photo/2023/04/28/07/16/man-7956041_1280.jpg' : 'https://cdn.pixabay.com/photo/2016/03/26/14/43/young-1280694_1280.jpg'} alt="homeImage" />
+                <img src={props.darkMode ? 'https://cdn.pixabay.com/photo/2023/04/28/07/16/man-7956041_1280.jpg' : 'https://cdn.pixabay.com/photo/2016/03/26/14/43/young-1280694_1280.jpg'} alt="homeImage" />
             </div>
             <motion.div
                 className='homeProfileWrapper'
@@ -19,6 +20,6 @@ const Home = ({ darkMode }) => {
             </motion.div>
         </section>
     )
-}
+});
 
 export default Home;

@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState, forwardRef } from 'react';
 import '../styles/education.css';
 import { motion } from 'framer-motion';
 
-const Educations = () => {
+const Educations = forwardRef((props, ref) => {
     const [list, setList] = useState([
         {
             title: 'Fullstack - JavaScript | Yrkeshögskoleutbildning',
@@ -37,7 +37,7 @@ const Educations = () => {
     }
 
     return (
-        <section className="educationSection">
+        <section ref={ref} className="educationSection">
             <div className='educationMainWrapper'>
                 <motion.h1
                     className='educationText'
@@ -68,6 +68,6 @@ const Educations = () => {
             </div>
         </section>
     )
-}
+});
 
 export default Educations;

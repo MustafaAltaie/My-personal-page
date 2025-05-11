@@ -1,8 +1,9 @@
 import '../styles/footer.css';
+import { forwardRef } from 'react';
 
-const Footer = () => {
+const Footer = forwardRef((props, ref) => {
     return (
-        <footer>
+        <footer ref={ref}>
             {/* footer upper part */}
             <div className="footerTop flexColumn">
                 <h3>Kontakta mig direkt</h3>
@@ -54,10 +55,10 @@ const Footer = () => {
             </div>
             {/* footer lower part */}
             <div className="footerBottom">
-                <h6>© 2025 Mustafa Altaie. Alla rättigheter förbehållna.</h6>
+                <h5>© 2025 Mustafa Altaie. Alla rättigheter förbehållna.</h5>
             </div>
         </footer>
     )
-}
+});
 
 export default Footer;

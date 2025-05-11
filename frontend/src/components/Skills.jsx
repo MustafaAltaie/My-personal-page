@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState, forwardRef } from 'react';
 import '../styles/skills.css';
 import { motion } from 'framer-motion';
 
-const Skills = () => {
+const Skills = forwardRef((props, ref) => {
     const [frontendList, setFrontendList] = useState([
         { title: 'React.js', description: '(inklusive Hooks, Context API och funktionella komponenter)' },
         { title: 'Next.js', description: '(Server-side rendering, statisk sidgenerering, API-rutter, filbaserad routing)' },
@@ -54,7 +54,7 @@ const Skills = () => {
     }
 
     return (
-        <section className='skillSection'>
+        <section ref={ref} className='skillSection'>
             <motion.h1
                 className='sectionTitle'
                 initial={{ opacity: 0, x: -100 }}
@@ -146,6 +146,6 @@ const Skills = () => {
             </div>
         </section>
     )
-}
+});
 
 export default Skills;

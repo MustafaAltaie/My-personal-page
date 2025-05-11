@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState, forwardRef } from 'react';
 import '../styles/project.css';
 import { motion } from 'framer-motion';
 
-const Projects = () => {
+const Projects = forwardRef((props, ref) => {
     const [list, setList] = useState([
         {
             title: 'Trafikskola app, Fullstack',
@@ -69,7 +69,7 @@ const Projects = () => {
     }
 
     return (
-        <section className="projectSection">
+        <section ref={ref} className="projectSection">
             <h1 className="sectionTitle"><i className="fa-brands fa-node-js"></i>Projekt</h1>
             <p>Här är några webbappar som jag utvecklat på fritiden, under skoltiden eller i yrkeslivet – de finns tillgängliga på GitHub.<br />Projekt med<i className="fa-solid fa-briefcase"></i>ikonen är yrkesprojekt som jag har utvecklat i arbetssammanhang.</p>
             <div className="projectMainWrapper">
@@ -121,7 +121,7 @@ const Projects = () => {
                 </div>)}
             </div>
         </section>
-    );
-}
+    )
+});
 
 export default Projects;

@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import '../styles/header.css';
 import { motion } from 'framer-motion';
 
-const Header = ({ toggleMode, darkMode }) => {
+const Header = (props) => {
     const [nav, setNav] = useState(false);
     const navRef = useRef(null);
     const [navOption, setNavOption] = useState('Home');
@@ -34,11 +34,11 @@ const Header = ({ toggleMode, darkMode }) => {
     return (
         <header>
             <div className="headerPart1">
-                <p>LOGO NAME</p>
+                <h2><span>Mustafa</span> Altaie</h2>
                 <div className='toggleModeWrapper flexMiddle'>
                     <p>Light</p>
-                    <div className='toggleModeButton' onClick={toggleMode}>
-                        <div className={darkMode ? 'darkToggleThumb' : 'lightToggleThumb'}></div>
+                    <div className='toggleModeButton' onClick={props.toggleMode}>
+                        <div className={props.darkMode ? 'darkToggleThumb' : 'lightToggleThumb'}></div>
                     </div>
                     <p>Dark</p>
                 </div>
@@ -55,12 +55,12 @@ const Header = ({ toggleMode, darkMode }) => {
                     transition={{ duration: 0.5, ease: 'easeInOut' }}
                     viewport={{ once: true, amount: 0 }}
                 >
-                    <li onClick={() => setNavOption('Home')} className={navOption === 'Home' ? 'actionNavOption' : ''}>Home</li>
-                    <li onClick={() => setNavOption('Educations')} className={navOption === 'Educations' ? 'actionNavOption' : ''}>Educations</li>
-                    <li onClick={() => setNavOption('Skills')} className={navOption === 'Skills' ? 'actionNavOption' : ''}>Skills</li>
-                    <li onClick={() => setNavOption('Experience')} className={navOption === 'Experience' ? 'actionNavOption' : ''}>Experience</li>
-                    <li onClick={() => setNavOption('Projects')} className={navOption === 'Projects' ? 'actionNavOption' : ''}>Projects</li>
-                    <li onClick={() => setNavOption('Contact')} className={navOption === 'Contact' ? 'actionNavOption' : ''}>Contact</li>
+                    <li onClick={() => {setNavOption('Home'); props.scrollToHome(); setNav(false)}} className={navOption === 'Home' ? 'actionNavOption' : ''}>Home</li>
+                    <li onClick={() => {setNavOption('Educations'); props.scrollToEducations(); setNav(false) }} className={navOption === 'Educations' ? 'actionNavOption' : ''}>Educations</li>
+                    <li onClick={() => {setNavOption('Skills'); props.scrollToSkills(); setNav(false) }} className={navOption === 'Skills' ? 'actionNavOption' : ''}>Skills</li>
+                    <li onClick={() => {setNavOption('Experience'); props.scrollToExperiences(); setNav(false) }} className={navOption === 'Experience' ? 'actionNavOption' : ''}>Experience</li>
+                    <li onClick={() => {setNavOption('Projects'); props.scrollToProjects(); setNav(false) }} className={navOption === 'Projects' ? 'actionNavOption' : ''}>Projects</li>
+                    <li onClick={() => {setNavOption('Contact'); props.scrollToContact(); setNav(false) }} className={navOption === 'Contact' ? 'actionNavOption' : ''}>Contact</li>
                 </motion.ul>
             </nav>
         </header>

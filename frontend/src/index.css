@@ -45,7 +45,7 @@ button {
     color: #000000aa;
 }
 .darkMode header, body.darkMode {
-    background-image: linear-gradient(150deg, #000000, #0b1f42, #0b1f42, #000000);
+    background-image: linear-gradient(150deg, #000, #112845, #112845, #000);
     background-attachment: fixed;
 }
 .lightMode header, body.lightMode {

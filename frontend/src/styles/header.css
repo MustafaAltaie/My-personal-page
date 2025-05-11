@@ -20,6 +20,15 @@ body.lightMode header {
     justify-content: space-between;
     padding: 15px;
 }
+.headerPart1 > h2 {
+    font-weight: normal;
+}
+.darkMode .headerPart1 > h2 > span {
+    color: #ffb300;
+}
+.lightMode .headerPart1 > h2 > span {
+    color: #0064b6;
+}
 
 .toggleModeWrapper {
     gap: 10px;

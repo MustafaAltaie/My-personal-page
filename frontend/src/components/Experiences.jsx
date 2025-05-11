@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState, forwardRef } from 'react';
 import '../styles/experience.css';
 import { motion } from 'framer-motion';
 
-const Experiences = () => {
+const Experiences = forwardRef((props, ref) => {
     const [list, setList] = useState([
         { company: 'IT Ansvarig Karthago Matchning AB', address: 'Katrineholm, Flen och Vingåker', date: '2023.10 - pågår', description: 'Ansvarar för installation, konfiguration och reparation av datorsystem och hårdvara. Tillhandahåller teknisk support till användare, felsöker problem och säkerställer en effektiv drift av IT-utrustning.' },
         { company: 'Programmerare / Skolvärd', address: 'Järvenskolan-Katrineholm', date: '2020.03 – 2021.03', description: 'Utvecklade en app för skolans elever där de kunde beställa mat från skolans cafeteria. Använde Node.js, Express, MongoDB, JavaScript, HTML5 och CSS3 för att bygga appen.' },
@@ -33,7 +33,7 @@ const Experiences = () => {
     }
 
     return (
-        <section className="experienceSection">
+        <section ref={ref} className="experienceSection">
             <motion.h1
                 className="sectionTitle"
                 initial={{ opacity: 0, x: -100 }}
@@ -81,6 +81,6 @@ const Experiences = () => {
             </div>
         </section>
     )
-}
+});
 
 export default Experiences;
