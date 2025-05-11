@@ -24,8 +24,7 @@ const Header = (props) => {
             setShowHeader(window.scrollY < lastScrollYRef.current);
             lastScrollYRef.current = window.scrollY;
         }
-        window.addEventListener('scroll', handleScroll);
-        
+
         const handleResize = () => {
             if(window.innerWidth >= 1024) {
                 setNav(true);
@@ -34,6 +33,8 @@ const Header = (props) => {
             }
         }
         handleResize();
+
+        window.addEventListener('scroll', handleScroll);
         window.addEventListener('resize', handleResize);
         return () => {
             window.removeEventListener('resize', handleResize);
