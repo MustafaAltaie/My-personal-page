@@ -1,24 +1,9 @@
 import { useState, forwardRef } from 'react';
 import '../styles/skills.css';
 import { motion } from 'framer-motion';
-import { useReadFrontendSkillsQuery } from '../features/portfolioApi';
+import { useReadFrontendSkillsQuery, useReadBackendSkillsQuery } from '../features/portfolioApi';
 
 const Skills = forwardRef((props, ref) => {
-    const [frontendList, setFrontendList] = useState([
-        { title: 'React.js', description: '(inklusive Hooks, Context API och funktionella komponenter)' },
-        { title: 'Next.js', description: '(Server-side rendering, statisk sidgenerering, API-rutter, filbaserad routing)' },
-        { title: 'Redux', description: '(State management, actions, reducers, Thunk)' },
-        { title: 'RTK Query', description: '(Effektiv datahämtning, caching och API-integration med Redux)' },
-        { title: 'JavaScript (ES6+)', description: '(Async/Await, Promises, pilfunktioner, destrukturering)' },
-        { title: 'CSS3 / HTML5', description: '(Responsiv design, Flexbox, Grid, media queries)' },
-    ]);
-    const [backendList, setBackendList] = useState([
-        { title: 'Node.js', description: '(JavaScript-miljö för serversidan, utveckling av REST API)' },
-        { title: 'Express.js', description: '(Webbramverk för att bygga RESTfulla API:er)' },
-        { title: 'MongoDB', description: '(NoSQL-databas, hantering av datamodeller med Mongoose)' },
-        { title: 'GraphQL', description: '(Frågespråk för API:er som möjliggör optimerad datahämtning)' },
-        { title: 'PostgreSQL', description: '(Relationsdatabas, användning av pgAdmin)' },
-    ]);
     const [otherList, setOtherList] = useState([
         { title: 'Redux Toolkit', description: '(Modern Redux med mindre boilerplate, RTK Query för datahämtning)' },
         { title: 'Git', description: '(Versionshantering, branching, merging, rebase)' },
@@ -34,6 +19,7 @@ const Skills = forwardRef((props, ref) => {
         { title: 'Anpassningsförmåga', description: 'Snabblärd och lätt att ta till sig nya teknologier' },
     ]);
     const { data: frontendSkills, isFrontendLoading } = useReadFrontendSkillsQuery();
+    const { data: backendSkills, isBackendLoading } = useReadBackendSkillsQuery();
 
     return (
         <section ref={ref} className='skillSection'>
@@ -65,7 +51,7 @@ const Skills = forwardRef((props, ref) => {
                 {/* Backend */}
                 <div className="skillsContainer">
                     <h3 className='skillMainTitle'>Backend-utveckling</h3>
-                    {backendList.map((backendSkill, index) => 
+                    {backendSkills?.map((backendSkill, index) =>
                     <motion.div
                         key={index}
                         className="skill dottedElement"

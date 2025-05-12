@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const portfolioApi = createApi({
     reducerPath: 'portfolioApi',
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/api' }),
-    tagTypes: ['profile', 'educations', 'frontendSkills'],
+    tagTypes: ['profile', 'educations', 'frontendSkills', 'backendSkills'],
     endpoints: (builder) => ({
         // profile
         readProfile: builder.query({
@@ -35,7 +35,7 @@ export const portfolioApi = createApi({
             query: (data) => ({ url: 'educations', method: 'PUT', body: data }),
             invalidatesTags: ['educations']
         }),
-        // frontend skills
+        // skills frontend
         createFrontendSkill: builder.mutation({
             query: (data) => ({ url: 'frontendSkills', method: 'POST', body: data }),
             invalidatesTags: ['frontendSkills']
@@ -55,7 +55,28 @@ export const portfolioApi = createApi({
         updateFrontendList: builder.mutation({
             query: (data) => ({ url: 'frontendSkills', method: 'PUT', body: data }),
             invalidatesTags: ['frontendSkills']
-        })
+        }),
+        // skills backend
+        createBackendSkill: builder.mutation({
+            query: (data) => ({ url: 'backendSkills', method: 'POST', body: data }),
+            invalidatesTags: ['backendSkills']
+        }),
+        readBackendSkills: builder.query({
+            query: () => 'backendSkills',
+            providesTags: ['backendSkills']
+        }),
+        updateBackendSkills: builder.mutation({
+            query: ({ id, ...data }) => ({ url: `backendSkills/${id}`, method: 'PUT', body: data }),
+            invalidatesTags: ['backendSkills']
+        }),
+        deleteBackendSkills: builder.mutation({
+            query: (id) => ({ url: `backendSkills/${id}`, method: 'DELETE' }),
+            invalidatesTags: ['backendSkills']
+        }),
+        updateBackendList: builder.mutation({
+            query: (data) => ({ url: 'backendSkills', method: 'PUT', body: data }),
+            invalidatesTags: ['backendSkills']
+        }),
     })
 });
 
@@ -69,10 +90,16 @@ export const {
     useUpdateEducationMutation,
     useDeleteEducationMutation,
     useUpdateEducationsListMutation,
-    // skills
+    // skills frontend
     useCreateFrontendSkillMutation,
     useReadFrontendSkillsQuery,
     useUpdateFrontendSkillsMutation,
     useDeleteFrontendSkillsMutation,
     useUpdateFrontendListMutation,
+    // skills backend
+    useCreateBackendSkillMutation,
+    useReadBackendSkillsQuery,
+    useUpdateBackendSkillsMutation,
+    useDeleteBackendSkillsMutation,
+    useUpdateBackendListMutation,
 } = portfolioApi;

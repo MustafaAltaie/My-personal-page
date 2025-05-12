@@ -2,15 +2,9 @@ import { useState, forwardRef } from 'react';
 import '../styles/skills.css';
 import { motion } from 'framer-motion';
 import SkillsSettingsFrontend from './SkillsSettingsFrontend';
+import SkillsSettingsBackend from './SkillsSettingsBackend';
 
 const Skills = forwardRef((props, ref) => {
-    const [backendList, setBackendList] = useState([
-        { title: 'Node.js', description: '(JavaScript-miljö för serversidan, utveckling av REST API)' },
-        { title: 'Express.js', description: '(Webbramverk för att bygga RESTfulla API:er)' },
-        { title: 'MongoDB', description: '(NoSQL-databas, hantering av datamodeller med Mongoose)' },
-        { title: 'GraphQL', description: '(Frågespråk för API:er som möjliggör optimerad datahämtning)' },
-        { title: 'PostgreSQL', description: '(Relationsdatabas, användning av pgAdmin)' },
-    ]);
     const [otherList, setOtherList] = useState([
         { title: 'Redux Toolkit', description: '(Modern Redux med mindre boilerplate, RTK Query för datahämtning)' },
         { title: 'Git', description: '(Versionshantering, branching, merging, rebase)' },
@@ -66,22 +60,7 @@ const Skills = forwardRef((props, ref) => {
                 {/* Backend */}
                 <div className="skillsContainer">
                     <h3 className='skillMainTitle'>Backend-utveckling</h3>
-                    {backendList.map((backendSkill, index) => 
-                    <motion.div
-                        key={index}
-                        className="skill dottedElement"
-                        initial={{ opacity: 0, x: 100 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8 }}
-                        viewport={{ once: true, amount: 0.3 }}
-                        draggable
-                        onDragStart={() => handleDragStart(index)}
-                        onDragOver={e => handleDragOver(e, index, backendList, setBackendList)}
-                        onDrop={handleDrop}
-                    >
-                        <p><span>{backendSkill.title}: </span>{backendSkill.description}</p>
-                    </motion.div>
-                    )}
+                    <SkillsSettingsBackend />
                 </div>
                 {/* Other skills */}
                 <div className="skillsContainer">
