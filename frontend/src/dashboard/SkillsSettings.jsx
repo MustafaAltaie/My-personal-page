@@ -1,16 +1,9 @@
-import { useState, forwardRef, useEffect, useRef } from 'react';
+import { useState, forwardRef } from 'react';
 import '../styles/skills.css';
 import { motion } from 'framer-motion';
-import {
-    useCreateFrontendSkillMutation,
-    useReadFrontendSkillsQuery,
-    useUpdateFrontendSkillsMutation,
-    useDeleteFrontendSkillsMutation
-} from '../features/portfolioApi';
 import SkillsSettingsFrontend from './SkillsSettingsFrontend';
 
 const Skills = forwardRef((props, ref) => {
-    const [frontendList, setFrontendList] = useState([]);
     const [backendList, setBackendList] = useState([
         { title: 'Node.js', description: '(JavaScript-miljö för serversidan, utveckling av REST API)' },
         { title: 'Express.js', description: '(Webbramverk för att bygga RESTfulla API:er)' },
@@ -33,21 +26,8 @@ const Skills = forwardRef((props, ref) => {
         { title: 'Anpassningsförmåga', description: 'Snabblärd och lätt att ta till sig nya teknologier' },
     ]);
     const [draggedIndex, setDraggedIndex] = useState(null);
-    const [createFrontendSkill] = useCreateFrontendSkillMutation();
-    const { data: frontendSkills, isFrontendLoading } = useReadFrontendSkillsQuery();
-    const [updateFrontendSkills] = useUpdateFrontendSkillsMutation();
-    const [deleteFrontendSkills] = useDeleteFrontendSkillsMutation();
 
-    useEffect(() => {
-        if(Array.isArray(frontendSkills) && !isFrontendLoading) {
-            const transformed = frontendSkills.map(skill => ({
-                id: skill._id,
-                title: skill.title,
-                description: skill.description
-            }));
-            setFrontendList(transformed);
-        }
-    }, [frontendSkills, isFrontendLoading]);
+
 
     const handleDragStart = (index) => {
         setDraggedIndex(index);
@@ -68,69 +48,6 @@ const Skills = forwardRef((props, ref) => {
         setDraggedIndex(null);
     }
 
-    // Frontend
-    const [frontendForm, setFrontendForm] = useState(false);
-    const [frontendObj, setFrontendObj] = useState({
-        id: '',
-        title: '',
-        description: ''
-    });
-    const frontendFormRef = useRef(null);
-
-    const prepareFrontendObj = (e) => {
-        setFrontendObj(prev => ({
-            ...prev, [e.target.name]: e.target.value
-        }));
-    }
-
-    const handleSaveFrontendSkill = async (e) => {
-        e.preventDefault();
-        const { id, title, description } = frontendObj;
-        const isValid = title && description;
-        if(!isValid) return;
-        try {
-            id ?
-            await updateFrontendSkills(frontendObj).unwrap() :
-            await createFrontendSkill(frontendObj).unwrap()
-            clearFrontFields();
-        } catch {
-            alert('Error saving skill');
-            console.error('error saving skills:', err);
-        }
-    }
-
-    const prepareFrontendUpdate = (skill) => {
-        setFrontendObj({
-            id: skill.id,
-            title: skill.title,
-            description: skill.description
-        });
-        setFrontendForm(true);
-        setTimeout(() => {
-            frontendFormRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }, 10);
-    }
-
-    const handleDeleteFrontSkill = async (id) => {
-        if(!id) return;
-        const confirmDeleting = confirm('Confirm deleting skill?');
-        if(!confirmDeleting) return;
-        try {
-            await deleteFrontendSkills(id).unwrap();
-        } catch (err) {
-            console.error('Error deleting skill:', err);
-            alert('Error deleting skill');
-        }
-    }
-
-    const clearFrontFields = () => {
-        setFrontendObj({
-            id: '',
-            title: '',
-            description: ''
-        });
-    }
-
     return (
         <section ref={ref} className='skillSection'>
             <motion.h1
@@ -144,28 +61,7 @@ const Skills = forwardRef((props, ref) => {
                 {/* Frontend */}
                 <div className="skillsContainer">
                     <h3 className='skillMainTitle'>Frontend-utveckling</h3>
-                    {isFrontendLoading && <p>Loading...</p>}
-                    {frontendList.map((frontendSkill, index) => 
-                    <SkillsSettingsFrontend
-                        key={index}
-                        frontendSkill={frontendSkill}
-                        index={index}
-                        handleDragStart={handleDragStart}
-                        handleDragOver={handleDragOver}
-                        handleDrop={handleDrop}
-                        frontendList={frontendList}
-                        setFrontendList={setFrontendList}
-                        prepareFrontendUpdate={prepareFrontendUpdate}
-                        handleDeleteFrontSkill={handleDeleteFrontSkill}
-                    />
-                    )}
-                    <h1 className={`showFormButton ${frontendForm ? 'showFormButtonOn' : ''}`} onClick={() => {setFrontendForm(!frontendForm); clearFrontFields()}}>+</h1>
-                    {frontendForm &&
-                    <form ref={frontendFormRef} onSubmit={handleSaveFrontendSkill}>
-                        <input type="text" placeholder='Title' title='Title' name='title' value={frontendObj.title || ''} onChange={prepareFrontendObj} />
-                        <textarea name="description" placeholder='Description' title='Description' value={frontendObj.description || ''} onChange={prepareFrontendObj}></textarea>
-                        <button type='submit'>{frontendObj.id ? 'Update' : 'Save'}</button>
-                    </form>}
+                    <SkillsSettingsFrontend />
                 </div>
                 {/* Backend */}
                 <div className="skillsContainer">
