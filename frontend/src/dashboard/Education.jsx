@@ -16,11 +16,11 @@ const Education = ({
             initial={{ opacity: 0, x: -150 }}
             whileInView={{ opacity: 1, x: 0 }}
             animate={{
-                scale: deleted === education._id ? 0.5 : 1,
-                filter: deleted === education._id ? 'blur(30px)' : 'blur(0px)',
+                scale: deleted === education.id ? 0.5 : 1,
+                filter: deleted === education.id ? 'blur(30px)' : 'blur(0px)',
             }}
             transition={{ duration: 0.7 }}
-            viewport={{ once: true, amount: 0.4 }}
+            viewport={{ once: true, amount: 0 }}
             draggable
             onDragStart={() => handleDragStart(index)}
             onDragOver={e => handleDragOver(e, index)}
@@ -30,7 +30,7 @@ const Education = ({
                 className='educationText dottedElement'
                 style={{ display: 'flex', justifyContent: 'space-between' }}>{education.title}
                     <div className='flex20'>
-                        <span style={{ cursor: 'pointer' }} onClick={() => handleDelete(education._id)}>🗑️</span>
+                        <span style={{ cursor: 'pointer' }} onClick={() => handleDelete(education.id)}>🗑️</span>
                         <span style={{ cursor: 'pointer' }} onClick={() => prepareUpdate(education)}>🖋️</span>
                     </div>
             </h3>

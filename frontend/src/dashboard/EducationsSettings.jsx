@@ -18,7 +18,7 @@ const Educations = forwardRef((props, ref) => {
     const [deleteEducation] = useDeleteEducationMutation();
     const [updateEducationsList] = useUpdateEducationsListMutation();
     const [educationObj, setEducationObj] = useState({
-        _id: '',
+        id: '',
         title: '',
         dateFrom: '',
         dateTo: '',
@@ -36,7 +36,7 @@ const Educations = forwardRef((props, ref) => {
     useEffect(() => {
         if(Array.isArray(educations) && !isLoading) {
             const transformed = educations.map(edu => ({
-                _id: edu._id,
+                id: edu._id,
                 title: edu.title,
                 dateFrom: edu.dateFrom,
                 dateTo: edu.dateTo,
@@ -148,7 +148,7 @@ const Educations = forwardRef((props, ref) => {
 
     const clearFields = () => {
         setEducationObj({
-            _id: '',
+            id: '',
             title: '',
             dateFrom: '',
             dateTo: '',
@@ -173,7 +173,7 @@ const Educations = forwardRef((props, ref) => {
                 {isLoading && <p>Loading...</p>}
                 {list.map((education, index) => 
                     <Education
-                        key={education._id}
+                        key={education.id}
                         education={education}
                         index={index}
                         handleDragStart={handleDragStart}
