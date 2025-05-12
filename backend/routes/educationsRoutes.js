@@ -1,4 +1,5 @@
 import express from 'express';
+import mongoose from 'mongoose';
 import Educations from '../models/educationsModel.js';
 
 const router = express.Router();
@@ -45,6 +46,18 @@ router.delete('/:id', async (req, res) => {
     } catch (err) {
         console.error('Error deleting education:', err);
         res.status(500).json({ message: 'Error deleting education' });
+    }
+});
+
+router.put('/', async (req, res) => {
+    try {
+        const updatedEducations = req.body;
+        await Educations.deleteMany({});
+        const insertedEducations = await Educations.insertMany(updatedEducations);
+        res.status(200).json(insertedEducations);
+    } catch (err) {
+        console.error('Error updating education list:', err);
+        res.status(500).json({ message: 'Error updating education list' });
     }
 });
 

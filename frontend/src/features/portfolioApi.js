@@ -30,6 +30,10 @@ export const portfolioApi = createApi({
         deleteEducation: builder.mutation({
             query: (id) => ({ url: `educations/${id}`, method: 'DELETE' }),
             invalidatesTags: ['educations']
+        }),
+        updateEducationsList: builder.mutation({
+            query: (data) => ({ url: 'educations', method: 'PUT', body: data }),
+            invalidatesTags: ['educations']
         })
     })
 });
@@ -43,4 +47,5 @@ export const {
     useReadEducationQuery,
     useUpdateEducationMutation,
     useDeleteEducationMutation,
+    useUpdateEducationsListMutation,
 } = portfolioApi;

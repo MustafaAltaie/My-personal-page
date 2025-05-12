@@ -7,13 +7,18 @@ const Education = ({
     handleDragOver,
     handleDrop,
     prepareUpdate,
-    handleDelete
+    handleDelete,
+    deleted
 }) => {
     return (
         <motion.div
             className='educationWrapper'
             initial={{ opacity: 0, x: -150 }}
             whileInView={{ opacity: 1, x: 0 }}
+            animate={{
+                scale: deleted === education._id ? 0.5 : 1,
+                filter: deleted === education._id ? 'blur(30px)' : 'blur(0px)',
+            }}
             transition={{ duration: 0.7 }}
             viewport={{ once: true, amount: 0.4 }}
             draggable
@@ -29,7 +34,7 @@ const Education = ({
                         <span style={{ cursor: 'pointer' }} onClick={() => prepareUpdate(education)}>🖋️</span>
                     </div>
             </h3>
-            <h5 className='educationText5'>{ `${education.dateFrom} - ${education.dateTo} | ${education.school}, ${education.city} - ${education.country}`}</h5>
+            <h5 className='educationText5'>{ `${education.dateFrom} - ${education.dateTo ? education.dateTo : 'Pågår'} | ${education.school}, ${education.city} ${education.country && '-'} ${education.country}`}</h5>
             <p className='educationText'>{education.content}</p>
         </motion.div>
     )
