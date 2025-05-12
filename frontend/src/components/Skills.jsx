@@ -1,14 +1,9 @@
-import { useState, forwardRef } from 'react';
+import { forwardRef } from 'react';
 import '../styles/skills.css';
 import { motion } from 'framer-motion';
 import { useReadFrontendSkillsQuery, useReadBackendSkillsQuery, useReadOtherSkillsQuery, useReadSoftSkillsQuery } from '../features/portfolioApi';
 
 const Skills = forwardRef((props, ref) => {
-    const [softList, setSoftList] = useState([
-        { title: 'Svenska & Engelska', description: 'Mycket goda kommunikativa färdigheter i både tal och skrift' },
-        { title: 'Samarbete & problemlösning', description: 'Trivs att arbeta både självständigt och i team, med stark problemlösningsförmåga' },
-        { title: 'Anpassningsförmåga', description: 'Snabblärd och lätt att ta till sig nya teknologier' },
-    ]);
     const { data: frontendSkills, isFrontendLoading } = useReadFrontendSkillsQuery();
     const { data: backendSkills, isBackendLoading } = useReadBackendSkillsQuery();
     const { data: otherSkills, isOtherLoading } = useReadOtherSkillsQuery();
