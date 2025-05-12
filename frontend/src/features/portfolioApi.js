@@ -51,6 +51,10 @@ export const portfolioApi = createApi({
         deleteFrontendSkills: builder.mutation({
             query: (id) => ({ url: `frontendSkills/${id}`, method: 'DELETE' }),
             invalidatesTags: ['frontendSkills']
+        }),
+        updateFrontendList: builder.mutation({
+            query: (data) => ({ url: 'frontendSkills', method: 'PUT', body: data }),
+            invalidatesTags: ['frontendSkills']
         })
     })
 });
@@ -70,4 +74,5 @@ export const {
     useReadFrontendSkillsQuery,
     useUpdateFrontendSkillsMutation,
     useDeleteFrontendSkillsMutation,
+    useUpdateFrontendListMutation,
 } = portfolioApi;

@@ -4,7 +4,8 @@ import {
     useCreateFrontendSkillMutation,
     useReadFrontendSkillsQuery,
     useUpdateFrontendSkillsMutation,
-    useDeleteFrontendSkillsMutation
+    useDeleteFrontendSkillsMutation,
+    useUpdateFrontendListMutation
 } from '../features/portfolioApi';
 
 const SkillsSettingsFrontend = () => {
@@ -13,6 +14,7 @@ const SkillsSettingsFrontend = () => {
     const { data: frontendSkills, isFrontendLoading } = useReadFrontendSkillsQuery();
     const [updateFrontendSkills] = useUpdateFrontendSkillsMutation();
     const [deleteFrontendSkills] = useDeleteFrontendSkillsMutation();
+    const [updateFrontendList] = useUpdateFrontendListMutation();
     const [draggedIndex, setDraggedIndex] = useState(null);
 
     useEffect(() => {
@@ -41,8 +43,9 @@ const SkillsSettingsFrontend = () => {
         setFrontendList(newList);
     }
 
-    const handleDrop = () => {
+    const handleDrop = async () => {
         setDraggedIndex(null);
+        await updateFrontendList(frontendList).unwrap();
     }
 
     const [frontendForm, setFrontendForm] = useState(false);
@@ -117,7 +120,7 @@ const SkillsSettingsFrontend = () => {
             initial={{ opacity: 0, x: -100 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0 }}
             draggable
             onDragStart={() => handleDragStart(index)}
             onDragOver={e => handleDragOver(e, index)}

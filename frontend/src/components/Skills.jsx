@@ -1,6 +1,7 @@
 import { useState, forwardRef } from 'react';
 import '../styles/skills.css';
 import { motion } from 'framer-motion';
+import { useReadFrontendSkillsQuery } from '../features/portfolioApi';
 
 const Skills = forwardRef((props, ref) => {
     const [frontendList, setFrontendList] = useState([
@@ -32,6 +33,7 @@ const Skills = forwardRef((props, ref) => {
         { title: 'Samarbete & problemlösning', description: 'Trivs att arbeta både självständigt och i team, med stark problemlösningsförmåga' },
         { title: 'Anpassningsförmåga', description: 'Snabblärd och lätt att ta till sig nya teknologier' },
     ]);
+    const { data: frontendSkills, isFrontendLoading } = useReadFrontendSkillsQuery();
 
     return (
         <section ref={ref} className='skillSection'>
@@ -46,7 +48,8 @@ const Skills = forwardRef((props, ref) => {
                 {/* Frontend */}
                 <div className="skillsContainer">
                     <h3 className='skillMainTitle'>Frontend-utveckling</h3>
-                    {frontendList.map((frontendSkill, index) => 
+                    {isFrontendLoading && <p>Loading...</p>}
+                    {frontendSkills?.map((frontendSkill, index) =>
                     <motion.div
                         key={index}
                         className="skill dottedElement"
@@ -55,7 +58,7 @@ const Skills = forwardRef((props, ref) => {
                         transition={{ duration: 0.8 }}
                         viewport={{ once: true, amount: 0.3 }}
                     >
-                        <p><span>{frontendSkill.title}: </span>{frontendSkill.description}</p>
+                        <p><span style={{ color: '#a70' }}>{frontendSkill.title}: </span>{frontendSkill.description}</p>
                     </motion.div>
                     )}
                 </div>
@@ -71,7 +74,7 @@ const Skills = forwardRef((props, ref) => {
                         transition={{ duration: 0.8 }}
                         viewport={{ once: true, amount: 0.3 }}
                     >
-                        <p><span>{backendSkill.title}: </span>{backendSkill.description}</p>
+                        <p><span style={{ color: '#a70' }}>{backendSkill.title}: </span>{backendSkill.description}</p>
                     </motion.div>
                     )}
                 </div>
@@ -87,7 +90,7 @@ const Skills = forwardRef((props, ref) => {
                         transition={{ duration: 0.8 }}
                         viewport={{ once: true, amount: 0.3 }}
                     >
-                        <p><span>{otherSkill.title}: </span>{otherSkill.description}</p>
+                        <p><span style={{ color: '#a70' }}>{otherSkill.title}: </span>{otherSkill.description}</p>
                     </motion.div>
                     )}
                 </div>
@@ -103,7 +106,7 @@ const Skills = forwardRef((props, ref) => {
                         transition={{ duration: 0.8 }}
                         viewport={{ once: true, amount: 0.3 }}
                     >
-                        <p><span>{softSkill.title}: </span>{softSkill.description}</p>
+                        <p><span style={{ color: '#a70' }}>{softSkill.title}: </span>{softSkill.description}</p>
                     </motion.div>
                     )}
                 </div>

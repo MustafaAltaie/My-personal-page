@@ -46,6 +46,18 @@ router.delete('/:id', async (req, res) => {
         console.error('Error deleting skills:', err);
         res.status(500).json({ message: 'Error deleting skills' });
     }
-})
+});
+
+router.put('/', async (req, res) => {
+    try {
+        const updatedList = req.body;
+        await FrontendSkills.deleteMany({});
+        const insertedSkills = await FrontendSkills.insertMany(updatedList);
+        res.status(200).json(insertedSkills);
+    } catch (err) {
+        console.error('Error updating skills:', err);
+        res.status(500).json({ message: 'Error updating skills' });
+    }
+});
 
 export default router;
