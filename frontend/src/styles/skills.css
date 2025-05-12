@@ -22,12 +22,6 @@
     gap: 30px;
 }
 /* Frontend */
-.darkMode .skillsContainer {
-    border-bottom: solid 0.5px #ffffff55;
-}
-.lightMode .skillsContainer {
-    border-bottom: solid 0.5px #000000aa;
-}
 .skillMainTitle {
     font-weight: normal;
     padding: 10px 0 10px 20px;
