@@ -3,6 +3,7 @@ import '../styles/skills.css';
 import { motion } from 'framer-motion';
 import SkillsSettingsFrontend from './SkillsSettingsFrontend';
 import SkillsSettingsBackend from './SkillsSettingsBackend';
+import SkillsSettingsOther from './SkillsSettingsOther';
 
 const Skills = forwardRef((props, ref) => {
     const [otherList, setOtherList] = useState([
@@ -65,22 +66,7 @@ const Skills = forwardRef((props, ref) => {
                 {/* Other skills */}
                 <div className="skillsContainer">
                     <h3 className='skillMainTitle'>Andra kunskaper</h3>
-                    {otherList.map((otherSkill, index) => 
-                    <motion.div
-                        key={index}
-                        className="skill dottedElement"
-                        initial={{ opacity: 0, scale: 1.4 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.8 }}
-                        viewport={{ once: true, amount: 0.3 }}
-                        draggable
-                        onDragStart={() => handleDragStart(index)}
-                        onDragOver={e => handleDragOver(e, index, otherList, setOtherList)}
-                        onDrop={handleDrop}
-                    >
-                        <p><span>{otherSkill.title}: </span>{otherSkill.description}</p>
-                    </motion.div>
-                    )}
+                    <SkillsSettingsOther />
                 </div>
                 {/* Soft skills */}
                 <div className="skillsContainer">

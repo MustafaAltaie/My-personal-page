@@ -1,18 +1,9 @@
 import { useState, forwardRef } from 'react';
 import '../styles/skills.css';
 import { motion } from 'framer-motion';
-import { useReadFrontendSkillsQuery, useReadBackendSkillsQuery } from '../features/portfolioApi';
+import { useReadFrontendSkillsQuery, useReadBackendSkillsQuery, useReadOtherSkillsQuery } from '../features/portfolioApi';
 
 const Skills = forwardRef((props, ref) => {
-    const [otherList, setOtherList] = useState([
-        { title: 'Redux Toolkit', description: '(Modern Redux med mindre boilerplate, RTK Query för datahämtning)' },
-        { title: 'Git', description: '(Versionshantering, branching, merging, rebase)' },
-        { title: 'Postman', description: '(Testning och dokumentation av API:er)' },
-        { title: 'Agilt arbetssätt', description: '(Scrum, sprintplanering, Jira)' },
-        { title: 'CI/CD', description: '(Kontinuerlig integration och leverans med GitHub Actions, Jenkins)' },
-        { title: 'REST API-design', description: '(CRUD-operationer, autentisering och auktorisering)' },
-        { title: 'Versionshantering med Git', description: '(Samarbete och hantering av feature branches)' },
-    ]);
     const [softList, setSoftList] = useState([
         { title: 'Svenska & Engelska', description: 'Mycket goda kommunikativa färdigheter i både tal och skrift' },
         { title: 'Samarbete & problemlösning', description: 'Trivs att arbeta både självständigt och i team, med stark problemlösningsförmåga' },
@@ -20,6 +11,7 @@ const Skills = forwardRef((props, ref) => {
     ]);
     const { data: frontendSkills, isFrontendLoading } = useReadFrontendSkillsQuery();
     const { data: backendSkills, isBackendLoading } = useReadBackendSkillsQuery();
+    const { data: otherSkills, isOtherLoading } = useReadOtherSkillsQuery();
 
     return (
         <section ref={ref} className='skillSection'>
@@ -51,6 +43,7 @@ const Skills = forwardRef((props, ref) => {
                 {/* Backend */}
                 <div className="skillsContainer">
                     <h3 className='skillMainTitle'>Backend-utveckling</h3>
+                    {isBackendLoading && <p>Loading...</p>}
                     {backendSkills?.map((backendSkill, index) =>
                     <motion.div
                         key={index}
@@ -67,7 +60,8 @@ const Skills = forwardRef((props, ref) => {
                 {/* Other skills */}
                 <div className="skillsContainer">
                     <h3 className='skillMainTitle'>Andra kunskaper</h3>
-                    {otherList.map((otherSkill, index) => 
+                    {isOtherLoading && <p>Loading...</p>}
+                    {otherSkills?.map((otherSkill, index) => 
                     <motion.div
                         key={index}
                         className="skill dottedElement"

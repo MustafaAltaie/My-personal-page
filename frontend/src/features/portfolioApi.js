@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const portfolioApi = createApi({
     reducerPath: 'portfolioApi',
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/api' }),
-    tagTypes: ['profile', 'educations', 'frontendSkills', 'backendSkills'],
+    tagTypes: ['profile', 'educations', 'frontendSkills', 'backendSkills', 'otherSkills'],
     endpoints: (builder) => ({
         // profile
         readProfile: builder.query({
@@ -77,6 +77,27 @@ export const portfolioApi = createApi({
             query: (data) => ({ url: 'backendSkills', method: 'PUT', body: data }),
             invalidatesTags: ['backendSkills']
         }),
+        // skills other
+        createOtherSkill: builder.mutation({
+            query: (data) => ({ url: 'otherSkills', method: 'POST', body: data }),
+            invalidatesTags: ['otherSkills']
+        }),
+        readOtherSkills: builder.query({
+            query: () => 'otherSkills',
+            providesTags: ['otherSkills']
+        }),
+        updateOtherSkills: builder.mutation({
+            query: ({ id, ...data }) => ({ url: `otherSkills/${id}`, method: 'PUT', body: data }),
+            invalidatesTags: ['otherSkills']
+        }),
+        deleteOtherSkills: builder.mutation({
+            query: (id) => ({ url: `otherSkills/${id}`, method: 'DELETE' }),
+            invalidatesTags: ['otherSkills']
+        }),
+        updateOtherList: builder.mutation({
+            query: (data) => ({ url: 'otherSkills', method: 'PUT', body: data }),
+            invalidatesTags: ['otherSkills']
+        }),
     })
 });
 
@@ -102,4 +123,10 @@ export const {
     useUpdateBackendSkillsMutation,
     useDeleteBackendSkillsMutation,
     useUpdateBackendListMutation,
+    // skills other
+    useCreateOtherSkillMutation,
+    useReadOtherSkillsQuery,
+    useUpdateOtherSkillsMutation,
+    useDeleteOtherSkillsMutation,
+    useUpdateOtherListMutation,
 } = portfolioApi;

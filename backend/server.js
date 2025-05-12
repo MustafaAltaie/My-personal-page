@@ -6,6 +6,7 @@ import profileRoutes from './routes/profileRoutes.js';
 import educationsRoutes from './routes/educationsRoutes.js';
 import frontendSkillsRoutes from './routes/frontendSkillsRoutes.js';
 import backendSkillsRoutes from './routes/backendSkillsRoutes.js';
+import otherSkillsRoutes from './routes/otherSkillsRoutes.js';
 
 const app = express();
 app.use(express.json());
@@ -17,6 +18,7 @@ app.use('/api/profile', profileRoutes);
 app.use('/api/educations', educationsRoutes);
 app.use('/api/frontendSkills', frontendSkillsRoutes);
 app.use('/api/backendSkills', backendSkillsRoutes);
+app.use('/api/otherSkills', otherSkillsRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log('App is running on port: ', PORT));
