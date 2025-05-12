@@ -1,7 +1,7 @@
 import { useState, forwardRef } from 'react';
 import '../styles/skills.css';
 import { motion } from 'framer-motion';
-import { useReadFrontendSkillsQuery, useReadBackendSkillsQuery, useReadOtherSkillsQuery } from '../features/portfolioApi';
+import { useReadFrontendSkillsQuery, useReadBackendSkillsQuery, useReadOtherSkillsQuery, useReadSoftSkillsQuery } from '../features/portfolioApi';
 
 const Skills = forwardRef((props, ref) => {
     const [softList, setSoftList] = useState([
@@ -12,6 +12,7 @@ const Skills = forwardRef((props, ref) => {
     const { data: frontendSkills, isFrontendLoading } = useReadFrontendSkillsQuery();
     const { data: backendSkills, isBackendLoading } = useReadBackendSkillsQuery();
     const { data: otherSkills, isOtherLoading } = useReadOtherSkillsQuery();
+    const { data: softSkills, isSoftLoading } = useReadSoftSkillsQuery();
 
     return (
         <section ref={ref} className='skillSection'>
@@ -77,7 +78,8 @@ const Skills = forwardRef((props, ref) => {
                 {/* Soft skills */}
                 <div className="skillsContainer">
                     <h3 className='skillMainTitle'>Mjuka kunskaper</h3>
-                    {softList.map((softSkill, index) => 
+                    {isSoftLoading && <p>Loading...</p>}
+                    {softSkills?.map((softSkill, index) => 
                     <motion.div
                         key={index}
                         className="skill dottedElement"

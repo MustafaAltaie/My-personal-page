@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const portfolioApi = createApi({
     reducerPath: 'portfolioApi',
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/api' }),
-    tagTypes: ['profile', 'educations', 'frontendSkills', 'backendSkills', 'otherSkills'],
+    tagTypes: ['profile', 'educations', 'frontendSkills', 'backendSkills', 'otherSkills', 'softSkills'],
     endpoints: (builder) => ({
         // profile
         readProfile: builder.query({
@@ -98,6 +98,27 @@ export const portfolioApi = createApi({
             query: (data) => ({ url: 'otherSkills', method: 'PUT', body: data }),
             invalidatesTags: ['otherSkills']
         }),
+        // skills soft
+        createSoftSkill: builder.mutation({
+            query: (data) => ({ url: 'softSkills', method: 'POST', body: data }),
+            invalidatesTags: ['softSkills']
+        }),
+        readSoftSkills: builder.query({
+            query: () => 'softSkills',
+            providesTags: ['softSkills']
+        }),
+        updateSoftSkills: builder.mutation({
+            query: ({ id, ...data }) => ({ url: `softSkills/${id}`, method: 'PUT', body: data }),
+            invalidatesTags: ['softSkills']
+        }),
+        deleteSoftSkills: builder.mutation({
+            query: (id) => ({ url: `softSkills/${id}`, method: 'DELETE' }),
+            invalidatesTags: ['softSkills']
+        }),
+        updateSoftList: builder.mutation({
+            query: (data) => ({ url: 'softSkills', method: 'PUT', body: data }),
+            invalidatesTags: ['softSkills']
+        }),
     })
 });
 
@@ -129,4 +150,10 @@ export const {
     useUpdateOtherSkillsMutation,
     useDeleteOtherSkillsMutation,
     useUpdateOtherListMutation,
+    // skills soft
+    useCreateSoftSkillMutation,
+    useReadSoftSkillsQuery,
+    useUpdateSoftSkillsMutation,
+    useDeleteSoftSkillsMutation,
+    useUpdateSoftListMutation,
 } = portfolioApi;
