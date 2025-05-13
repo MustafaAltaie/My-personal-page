@@ -13,8 +13,8 @@ const Skills = forwardRef((props, ref) => {
         <section ref={ref} className='skillSection'>
             <motion.h1
                 className='sectionTitle'
-                initial={{ opacity: 0, x: -100 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, scale: 1.2 }}
+                whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
                 viewport={{ once: true, amount: 0.4 }}
             ><i className="fa-solid fa-user-gear"></i>Kunskaper</motion.h1>
@@ -27,9 +27,9 @@ const Skills = forwardRef((props, ref) => {
                     <motion.div
                         key={index}
                         className="skill dottedElement"
-                        initial={{ opacity: 0, x: -100 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8 }}
+                        initial={{ opacity: 0, scale: 1.2 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.4 }}
                         viewport={{ once: true, amount: 0.3 }}
                     >
                         <p><span style={{ color: '#a70' }}>{frontendSkill.title}: </span>{frontendSkill.description}</p>
@@ -44,9 +44,9 @@ const Skills = forwardRef((props, ref) => {
                     <motion.div
                         key={index}
                         className="skill dottedElement"
-                        initial={{ opacity: 0, x: 100 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8 }}
+                        initial={{ opacity: 0, scale: 1.2 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.4 }}
                         viewport={{ once: true, amount: 0.3 }}
                     >
                         <p><span style={{ color: '#a70' }}>{backendSkill.title}: </span>{backendSkill.description}</p>
@@ -61,9 +61,9 @@ const Skills = forwardRef((props, ref) => {
                     <motion.div
                         key={index}
                         className="skill dottedElement"
-                        initial={{ opacity: 0, scale: 1.4 }}
+                        initial={{ opacity: 0, scale: 1.2 }}
                         whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.8 }}
+                        transition={{ duration: 0.4 }}
                         viewport={{ once: true, amount: 0.3 }}
                     >
                         <p><span style={{ color: '#a70' }}>{otherSkill.title}: </span>{otherSkill.description}</p>
@@ -78,9 +78,9 @@ const Skills = forwardRef((props, ref) => {
                     <motion.div
                         key={index}
                         className="skill dottedElement"
-                        initial={{ opacity: 0, scale: 0.6 }}
+                        initial={{ opacity: 0, scale: 1.2 }}
                         whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.8 }}
+                        transition={{ duration: 0.4 }}
                         viewport={{ once: true, amount: 0.3 }}
                     >
                         <p><span style={{ color: '#a70' }}>{softSkill.title}: </span>{softSkill.description}</p>

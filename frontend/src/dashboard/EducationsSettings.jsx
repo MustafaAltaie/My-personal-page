@@ -1,6 +1,5 @@
 import { useState, forwardRef, useRef, useEffect } from 'react';
 import '../styles/education.css';
-import { motion } from 'framer-motion';
 import {
     useCreateEducationMutation,
     useReadEducationQuery,
@@ -162,13 +161,7 @@ const Educations = forwardRef((props, ref) => {
     return (
         <section ref={ref} className="educationSection">
             <div className='educationMainWrapper'>
-                <motion.h1
-                    className='educationText'
-                    initial={{ opacity: 0, x: -100 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5 }}
-                    viewport={{ once: true, amount: 0.4 }}
-                ><i className="fa-solid fa-user-graduate"></i>Utbildningar</motion.h1>
+                <h1 className='educationText'><i className="fa-solid fa-user-graduate"></i>Utbildningar</h1>
                 <br />
                 {isLoading && <p>Loading...</p>}
                 {list.map((education, index) => 

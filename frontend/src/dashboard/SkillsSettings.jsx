@@ -1,6 +1,5 @@
-import { useState, forwardRef } from 'react';
+import { forwardRef } from 'react';
 import '../styles/skills.css';
-import { motion } from 'framer-motion';
 import SkillsSettingsFrontend from './SkillsSettingsFrontend';
 import SkillsSettingsBackend from './SkillsSettingsBackend';
 import SkillsSettingsOther from './SkillsSettingsOther';
@@ -9,13 +8,7 @@ import SkillsSettingsSoft from './SkillsSettingsSoft';
 const Skills = forwardRef((props, ref) => {
     return (
         <section ref={ref} className='skillSection'>
-            <motion.h1
-                className='sectionTitle'
-                initial={{ opacity: 0, x: -100 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true, amount: 0.4 }}
-            ><i className="fa-solid fa-user-gear"></i>Kunskaper</motion.h1>
+            <h1 className='sectionTitle'><i className="fa-solid fa-user-gear"></i>Kunskaper</h1>
             <div className='skillsMainWrapper'>
                 {/* Frontend */}
                 <div className="skillsContainer">

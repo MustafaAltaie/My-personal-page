@@ -25,7 +25,7 @@ const Experiences = forwardRef((props, ref) => {
         <section ref={ref} className="experienceSection">
             <motion.h1
                 className="sectionTitle"
-                initial={{ opacity: 0, x: -100 }}
+                initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
                 viewport={{ once: true, amount: 0.4 }}
@@ -36,7 +36,7 @@ const Experiences = forwardRef((props, ref) => {
                 <div key={index} className="experience">
                     <motion.div
                         className="experienceColumn1"
-                        initial={{ opacity: 0, x: -100 }}
+                        initial={{ opacity: 0, x: -50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.7 }}
                         viewport={{ once: true, amount: 0 }}
@@ -48,7 +48,7 @@ const Experiences = forwardRef((props, ref) => {
                     </motion.div>
                     <motion.div
                         className="experienceColumn2 dottedElement"
-                        initial={{ opacity: 0, x: 100 }}
+                        initial={{ opacity: 0, x: 50 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.7 }}
                         viewport={{ once: true, amount: 0 }}

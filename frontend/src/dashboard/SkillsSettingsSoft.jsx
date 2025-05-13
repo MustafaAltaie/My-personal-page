@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import {
     useCreateSoftSkillMutation,
@@ -114,13 +113,9 @@ const SkillsSettingsSoft = () => {
         <>
         {isSoftLoading && <p>Loading...</p>}
         {softList.map((softSkill, index) => 
-        <motion.div
+        <div
             key={softSkill.id}
             className="skill dottedElement"
-            initial={{ opacity: 0, x: -100 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true, amount: 0 }}
             draggable
             onDragStart={() => handleDragStart(index)}
             onDragOver={e => handleDragOver(e, index)}
@@ -131,7 +126,7 @@ const SkillsSettingsSoft = () => {
                 <span onClick={() => prepareSoftUpdate(softSkill)}>🖋️</span>
                 <span onClick={() => handleDeleteSoftSkill(softSkill.id)}>🗑️</span>
             </div>
-        </motion.div>
+        </div>
         )}
         <h1 className={`showFormButton ${softForm ? 'showFormButtonOn' : ''}`} onClick={() => {setSoftForm(!softForm); clearSoftFields()}}>+</h1>
         {softForm &&

@@ -12,6 +12,7 @@
 .educationWrapper {
     display: flex;
     flex-direction: column;
+    transition: 1s;
 }
 .darkMode .educationWrapper {
     border-left: solid 0.5px #ffffff55;

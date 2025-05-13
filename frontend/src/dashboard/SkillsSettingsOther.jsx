@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import {
     useCreateOtherSkillMutation,
@@ -114,13 +113,9 @@ const SkillsSettingsOther = () => {
         <>
         {isOtherLoading && <p>Loading...</p>}
         {otherList.map((otherSkill, index) => 
-        <motion.div
+        <div
             key={otherSkill.id}
             className="skill dottedElement"
-            initial={{ opacity: 0, x: -100 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true, amount: 0 }}
             draggable
             onDragStart={() => handleDragStart(index)}
             onDragOver={e => handleDragOver(e, index)}
@@ -131,7 +126,7 @@ const SkillsSettingsOther = () => {
                 <span onClick={() => prepareOtherUpdate(otherSkill)}>🖋️</span>
                 <span onClick={() => handleDeleteOtherSkill(otherSkill.id)}>🗑️</span>
             </div>
-        </motion.div>
+        </div>
         )}
         <h1 className={`showFormButton ${otherForm ? 'showFormButtonOn' : ''}`} onClick={() => {setOtherForm(!otherForm); clearOtherFields()}}>+</h1>
         {otherForm &&

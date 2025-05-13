@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import {
     useCreateBackendSkillMutation,
@@ -114,13 +113,9 @@ const SkillsSettingsBackend = () => {
         <>
         {isBackendLoading && <p>Loading...</p>}
         {backendList.map((backendSkill, index) => 
-        <motion.div
+        <div
             key={backendSkill.id}
             className="skill dottedElement"
-            initial={{ opacity: 0, x: -100 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true, amount: 0 }}
             draggable
             onDragStart={() => handleDragStart(index)}
             onDragOver={e => handleDragOver(e, index)}
@@ -131,7 +126,7 @@ const SkillsSettingsBackend = () => {
                 <span onClick={() => prepareBackendUpdate(backendSkill)}>🖋️</span>
                 <span onClick={() => handleDeleteBackSkill(backendSkill.id)}>🗑️</span>
             </div>
-        </motion.div>
+        </div>
         )}
         <h1 className={`showFormButton ${backendForm ? 'showFormButtonOn' : ''}`} onClick={() => {setBackendForm(!backendForm); clearBackFields()}}>+</h1>
         {backendForm &&

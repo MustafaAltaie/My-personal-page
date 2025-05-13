@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import {
     useCreateFrontendSkillMutation,
@@ -114,13 +113,9 @@ const SkillsSettingsFrontend = () => {
         <>
         {isFrontendLoading && <p>Loading...</p>}
         {frontendList.map((frontendSkill, index) => 
-        <motion.div
+        <div
             key={frontendSkill.id}
             className="skill dottedElement"
-            initial={{ opacity: 0, x: -100 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true, amount: 0 }}
             draggable
             onDragStart={() => handleDragStart(index)}
             onDragOver={e => handleDragOver(e, index)}
@@ -131,7 +126,7 @@ const SkillsSettingsFrontend = () => {
                 <span onClick={() => prepareFrontendUpdate(frontendSkill)}>🖋️</span>
                 <span onClick={() => handleDeleteFrontSkill(frontendSkill.id)}>🗑️</span>
             </div>
-        </motion.div>
+        </div>
         )}
         <h1 className={`showFormButton ${frontendForm ? 'showFormButtonOn' : ''}`} onClick={() => {setFrontendForm(!frontendForm); clearFrontFields()}}>+</h1>
         {frontendForm &&

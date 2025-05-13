@@ -1,5 +1,4 @@
 import '../styles/home.css';
-import { motion } from 'framer-motion';
 import { forwardRef, useState, useEffect, useRef } from 'react';
 import { useReadProfileQuery, useUpdateProfileMutation } from '../features/portfolioApi.js';
 
@@ -51,13 +50,7 @@ const Home = forwardRef((props, ref) => {
             <div className="homeImageWrapper">
                 <img src={props.darkMode ? 'https://cdn.pixabay.com/photo/2023/04/28/07/16/man-7956041_1280.jpg' : 'https://cdn.pixabay.com/photo/2016/03/26/14/43/young-1280694_1280.jpg'} alt="homeImage" />
             </div>
-            <motion.div
-                className='homeProfileWrapper'
-                initial={{ opacity: 0, x: -100 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.7, ease: 'easeInOut' }}
-                viewport={{ once: true, amount: 0 }}
-            >
+            <div className='homeProfileWrapper'>
                 <h1 style={{ display: 'flex', justifyContent: 'space-between' }}>Profile <span style={{ cursor: 'pointer' }} onClick={() => setSettings(true)}>🖋️</span></h1>
                 {isLoading && <p>Loading profile...</p>}
                 {isError && <p>Error reading profile</p>}
@@ -67,7 +60,7 @@ const Home = forwardRef((props, ref) => {
                     <textarea className='homeFormOption' placeholder='Profile text' title='Profile' name='profileText' value={profile?.profile || profileText} onChange={e => setProfileText(e.target.value)}></textarea>
                     <button className='homeFormOption' type='submit'>Update</button>
                 </form>
-            </motion.div>
+            </div>
         </section>
     )
 });
