@@ -3,7 +3,15 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const portfolioApi = createApi({
     reducerPath: 'portfolioApi',
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/api' }),
-    tagTypes: ['profile', 'educations', 'frontendSkills', 'backendSkills', 'otherSkills', 'softSkills'],
+    tagTypes: [
+        'profile',
+        'educations',
+        'frontendSkills',
+        'backendSkills',
+        'otherSkills',
+        'softSkills',
+        'experiences'
+    ],
     endpoints: (builder) => ({
         // profile
         readProfile: builder.query({
@@ -119,6 +127,27 @@ export const portfolioApi = createApi({
             query: (data) => ({ url: 'softSkills', method: 'PUT', body: data }),
             invalidatesTags: ['softSkills']
         }),
+        // experiences
+        createExperience: builder.mutation({
+            query: (data) => ({ url: 'experiences', method: 'POST', body: data }),
+            invalidatesTags: ['experiences']
+        }),
+        readExperience: builder.query({
+            query: () => 'experiences',
+            providesTags: ['experiences']
+        }),
+        updateExperience: builder.mutation({
+            query: ({ id, ...data }) => ({ url: `experiences/${id}`, method: 'PUT', body: data }),
+            invalidatesTags: ['experiences']
+        }),
+        deleteExperience: builder.mutation({
+            query: (id) => ({ url: `experiences/${id}`, method: 'DELETE' }),
+            invalidatesTags: ['experiences']
+        }),
+        updateExperienceList: builder.mutation({
+            query: (data) => ({ url: 'experiences', method: 'PUT', body: data }),
+            invalidatesTags: ['experiences']
+        }),
     })
 });
 
@@ -156,4 +185,10 @@ export const {
     useUpdateSoftSkillsMutation,
     useDeleteSoftSkillsMutation,
     useUpdateSoftListMutation,
+    // experiences
+    useCreateExperienceMutation,
+    useReadExperienceQuery,
+    useUpdateExperienceMutation,
+    useDeleteExperienceMutation,
+    useUpdateExperienceListMutation,
 } = portfolioApi;

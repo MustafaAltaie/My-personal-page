@@ -112,7 +112,7 @@ const Educations = forwardRef((props, ref) => {
         }
         if(dateFrom > dateTo && dateTo) {
             alert('Start date cannot be after end date.');
-            return
+            return;
         }
         setDisableBtn(true);
         try {
@@ -121,10 +121,10 @@ const Educations = forwardRef((props, ref) => {
             await createEducation(educationObj).unwrap()
             clearFields();
             setSettings(false);
-            setDisableBtn(false);
         } catch (err) {
             console.error('Error saving data:', err);
             alert('Error saving data');
+        } finally {
             setDisableBtn(false);
         }
     }
@@ -188,26 +188,37 @@ const Educations = forwardRef((props, ref) => {
             <h1 className={`showEducationFormBtn showFormButton ${settings ? 'showFormButtonOn' : ''}`} onClick={() => {setSettings(!settings); clearFields()}}>+</h1>
             <form ref={formRef} className='educationForm' onSubmit={handleCreateUpdateEducations}>
                 <div className='formTwoInputs'>
-                    <div>
-                        <p>Date from *</p>
+                    <div className='formTextInput'>
+                        <h5>Date from *</h5>
                         <input type="date" name='dateFrom' placeholder='Date from' title='Date from' value={educationObj.dateFrom || ''} onChange={prepareEducation} />
                     </div>
-                    <div>
-                        <p>Date to</p>
+                    <div className='formTextInput'>
+                        <h5>Date to</h5>
                         <input type="date" name='dateTo' placeholder='Date to' title='Date to' value={educationObj.dateTo || ''} onChange={prepareEducation} />
                     </div>
                 </div>
                 <div className='formTwoInputs'>
-                    <div>
+                    <div className='formTextInput'>
+                        <h5>City *</h5>
                         <input type="text" name='city' placeholder='City *' title='City' value={educationObj.city || ''} onChange={prepareEducation} />
                     </div>
-                    <div>
+                    <div className='formTextInput'>
+                        <h5>Country</h5>
                         <input type="text" name='country' placeholder='Country' title='Country' value={educationObj.country || ''} onChange={prepareEducation} />
                     </div>
                 </div>
-                <input type="text" name='title' placeholder='Title *' title='Title' value={educationObj.title || ''} onChange={prepareEducation} />
-                <input type="text" name='school' placeholder='School *' title='School' value={educationObj.school || ''} onChange={prepareEducation} />
-                <textarea name="content" placeholder='Content *' title='Content' value={educationObj.content || ''} onChange={prepareEducation}></textarea>
+                <div className='formTextInput'>
+                    <h5>Education title *</h5>
+                    <input type="text" name='title' placeholder='Education title *' title='Title' value={educationObj.title || ''} onChange={prepareEducation} />
+                </div>
+                <div className='formTextInput'>
+                    <h5>School name *</h5>
+                    <input type="text" name='school' placeholder='School name *' title='School' value={educationObj.school || ''} onChange={prepareEducation} />
+                </div>
+                <div className='formTextInput'>
+                    <h5>Description *</h5>
+                    <textarea name="content" placeholder='Description *' title='Description' value={educationObj.content || ''} onChange={prepareEducation}></textarea>
+                </div>
                 <button type='submit' disabled={disableBtn}>{educationObj?.id ? 'Update education' : 'Save education'}</button>
             </form>
         </section>

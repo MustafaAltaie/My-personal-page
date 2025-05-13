@@ -1,15 +1,25 @@
-import { useState, forwardRef } from 'react';
+import { useState, forwardRef, useEffect } from 'react';
 import '../styles/experience.css';
 import { motion } from 'framer-motion';
+import { useReadExperienceQuery } from '../features/portfolioApi.js';
 
 const Experiences = forwardRef((props, ref) => {
-    const [list, setList] = useState([
-        { company: 'IT Ansvarig Karthago Matchning AB', address: 'Katrineholm, Flen och Vingåker', date: '2023.10 - pågår', description: 'Ansvarar för installation, konfiguration och reparation av datorsystem och hårdvara. Tillhandahåller teknisk support till användare, felsöker problem och säkerställer en effektiv drift av IT-utrustning.' },
-        { company: 'Programmerare / Skolvärd', address: 'Järvenskolan-Katrineholm', date: '2020.03 – 2021.03', description: 'Utvecklade en app för skolans elever där de kunde beställa mat från skolans cafeteria. Använde Node.js, Express, MongoDB, JavaScript, HTML5 och CSS3 för att bygga appen.' },
-        { company: 'Frilansande Webb­utvecklare', address: 'På distans', date: '2018.03 – 2020.03', description: 'Arbetade på olika projekt för kunder, med fokus på fullstackutveckling. Levererade kundanpassade lösningar inom både frontend- och backend-utveckling.' },
-        { company: 'IT-tekniker', address: 'Saja Bibliotek - Irak, Bagdad', date: '2013.02 – 2015.12', description: 'Utförde frontendutveckling med HTML, CSS och JavaScript. Hjälpte till med underhåll och förbättringar av bibliotekets digitala system.' },
-        { company: 'Frilansfotograf', address: 'Mustafa Photography - Irak, Bagdad', date: '2008.06 – 2013.01', description: 'Fotograferade och videofilmade vid evenemang som bröllop, fester och dop. Arbetade med redigering och efterbearbetning av bilder i Photoshop.' },
-    ]);
+    const [list, setList] = useState([]);
+    const { data: experiences, isLoading } = useReadExperienceQuery();
+
+    useEffect(() => {
+        if(Array.isArray(experiences) && !isLoading) {
+            const transformed = experiences.map(exp => ({
+                id: exp._id,
+                company: exp.company,
+                address: exp.address,
+                dateFrom: exp.dateFrom,
+                dateTo: exp.dateTo,
+                description: exp.description,
+            }));
+            setList(transformed);
+        }
+    }, [experiences, isLoading]);
 
     return (
         <section ref={ref} className="experienceSection">
@@ -45,7 +55,7 @@ const Experiences = forwardRef((props, ref) => {
 
                     >
                         <div>
-                            <p>{experience.date}</p>
+                            <p>{experience.dateFrom} - {experience.dateTo ? experience.dateTo : 'Pågår'}</p>
                             <p>{experience.description}</p>
                         </div>
                     </motion.div>

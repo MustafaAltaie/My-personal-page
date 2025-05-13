@@ -13,10 +13,14 @@
 .lightMode .experienceSection {
     border-top: solid 1px #000;
 }
+.experienceSection > h1 {
+    padding-left: 20px;
+}
 .experienceMainWrapper {
     margin-top: 20px;
 }
 .experience {
+    position: relative;
     display: flex;
 }
 .experience > div {
@@ -62,6 +66,22 @@
 .lightMode .experience > div h5:nth-child(2) {
     font-weight: 500;
     color: #d69600;
+}
+
+
+/* Settings */
+.experienceSection form {
+    padding: 0 10px;
+}
+.experienceSection form > button {
+    margin-bottom: 20px;
+}
+.experience .toolsWrapper {
+    position: absolute;
+    top: 0;
+    right: 20px;
+    flex-direction: column;
+    gap: 10px;
 }
 
 

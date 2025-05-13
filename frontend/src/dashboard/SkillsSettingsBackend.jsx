@@ -127,7 +127,7 @@ const SkillsSettingsBackend = () => {
             onDrop={handleDrop}
         >
             <p><span>{backendSkill.title}: </span>{backendSkill.description}</p>
-            <div className='skillsToolsWrapper'>
+            <div className='toolsWrapper'>
                 <span onClick={() => prepareBackendUpdate(backendSkill)}>🖋️</span>
                 <span onClick={() => handleDeleteBackSkill(backendSkill.id)}>🗑️</span>
             </div>
@@ -136,8 +136,14 @@ const SkillsSettingsBackend = () => {
         <h1 className={`showFormButton ${backendForm ? 'showFormButtonOn' : ''}`} onClick={() => {setBackendForm(!backendForm); clearBackFields()}}>+</h1>
         {backendForm &&
         <form ref={backendFormRef} onSubmit={handleSaveBackendSkill}>
-            <input type="text" placeholder='Title' title='Title' name='title' value={backendObj.title || ''} onChange={prepareBackendObj} />
-            <textarea name="description" placeholder='Description' title='Description' value={backendObj.description || ''} onChange={prepareBackendObj}></textarea>
+            <div className='formTextInput'>
+                <h5>Title *</h5>
+                <input type="text" placeholder='Title *' title='Title' name='title' value={backendObj.title || ''} onChange={prepareBackendObj} />
+            </div>
+            <div className='formTextInput'>
+                <h5>Description *</h5>
+                <textarea name="description" placeholder='Description *' title='Description' value={backendObj.description || ''} onChange={prepareBackendObj}></textarea>
+            </div>
             <button type='submit'>{backendObj.id ? 'Update' : 'Save'}</button>
         </form>}
         </>

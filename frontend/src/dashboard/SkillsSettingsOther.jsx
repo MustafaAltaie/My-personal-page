@@ -127,7 +127,7 @@ const SkillsSettingsOther = () => {
             onDrop={handleDrop}
         >
             <p><span>{otherSkill.title}: </span>{otherSkill.description}</p>
-            <div className='skillsToolsWrapper'>
+            <div className='toolsWrapper'>
                 <span onClick={() => prepareOtherUpdate(otherSkill)}>🖋️</span>
                 <span onClick={() => handleDeleteOtherSkill(otherSkill.id)}>🗑️</span>
             </div>
@@ -136,8 +136,14 @@ const SkillsSettingsOther = () => {
         <h1 className={`showFormButton ${otherForm ? 'showFormButtonOn' : ''}`} onClick={() => {setOtherForm(!otherForm); clearOtherFields()}}>+</h1>
         {otherForm &&
         <form ref={otherFormRef} onSubmit={handleSaveOtherSkill}>
-            <input type="text" placeholder='Title' title='Title' name='title' value={otherObj.title || ''} onChange={prepareOtherObj} />
-            <textarea name="description" placeholder='Description' title='Description' value={otherObj.description || ''} onChange={prepareOtherObj}></textarea>
+            <div className='formTextInput'>
+                <h5>Title *</h5>
+                <input type="text" placeholder='Title *' title='Title' name='title' value={otherObj.title || ''} onChange={prepareOtherObj} />
+            </div>
+            <div className='formTextInput'>
+                <h5>Description *</h5>
+                <textarea name="description" placeholder='Description *' title='Description' value={otherObj.description || ''} onChange={prepareOtherObj}></textarea>
+            </div>
             <button type='submit'>{otherObj.id ? 'Update' : 'Save'}</button>
         </form>}
         </>

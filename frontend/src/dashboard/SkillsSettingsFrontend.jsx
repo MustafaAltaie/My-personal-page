@@ -127,7 +127,7 @@ const SkillsSettingsFrontend = () => {
             onDrop={handleDrop}
         >
             <p><span>{frontendSkill.title}: </span>{frontendSkill.description}</p>
-            <div className='skillsToolsWrapper'>
+            <div className='toolsWrapper'>
                 <span onClick={() => prepareFrontendUpdate(frontendSkill)}>🖋️</span>
                 <span onClick={() => handleDeleteFrontSkill(frontendSkill.id)}>🗑️</span>
             </div>
@@ -136,8 +136,14 @@ const SkillsSettingsFrontend = () => {
         <h1 className={`showFormButton ${frontendForm ? 'showFormButtonOn' : ''}`} onClick={() => {setFrontendForm(!frontendForm); clearFrontFields()}}>+</h1>
         {frontendForm &&
         <form ref={frontendFormRef} onSubmit={handleSaveFrontendSkill}>
-            <input type="text" placeholder='Title' title='Title' name='title' value={frontendObj.title || ''} onChange={prepareFrontendObj} />
-            <textarea name="description" placeholder='Description' title='Description' value={frontendObj.description || ''} onChange={prepareFrontendObj}></textarea>
+            <div className='formTextInput'>
+                <h5>Title *</h5>
+                <input type="text" placeholder='Title *' title='Title' name='title' value={frontendObj.title || ''} onChange={prepareFrontendObj} />
+            </div>
+            <div className='formTextInput'>
+                <h5>Description *</h5>
+                <textarea name="description" placeholder='Description *' title='Description' value={frontendObj.description || ''} onChange={prepareFrontendObj}></textarea>
+            </div>
             <button type='submit'>{frontendObj.id ? 'Update' : 'Save'}</button>
         </form>}
         </>

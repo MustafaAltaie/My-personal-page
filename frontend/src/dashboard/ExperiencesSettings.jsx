@@ -1,17 +1,60 @@
-import { useState, forwardRef } from 'react';
+import { useState, forwardRef, useRef, useEffect } from 'react';
 import '../styles/experience.css';
-import { motion } from 'framer-motion';
+import {
+    useCreateExperienceMutation,
+    useReadExperienceQuery,
+    useUpdateExperienceMutation,
+    useDeleteExperienceMutation,
+    useUpdateExperienceListMutation,
+} from '../features/portfolioApi.js';
 
 const Experiences = forwardRef((props, ref) => {
-    const [list, setList] = useState([
-        { company: 'IT Ansvarig Karthago Matchning AB', address: 'Katrineholm, Flen och Vingåker', date: '2023.10 - pågår', description: 'Ansvarar för installation, konfiguration och reparation av datorsystem och hårdvara. Tillhandahåller teknisk support till användare, felsöker problem och säkerställer en effektiv drift av IT-utrustning.' },
-        { company: 'Programmerare / Skolvärd', address: 'Järvenskolan-Katrineholm', date: '2020.03 – 2021.03', description: 'Utvecklade en app för skolans elever där de kunde beställa mat från skolans cafeteria. Använde Node.js, Express, MongoDB, JavaScript, HTML5 och CSS3 för att bygga appen.' },
-        { company: 'Frilansande Webb­utvecklare', address: 'På distans', date: '2018.03 – 2020.03', description: 'Arbetade på olika projekt för kunder, med fokus på fullstackutveckling. Levererade kundanpassade lösningar inom både frontend- och backend-utveckling.' },
-        { company: 'IT-tekniker', address: 'Saja Bibliotek - Irak, Bagdad', date: '2013.02 – 2015.12', description: 'Utförde frontendutveckling med HTML, CSS och JavaScript. Hjälpte till med underhåll och förbättringar av bibliotekets digitala system.' },
-        { company: 'Frilansfotograf', address: 'Mustafa Photography - Irak, Bagdad', date: '2008.06 – 2013.01', description: 'Fotograferade och videofilmade vid evenemang som bröllop, fester och dop. Arbetade med redigering och efterbearbetning av bilder i Photoshop.' },
-    ]);
+    const [list, setList] = useState([]);
 
     const [draggedIndex, setDraggedIndex] = useState(null);
+    const [form, setForm] = useState(false);
+    const formRef = useRef(null);
+    const [experienceObj, setExperienceObj] = useState({
+        id: '',
+        company: '',
+        address: '',
+        dateFrom: '',
+        dateTo: '',
+        description: '',
+    });
+    const [disableBtn, setDisableBtn] = useState(false);
+    const [createExperience] = useCreateExperienceMutation();
+    const { data: experiences, isLoading } = useReadExperienceQuery();
+    const [updateExperience] = useUpdateExperienceMutation();
+    const [deleteExperience] = useDeleteExperienceMutation();
+    const [updateExperienceList] = useUpdateExperienceListMutation();
+
+    useEffect(() => {
+        if(formRef) {
+            if(form) {
+                formRef.current.style.maxHeight = `${formRef.current.scrollHeight}px`;
+                setTimeout(() => {
+                    formRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 300)
+            } else {
+                formRef.current.style.maxHeight = '0px';
+            }
+        }
+    }, [form]);
+
+    useEffect(() => {
+        if(Array.isArray(experiences) && !isLoading) {
+            const transformed = experiences.map(exp => ({
+                id: exp._id,
+                company: exp.company,
+                address: exp.address,
+                dateFrom: exp.dateFrom,
+                dateTo: exp.dateTo,
+                description: exp.description,
+            }));
+            setList(transformed);
+        }
+    }, [experiences, isLoading]);
 
     const handleDragStart = (index) => {
         setDraggedIndex(index);
@@ -28,19 +71,83 @@ const Experiences = forwardRef((props, ref) => {
         setList(newList);
     }
 
-    const handleDrop = () => {
+    const handleDrop = async () => {
         setDraggedIndex(null);
+        await updateExperienceList(list).unwrap();
+    }
+
+    const prepareExperienceObj = (e) => {
+        setExperienceObj(prev => ({
+            ...prev, [e.target.name]: e.target.value
+        }));
+    }
+
+    const handleSaveExperience = async (e) => {
+        e.preventDefault();
+        const { id, company, address, dateFrom, dateTo, description } = experienceObj;
+        const isValid = company && address && dateFrom && description;
+        if(!isValid) {
+            alert('Please fill in all required fields.');
+            return;
+        }
+        if(dateFrom > dateTo && dateTo) {
+            alert('Start date cannot be after end date.');
+            return;
+        }
+        setDisableBtn(true);
+        try {
+            id ?
+            await updateExperience(experienceObj).unwrap() :
+            await createExperience(experienceObj).unwrap()
+            clearFields();
+        } catch (err) {
+            console.error('Error saving experience:', err);
+            alert('Error while saving experience');
+        } finally {
+            setDisableBtn(false);
+            setForm(false);
+        }
+    }
+
+    const handlePrepareUpdate = (exp) => {
+        setExperienceObj({
+            id: exp.id,
+            company: exp.company,
+            address: exp.address,
+            dateFrom: exp.dateFrom,
+            dateTo: exp.dateTo,
+            description: exp.description,
+        });
+        setForm(true);
+    }
+
+    const handleDeletion = async (id) => {
+        if(!id) return;
+        const isConfirmed = confirm('Confirm deleting experience?');
+        if(!isConfirmed) return;
+        try {
+            await deleteExperience(id).unwrap();
+        } catch (err) {
+            alert('Error deleting experience.');
+            console.error('Error deleting experience:', err);
+        }
+    }
+
+    const clearFields = () => {
+        setExperienceObj({
+            id: '',
+            company: '',
+            address: '',
+            dateFrom: '',
+            dateTo: '',
+            description: '',
+        });
     }
 
     return (
         <section ref={ref} className="experienceSection">
-            <motion.h1
-                className="sectionTitle"
-                initial={{ opacity: 0, x: -100 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true, amount: 0.4 }}
-            ><i className="fa-solid fa-briefcase"></i>Arbetslivserfarenhet</motion.h1>
+            <h1 className="sectionTitle"><i className="fa-solid fa-briefcase"></i>Arbetslivserfarenhet</h1>
+            {isLoading && <p>...loading</p>}
             <div className="experienceMainWrapper flexColumn">
                 {/* Experience */}
                 {list.map((experience, index) => 
@@ -52,33 +159,50 @@ const Experiences = forwardRef((props, ref) => {
                     onDragOver={e => handleDragOver(e, index)}
                     onDrop={handleDrop}
                 >
-                    <motion.div
-                        className="experienceColumn1"
-                        initial={{ opacity: 0, x: -100 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.7 }}
-                        viewport={{ once: true, amount: 0 }}
-                    >
+                    <div className="experienceColumn1">
                         <div>
                             <h5>{experience.company}</h5>
                             <h5>{experience.address}</h5>
                         </div>
-                    </motion.div>
-                    <motion.div
-                        className="experienceColumn2 dottedElement"
-                        initial={{ opacity: 0, x: 100 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.7 }}
-                        viewport={{ once: true, amount: 0 }}
-
-                    >
-                        <div>
-                            <p>{experience.date}</p>
+                    </div>
+                    <div className="experienceColumn2 dottedElement">
+                        <div style={{ paddingRight: '30px' }}>
+                            <p>{experience.dateFrom} - {experience.dateTo ? experience.dateTo : 'Pågår'}</p>
                             <p>{experience.description}</p>
                         </div>
-                    </motion.div>
+                        <div className='toolsWrapper'>
+                            <span onClick={() => handlePrepareUpdate(experience)}>🖋️</span>
+                            <span onClick={() => handleDeletion(experience.id)}>🗑️</span>
+                        </div>
+                    </div>
                 </div>)}
             </div>
+            <h1 className={`showFormButton ${form ? 'showFormButtonOn' : ''}`} onClick={() => {setForm(!form); clearFields()}}>+</h1>
+            <form ref={formRef} onSubmit={handleSaveExperience}>
+                <div className='formTwoInputs'>
+                    <div className='formTextInput'>
+                        <h5>Date from *</h5>
+                        <input type="date" name='dateFrom' placeholder='Date from' title='Date From' value={experienceObj.dateFrom || ''} onChange={prepareExperienceObj} />
+                    </div>
+                    <div className='formTextInput'>
+                        <h5>Date to</h5>
+                        <input type="date" name='dateTo' placeholder='Date To' title='Date To' value={experienceObj.dateTo || ''} onChange={prepareExperienceObj} />
+                    </div>
+                </div>
+                <div className='formTextInput'>
+                    {experienceObj.company && <h5>Job title *</h5>}
+                    <input type="text" name='company' placeholder='Job title *' title='Company' value={experienceObj.company || ''} onChange={prepareExperienceObj} />
+                </div>
+                <div className='formTextInput'>
+                    {experienceObj.address && <h5>Work address *</h5>}
+                    <input type="text" name='address' placeholder='Work address *' title='Address' value={experienceObj.address || ''} onChange={prepareExperienceObj} />
+                </div>
+                <div className='formTextInput'>
+                    {experienceObj.description && <h5>Description *</h5>}
+                    <textarea name='description' placeholder='Description *' title='Description' value={experienceObj.description || ''} onChange={prepareExperienceObj}></textarea>
+                </div>
+                <button type='submit' disabled={disableBtn}>{experienceObj.id ? 'Update' : 'Save'}</button>
+            </form>
         </section>
     )
 });

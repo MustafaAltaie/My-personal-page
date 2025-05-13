@@ -127,7 +127,7 @@ const SkillsSettingsSoft = () => {
             onDrop={handleDrop}
         >
             <p><span>{softSkill.title}: </span>{softSkill.description}</p>
-            <div className='skillsToolsWrapper'>
+            <div className='toolsWrapper'>
                 <span onClick={() => prepareSoftUpdate(softSkill)}>🖋️</span>
                 <span onClick={() => handleDeleteSoftSkill(softSkill.id)}>🗑️</span>
             </div>
@@ -136,8 +136,14 @@ const SkillsSettingsSoft = () => {
         <h1 className={`showFormButton ${softForm ? 'showFormButtonOn' : ''}`} onClick={() => {setSoftForm(!softForm); clearSoftFields()}}>+</h1>
         {softForm &&
         <form ref={softFormRef} onSubmit={handleSaveSoftSkill}>
-            <input type="text" placeholder='Title' title='Title' name='title' value={softObj.title || ''} onChange={prepareSoftObj} />
-            <textarea name="description" placeholder='Description' title='Description' value={softObj.description || ''} onChange={prepareSoftObj}></textarea>
+            <div className='formTextInput'>
+                <h5>Title *</h5>
+                <input type="text" placeholder='Title *' title='Title' name='title' value={softObj.title || ''} onChange={prepareSoftObj} />
+            </div>
+            <div className='formTextInput'>
+                <h5>Description *</h5>
+                <textarea name="description" placeholder='Description *' title='Description' value={softObj.description || ''} onChange={prepareSoftObj}></textarea>
+            </div>
             <button type='submit'>{softObj.id ? 'Update' : 'Save'}</button>
         </form>}
         </>

@@ -66,15 +66,6 @@
     color: #07a;
 }
 
-/* Settings */
-.skillsToolsWrapper {
-    display: flex;
-    gap: 20px;
-}
-.skillsToolsWrapper > span {
-    cursor: pointer;
-}
-
 
 /* Laptop scale */
 @media (min-width: 1024px) {

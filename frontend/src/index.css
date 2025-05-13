@@ -84,7 +84,7 @@ section {
 form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
     overflow: hidden;
     transition: 0.5s;
 }
@@ -100,9 +100,25 @@ form textarea {
 form button {
     background-color: rgb(195, 160, 83);
     border: none;
+    margin-top: 5px;
 }
 form button:hover {
     background-color: rgb(219, 184, 107);
+}
+form .formTextInput {
+    position: relative;
+    padding-top: 10px;
+    margin-top: 5px;
+}
+form .formTextInput > h5 {
+    z-index: 100;
+    position: absolute;
+    top: -11px;
+    left: 10px;
+    font-weight: normal;
+}
+form .formTextInput > input, form > .formTextInput > textarea {
+    width: 100%;
 }
 .darkMode form input,
 .darkMode form textarea {
@@ -142,6 +158,14 @@ form button:hover {
 .flex20 {
     display: flex;
     gap: 20px;
+}
+
+.toolsWrapper {
+    display: flex;
+    gap: 20px;
+}
+.toolsWrapper > span {
+    cursor: pointer;
 }
 
 @media (min-width: 1024px) {
