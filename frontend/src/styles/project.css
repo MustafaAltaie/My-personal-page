@@ -186,6 +186,32 @@
 }
 
 
+/* Settings */
+.projectMainWrapper > form {
+    width: 100%;
+}
+.projectMainWrapper > form > ul > li {
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 5px;
+    padding: 5px;
+    transition: 0.2s;
+}
+.darkMode .projectMainWrapper > form > ul > li {
+    border: dashed 1px #ffffff55;
+}
+.lightMode .projectMainWrapper > form > ul > li {
+    border: dashed 1px #00000055;
+}
+.projectThisTech {
+    background-color: #007000;
+}
+.projectAddedTech, .projectDeletedTech {
+    transform: translateX(-100%);
+}
+
+
 /* Laptop scale */
 @media (min-width: 1024px) {
     .projectSection {

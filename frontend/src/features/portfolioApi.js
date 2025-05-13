@@ -10,7 +10,8 @@ export const portfolioApi = createApi({
         'backendSkills',
         'otherSkills',
         'softSkills',
-        'experiences'
+        'experiences',
+        'projects',
     ],
     endpoints: (builder) => ({
         // profile
@@ -148,6 +149,11 @@ export const portfolioApi = createApi({
             query: (data) => ({ url: 'experiences', method: 'PUT', body: data }),
             invalidatesTags: ['experiences']
         }),
+        // projects
+        createProject: builder.mutation({
+            query: (data) => ({ url: 'projects', method: 'POST', body: data }),
+            invalidatesTags: ['projects']
+        })
     })
 });
 
@@ -191,4 +197,6 @@ export const {
     useUpdateExperienceMutation,
     useDeleteExperienceMutation,
     useUpdateExperienceListMutation,
+    // projects
+    useCreateProjectMutation,
 } = portfolioApi;

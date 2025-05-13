@@ -100,9 +100,11 @@ form textarea {
 form button {
     background-color: rgb(195, 160, 83);
     border: none;
+}
+form > button {
     margin-top: 5px;
 }
-form button:hover {
+form > button:hover {
     background-color: rgb(219, 184, 107);
 }
 form .formTextInput {

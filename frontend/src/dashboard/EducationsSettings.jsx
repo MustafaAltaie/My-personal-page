@@ -89,7 +89,7 @@ const Educations = forwardRef((props, ref) => {
 
     const prepareUpdate = (edu) => {
         setEducationObj({
-            _id: edu._id,
+            id: edu.id,
             title: edu.title,
             dateFrom: edu.dateFrom,
             dateTo: edu.dateTo,

@@ -1,5 +1,6 @@
-import { useState, forwardRef } from 'react';
+import { useState, forwardRef, useRef, useEffect } from 'react';
 import '../styles/project.css';
+import { useCreateProjectMutation } from '../features/portfolioApi';
 
 const Projects = forwardRef((props, ref) => {
     const [list, setList] = useState([
@@ -47,12 +48,43 @@ const Projects = forwardRef((props, ref) => {
             title: 'Gruvan, Fullstack',
             createdDate: '9 maj 2025',
             content: 'Jag utvecklade denna fullstack-applikation för Järvenskolorna i Katrineholm, där jag arbetade. Syftet var att underlätta för eleverna att beställa från skolans kafeteria via sina mobiltelefoner eller direkt från en skärm i kafeterian. Beställningarna tas emot av personalen i realtid via Socket.io.',
-            techStack: ['MongoDB: spara föremål', 'Express: backend framework', 'Vanilla JavaScript', 'Node.js: servermiljö för JavaScript', 'Socket.js: Tar emot order', 'CSS3 & HTML5'],
+            techStack: ['MongoDB - spara föremål', 'Express - backend framework', 'Vanilla JavaScript', 'Node.js - servermiljö för JavaScript', 'Socket.js - Tar emot order', 'CSS3 & HTML5'],
             appLink: '',
             isProfessional: true
         },
     ]);
     const [draggedIndex, setDraggedIndex] = useState(null);
+    const [project, setProject] = useState({
+        id: '',
+        title: '',
+        createdDate: '',
+        content: '',
+        techStack: [],
+        appLink: '',
+        isProfessional: false,
+    });
+    const [createProject] = useCreateProjectMutation();
+    const [tech, setTech] = useState('');
+    const [form, setForm] = useState(false);
+    const formRef = useRef(null);
+    const techRef = useRef(null);
+    const [addedTech, setAddedTech] = useState('');
+    const [existedTech, setExistedTech] = useState('');
+    const [deletedTech, setDeletedTech] = useState('');
+
+    useEffect(() => {
+        if(formRef.current) {
+            formRef.current.style.maxHeight = '0px';
+            if(form) {
+                formRef.current.style.maxHeight = `${formRef.current.scrollHeight}px`;
+                setTimeout(() => {
+                    formRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 300);
+            } else {
+                formRef.current.style.maxHeight = '0px';
+            }
+        }
+    }, [form, project]);
 
     const handleDragStart = (index) => {
         setDraggedIndex(index);
@@ -71,6 +103,73 @@ const Projects = forwardRef((props, ref) => {
 
     const handleDrop = () => {
         setDraggedIndex(null);
+    }
+
+    const prepareProject = (e) => {
+        setProject(prev => ({
+            ...prev, [e.target.name]: e.target.value
+        }));
+    }
+
+    const triggerTwice = (set, val) => {
+        set(val);
+        setTimeout(() => {
+            set('');
+            setTimeout(() => {
+                set(val);
+                setTimeout(() => {
+                    set('');
+                }, 200);
+            }, 200);
+        }, 200);
+    }
+
+    const prepareProjectList = (e) => {
+        const trimmedTech = e.trim();
+        if(!trimmedTech) return;
+        const isExisted = project.techStack.some(tech => tech === trimmedTech);
+        if(isExisted) {
+            triggerTwice(setExistedTech, trimmedTech)
+            return;
+        }
+        setProject(prev => ({
+            ...prev, techStack: [...prev.techStack, trimmedTech]
+        }));
+        setTech('');
+        setAddedTech(trimmedTech);
+        setTimeout(() => {
+            setAddedTech('');
+        });
+        techRef.current?.focus();
+    }
+
+    const handleDeleteTech = (tech) => {
+        if(!tech) return;
+        setDeletedTech(tech);
+        setTimeout(() => {
+            setDeletedTech('');
+            setProject(prev => ({
+                ...prev, techStack: prev.techStack.filter(t => t !== tech)
+            }));
+        }, 200);
+    }
+
+    const handleCreateProject = async (e) => {
+        e.preventDefault();
+        await createProject(project).unwrap();
+    }
+
+    const clearFields = () => {
+        setProject({
+            id: '',
+            title: '',
+            createdDate: '',
+            content: '',
+            techStack: [],
+            appLink: '',
+            isProfessional: false,
+        });
+        setTech('');
     }
 
     return (
@@ -108,7 +207,70 @@ const Projects = forwardRef((props, ref) => {
                         <button>Visa på GitHub<i className="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </div>)}
+                <h1 className={`showFormButton ${form ? 'showFormButtonOn' : ''}`} onClick={() => {setForm(!form); clearFields()}}>+</h1>
+                <form ref={formRef} onSubmit={handleCreateProject}>
+                    <div className='formTextInput'>
+                        <h5>Title *</h5>
+                        <input type="text" placeholder='Title *' title='Title' name='title' value={project.title || ''} onChange={prepareProject} />
+                    </div>
+                    <div className='formTextInput'>
+                        <h5>Created date</h5>
+                        <input type="date" placeholder='Created date' title='Created date' name='createdDate' value={project.createdDate || ''} onChange={prepareProject} />
+                    </div>
+                    <div className='formTextInput'>
+                        <h5>Content *</h5>
+                        <input type="text" placeholder='Content *' title='Content' name='content' value={project.content || ''} onChange={prepareProject} />
+                    </div>
+                    <div className='formTextInput'>
+                        <h5>App link</h5>
+                        <input type="text" placeholder='App link' title='App link' name='appLink' value={project.appLink || ''} onChange={prepareProject} />
+                    </div>
+                    {project.techStack.length > 0 &&
+                    <ul>
+                        {project.techStack.map(techStack =>
+                            <li
+                                key={techStack}
+                                className={`
+                                    ${techStack === existedTech ? 'projectThisTech' : ''}
+                                    ${techStack === addedTech ? 'projectAddedTech' : ''}
+                                    ${techStack === deletedTech ? 'projectDeletedTech' : ''}
+                                `}
+                            >
+                                {techStack} <span onClick={() => handleDeleteTech(techStack)}>🗑️</span>
+                            </li>
+                        )}
+                    </ul>}
+                    <div className='formTextInput'>
+                        <h5>Tech stack</h5>
+                        <div style={{ display: 'flex', gap: '15px' }}>
+                            <input
+                                ref={techRef}
+                                type="text"
+                                placeholder='Tech stack'
+                                title='Tech stack'
+                                name='techStack'
+                                value={tech || ''}
+                                onChange={e => setTech(e.target.value)} style={{ width: '100%' }}
+                                onKeyDown={e => e.key === 'Enter' && prepareProjectList}
+                            />
+                            {tech.trim() &&
+                            <button style={{ width: '20%' }} type='button' onClick={() => prepareProjectList(tech)}>Add</button>}
+                        </div>
+                    </div>
+                    <label>
+                        <input type="checkbox" checked={project.isProfessional}
+                        onChange={() => setProject(prev => ({
+                            ...prev, isProfessional: !prev.isProfessional
+                        }))} /> Professional project
+                    </label>
+                    <div style={{ display: 'flex', gap: '15px' }}>
+                        <button style={{ width: '100%' }} type='submit'>Save</button>
+                        {(project.title || project.content || project.createdDate || project.title || project.title ||  project.techStack.length > 0 || project.appLink || project.isProfessional) &&
+                        <button style={{ width: '20%' }} type='button' onClick={() => clearFields()}>Clear</button>}
+                    </div>
+                </form>
             </div>
+            
         </section>
     )
 });
