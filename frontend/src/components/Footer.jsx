@@ -41,7 +41,7 @@ const Footer = forwardRef((props, ref) => {
                     </div>
                 </div>
                 <div className='footerIconsMainWrapper flexColumn'>
-                    <p>Denna portfolio är utvecklad med moderna tekniker (MongoDB, Express.js, React.js, Node.js, Redux, RTK Query, Resend) – redo för nya uppdrag eller anställning. Skapad den 10 oktober 2025.</p>
+                    <p>Denna portfolio är utvecklad med moderna tekniker (MongoDB, Express.js, React.js, Node.js, Redux, RTK Query, Resend) – redo för nya uppdrag eller anställning. Skapad den 1 juni 2025.</p>
                     <div className="footerIcons">
                         <img src="../../images/mongodb.png" alt="mongoDB" />
                         <img src="../../images/express.png" alt="express" />

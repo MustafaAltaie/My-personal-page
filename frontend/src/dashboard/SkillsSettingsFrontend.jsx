@@ -126,9 +126,11 @@ const SkillsSettingsFrontend = () => {
             onDragOver={e => handleDragOver(e, index)}
             onDrop={handleDrop}
         >
-            <p><span style={{ color: '#a70' }}>{frontendSkill.title}: </span>{frontendSkill.description}</p>
-            <span style={{ cursor: 'pointer', marginLeft: '10px' }} onClick={() => prepareFrontendUpdate(frontendSkill)}>🖋️</span>
-            <span style={{ cursor: 'pointer', marginLeft: '10px' }} onClick={() => handleDeleteFrontSkill(frontendSkill.id)}>🗑️</span>
+            <p><span>{frontendSkill.title}: </span>{frontendSkill.description}</p>
+            <div className='skillsToolsWrapper'>
+                <span onClick={() => prepareFrontendUpdate(frontendSkill)}>🖋️</span>
+                <span onClick={() => handleDeleteFrontSkill(frontendSkill.id)}>🗑️</span>
+            </div>
         </motion.div>
         )}
         <h1 className={`showFormButton ${frontendForm ? 'showFormButtonOn' : ''}`} onClick={() => {setFrontendForm(!frontendForm); clearFrontFields()}}>+</h1>

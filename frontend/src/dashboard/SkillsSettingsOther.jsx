@@ -126,9 +126,11 @@ const SkillsSettingsOther = () => {
             onDragOver={e => handleDragOver(e, index)}
             onDrop={handleDrop}
         >
-            <p><span style={{ color: '#a70' }}>{otherSkill.title}: </span>{otherSkill.description}</p>
-            <span style={{ cursor: 'pointer', marginLeft: '10px' }} onClick={() => prepareOtherUpdate(otherSkill)}>🖋️</span>
-            <span style={{ cursor: 'pointer', marginLeft: '10px' }} onClick={() => handleDeleteOtherSkill(otherSkill.id)}>🗑️</span>
+            <p><span>{otherSkill.title}: </span>{otherSkill.description}</p>
+            <div className='skillsToolsWrapper'>
+                <span onClick={() => prepareOtherUpdate(otherSkill)}>🖋️</span>
+                <span onClick={() => handleDeleteOtherSkill(otherSkill.id)}>🗑️</span>
+            </div>
         </motion.div>
         )}
         <h1 className={`showFormButton ${otherForm ? 'showFormButtonOn' : ''}`} onClick={() => {setOtherForm(!otherForm); clearOtherFields()}}>+</h1>

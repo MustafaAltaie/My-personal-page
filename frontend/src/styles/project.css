@@ -1,6 +1,6 @@
 /* project section */
 .projectSection {
-    padding: 40px 20px;
+    padding: 30px;
     overflow-x: hidden;
     background-image: url('../../images/nodejs-logo.png');
     background-position: center;
@@ -18,10 +18,10 @@
 .projectSection > p {
     padding: 20px;
 }
-.darkMode .projectSection > p {
+.darkMode .projectSection > p > span {
     color: #f3ac08;
 }
-.lightMode .projectSection > p {
+.lightMode .projectSection > p > span {
     color: #1d72c1;
     font-weight: bold;
 }
@@ -73,9 +73,6 @@
 .darkMode .projectLabel {
     color: #b3852f;
 }
-.lightMode .projectLabel {
-    color: #1d72c1;
-}
 /* projectUpperPart */
 .projectUpperPart {
     gap: 15px;
@@ -86,11 +83,11 @@
     align-items: center;
     gap: 20px;
 }
-.darkMode .projectUpperPart h3 {
+.darkMode .projectUpperPart h3 > span {
     color: #e3a209;
     font-weight: normal;
 }
-.lightMode .projectUpperPart h3 {
+.lightMode .projectUpperPart h3 > span {
     color: #1d72c1;
 }
 .darkMode .projectUpperPart p {
@@ -120,11 +117,12 @@
     padding-bottom: 5px;
     font-weight: normal;
 }
-.darkMode .projectTechStack > h5 {
+.darkMode .projectTechStack > h5 > span {
     color: #e3a20a;
 }
-.lightMode .projectTechStack > h5 {
+.lightMode .projectTechStack > h5 > span {
     color: #1d72c1;
+    font-weight: bold;
 }
 .projectTechStack > li {
     font-size: 12px;
@@ -157,7 +155,7 @@
     color: #e3a20a;
 }
 .lightMode .project > .projectLowerPart > button {
-    background: #000000aa;
+    background: #e3a20a;
     color: #fff;
     font-family: var(--thinFont);
 }

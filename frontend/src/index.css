@@ -23,7 +23,7 @@
     -webkit-user-select: none;
     resize: none;
 }
-.darkMode * :not([class*="fa-"]):not(form textarea, form button) {
+.darkMode * :not([class*="fa-"]):not(form textarea, form button):not(span) {
     font-family: var(--thinFont);
     letter-spacing: 0.3px;
     color: var(--darkText);
@@ -131,7 +131,7 @@ form button:hover {
     align-items: center;
     padding-bottom: 8px;
     margin: 0 auto 10px auto;
-    font-size: 45px;
+    font-size: 35px;
     cursor: pointer;
     transition: 0.2s linear 0.3s;
 }

@@ -126,9 +126,11 @@ const SkillsSettingsSoft = () => {
             onDragOver={e => handleDragOver(e, index)}
             onDrop={handleDrop}
         >
-            <p><span style={{ color: '#a70' }}>{softSkill.title}: </span>{softSkill.description}</p>
-            <span style={{ cursor: 'pointer', marginLeft: '10px' }} onClick={() => prepareSoftUpdate(softSkill)}>🖋️</span>
-            <span style={{ cursor: 'pointer', marginLeft: '10px' }} onClick={() => handleDeleteSoftSkill(softSkill.id)}>🗑️</span>
+            <p><span>{softSkill.title}: </span>{softSkill.description}</p>
+            <div className='skillsToolsWrapper'>
+                <span onClick={() => prepareSoftUpdate(softSkill)}>🖋️</span>
+                <span onClick={() => handleDeleteSoftSkill(softSkill.id)}>🗑️</span>
+            </div>
         </motion.div>
         )}
         <h1 className={`showFormButton ${softForm ? 'showFormButtonOn' : ''}`} onClick={() => {setSoftForm(!softForm); clearSoftFields()}}>+</h1>

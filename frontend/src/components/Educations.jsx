@@ -29,7 +29,7 @@ const Educations = forwardRef((props, ref) => {
                     transition={{ duration: 0.5 }}
                     viewport={{ once: true, amount: 0.4 }}
                 ><i className="fa-solid fa-user-graduate"></i>Utbildningar</motion.h1>
-                <br /><br />
+                <br />
                 {isLoading && <p>Loading...</p>}
                 {list.map((education, index) => 
                 <motion.div

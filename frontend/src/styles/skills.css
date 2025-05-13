@@ -1,5 +1,5 @@
 .skillSection {
-    padding: 40px;
+    padding: 30px;
     overflow-x: hidden;
     background-image: url('../../images/skillsIcon.png');
     background-attachment: fixed;
@@ -40,6 +40,7 @@
 }
 .skill {
     display: flex;
+    justify-content: space-between;
     gap: 5px;
     padding: 10px 0 10px 20px;
 }
@@ -63,6 +64,15 @@
 }
 .lightMode .skill > p > span {
     color: #07a;
+}
+
+/* Settings */
+.skillsToolsWrapper {
+    display: flex;
+    gap: 20px;
+}
+.skillsToolsWrapper > span {
+    cursor: pointer;
 }
 
 

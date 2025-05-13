@@ -1,5 +1,5 @@
 .experienceSection {
-    padding: 40px 10px 0 10px;
+    padding: 30px 10px 0 10px;
     overflow-x: hidden;
     background-image: url('../../images/experienceIcon.png');
     background-attachment: fixed;
@@ -14,13 +14,13 @@
     border-top: solid 1px #000;
 }
 .experienceMainWrapper {
-    margin-top: 30px;
+    margin-top: 20px;
 }
 .experience {
     display: flex;
 }
 .experience > div {
-    padding: 0 20px 40px 20px;
+    padding: 0 20px 30px 20px;
     display: flex;
     flex-direction: column;
     gap: 30px;
@@ -47,11 +47,20 @@
 .experience > div h5 {
     font-size: 16px;
 }
-.experience > div h5:nth-child(1), .experience > div p:nth-child(1) {
+.darkMode .experience > div h5:nth-child(1), .darkMode .experience > div p:nth-child(1) {
+    color: #d69600;
+    font-weight: bold;
+}
+.lightMode .experience > div h5:nth-child(1), .lightMode .experience > div p:nth-child(1) {
     color: #009de0;
     font-weight: bold;
 }
 .darkMode .experience > div h5:nth-child(2) {
+    color: #3baaff;
+    font-weight: normal;
+}
+.lightMode .experience > div h5:nth-child(2) {
+    font-weight: 500;
     color: #d69600;
 }
 

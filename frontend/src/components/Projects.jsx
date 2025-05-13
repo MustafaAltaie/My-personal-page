@@ -57,7 +57,7 @@ const Projects = forwardRef((props, ref) => {
     return (
         <section ref={ref} className="projectSection">
             <h1 className="sectionTitle"><i className="fa-brands fa-node-js"></i>Projekt</h1>
-            <p>Här är några webbappar som jag utvecklat på fritiden, under skoltiden eller i yrkeslivet – de finns tillgängliga på GitHub.<br />Projekt med<i className="fa-solid fa-briefcase"></i>ikonen är yrkesprojekt som jag har utvecklat i arbetssammanhang.</p>
+            <p><span>Här är några webbappar som jag utvecklat på fritiden, under skoltiden eller i yrkeslivet – de finns tillgängliga på GitHub.<br />Projekt med<i className="fa-solid fa-briefcase"></i>ikonen är yrkesprojekt som jag har utvecklat i arbetssammanhang.</span></p>
             <div className="projectMainWrapper">
                 {/* Project */}
                 {list.map((project, index) => project.title && 
@@ -71,7 +71,7 @@ const Projects = forwardRef((props, ref) => {
                                 whileInView={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.8 }}
                                 viewport={{ once: true, amount: 0.4 }}
-                            >{project.title}</motion.h3>
+                            ><span>{project.title}</span></motion.h3>
                             <h1><i className="fa-brands fa-github"></i></h1>
                         </div>
                         <motion.p
@@ -81,7 +81,7 @@ const Projects = forwardRef((props, ref) => {
                             viewport={{ once: true, amount: 0.4 }}
                         >{project.content}</motion.p>
                         <ul className='projectTechStack flexColumn'>
-                            <h5>Teknikstack som användes i denna applikation</h5>
+                            <h5><span>Teknikstack som användes i denna applikation</span></h5>
                             {project.techStack.map(tech =>
                                 <motion.li
                                     key={tech}

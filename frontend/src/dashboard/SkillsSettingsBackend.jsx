@@ -126,9 +126,11 @@ const SkillsSettingsBackend = () => {
             onDragOver={e => handleDragOver(e, index)}
             onDrop={handleDrop}
         >
-            <p><span style={{ color: '#a70' }}>{backendSkill.title}: </span>{backendSkill.description}</p>
-            <span style={{ cursor: 'pointer', marginLeft: '10px' }} onClick={() => prepareBackendUpdate(backendSkill)}>🖋️</span>
-            <span style={{ cursor: 'pointer', marginLeft: '10px' }} onClick={() => handleDeleteBackSkill(backendSkill.id)}>🗑️</span>
+            <p><span>{backendSkill.title}: </span>{backendSkill.description}</p>
+            <div className='skillsToolsWrapper'>
+                <span onClick={() => prepareBackendUpdate(backendSkill)}>🖋️</span>
+                <span onClick={() => handleDeleteBackSkill(backendSkill.id)}>🗑️</span>
+            </div>
         </motion.div>
         )}
         <h1 className={`showFormButton ${backendForm ? 'showFormButtonOn' : ''}`} onClick={() => {setBackendForm(!backendForm); clearBackFields()}}>+</h1>
