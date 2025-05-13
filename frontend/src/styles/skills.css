@@ -106,4 +106,10 @@
     .darkMode .skill, .lightMode .skill {
         border-left: none;
     }
+
+    /* settings */
+    .skillSection form {
+        width: 95%;
+        margin: 0 auto 20px auto;
+    }
 }
