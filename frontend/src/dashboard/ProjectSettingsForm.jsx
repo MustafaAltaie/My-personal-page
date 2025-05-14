@@ -40,6 +40,11 @@ const ProjectSettingsForm = (props) => {
         props.handlePrepareUpdate(newProject);
     }
 
+    const getDateInputValue = (dateString) => {
+        if (!dateString) return '';
+        return new Date(dateString).toISOString().split('T')[0];
+    }
+
     return (
         <form ref={props.formRef} onSubmit={props.handleCreateProject}>
             <div className='formTextInput'>
@@ -48,7 +53,7 @@ const ProjectSettingsForm = (props) => {
             </div>
             <div className='formTextInput'>
                 <h5>Created date</h5>
-                <input type="date" placeholder='Created date' title='Created date' name='createdDate' value={props.project.createdDate || ''} onChange={props.prepareProject} />
+                <input type="date" placeholder='Created date' title='Created date' name='createdDate' value={getDateInputValue(props.project.createdDate)} onChange={props.prepareProject} />
             </div>
             <div className='formTextInput'>
                 <h5>Content *</h5>

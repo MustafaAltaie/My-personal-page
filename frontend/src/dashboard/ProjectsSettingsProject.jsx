@@ -29,7 +29,7 @@ const ProjectsSettingsProject = (props) => {
                 </ul>
             </div>
             <div className='projectLowerPart'>
-                <h6>Skapad: {props.project.createdDate}</h6>
+                <h6>Skapad: {new Date(props.project.createdDate).toLocaleDateString()}</h6>
                 <button>Visa på GitHub<i className="fa-solid fa-arrow-right"></i></button>
             </div>
         </div>
