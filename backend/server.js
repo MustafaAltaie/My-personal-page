@@ -14,7 +14,24 @@ import emailRoutes from './routes/emailRoutes.js';
 
 const app = express();
 app.use(express.json());
-app.use(cors({ origin: 'https://mustafa-altaie-portfolio.netlify.app' }));
+
+const allowedOrigins = [
+  'https://mustafa-altaie-portfolio.netlify.app',
+  'https://Mustafa-altaie-portfolio.netlify.app'
+];
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+app.use(cors(corsOptions));
+
 dotenv.config();
 connectDB();
 
