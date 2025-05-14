@@ -187,10 +187,7 @@
 
 
 /* Settings */
-.projectMainWrapper > form {
-    width: 100%;
-}
-.projectMainWrapper > form > ul > li {
+.projectSection > form > ul > li {
     margin: 10px 0;
     display: flex;
     justify-content: space-between;
@@ -198,10 +195,13 @@
     padding: 5px;
     transition: 0.2s;
 }
-.darkMode .projectMainWrapper > form > ul > li {
+.projectSection > form > ul > li > span {
+    cursor: pointer;
+}
+.darkMode .projectSection > form > ul > li {
     border: dashed 1px #ffffff55;
 }
-.lightMode .projectMainWrapper > form > ul > li {
+.lightMode .projectSection > form > ul > li {
     border: dashed 1px #00000055;
 }
 .projectThisTech {
@@ -225,7 +225,8 @@
     .projectLabel {
         top: 10px;
     }
-    .projectMainWrapper > form {
-        width: 50%;
+    .projectSection > form {
+        width: 40%;
+        margin: 0 auto;
     }
 }

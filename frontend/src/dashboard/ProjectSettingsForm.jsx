@@ -1,5 +1,45 @@
+import { useState, useEffect } from "react";
 
 const ProjectSettingsForm = (props) => {
+    const [techList, setTechList] = useState([]);
+    const [draggedIndex, setDraggedIndex] = useState(null);
+
+    useEffect(() => {
+        if(Array.isArray(props.project.techStack)) {
+            const transformed = [...props.project.techStack];
+            setTechList(transformed);
+        }
+    }, [props.project.techStack]);
+
+    const dragStart = (index) => {
+        setDraggedIndex(index);
+    }
+
+    const dragOver = (event, index) => {
+        event.preventDefault();
+        if (draggedIndex === null || draggedIndex === index) return;
+        const newList = [...techList];
+        const draggedItem = newList[draggedIndex];
+        newList.splice(draggedIndex, 1);
+        newList.splice(index, 0, draggedItem);
+        setDraggedIndex(index);
+        setTechList(newList);
+    }
+
+    const drop = async () => {
+        setDraggedIndex(null);
+        const newProject = {
+            id: props.project.id,
+            title: props.project.title,
+            createdDate: props.project.createdDate,
+            content: props.project.content,
+            techStack: techList,
+            appLink: props.project.appLink,
+            isProfessional: props.project.isProfessional,
+        }
+        props.handlePrepareUpdate(newProject);
+    }
+
     return (
         <form ref={props.formRef} onSubmit={props.handleCreateProject}>
             <div className='formTextInput'>
@@ -20,7 +60,7 @@ const ProjectSettingsForm = (props) => {
             </div>
             {props.project.techStack.length > 0 &&
             <ul>
-                {props.project.techStack.map(techStack =>
+                {techList.map((techStack, index) =>
                     <li
                         key={techStack}
                         className={`
@@ -28,6 +68,10 @@ const ProjectSettingsForm = (props) => {
                             ${techStack === props.addedTech ? 'projectAddedTech' : ''}
                             ${techStack === props.deletedTech ? 'projectDeletedTech' : ''}
                         `}
+                        draggable
+                        onDragStart={() => dragStart(index)}
+                        onDragOver={e => dragOver(e, index)}
+                        onDrop={drop}
                     >
                         {techStack} <span onClick={() => props.handleDeleteTech(techStack)}>🗑️</span>
                     </li>
@@ -57,9 +101,9 @@ const ProjectSettingsForm = (props) => {
                 }))} /> Professional project
             </label>
             <div style={{ display: 'flex', gap: '15px' }}>
-                <button style={{ width: '100%' }} type='submit'>Save</button>
+                <button style={{ width: '100%' }} type='submit'>{props.project.id ? 'Update' : 'Save'}</button>
                 {(props.project.title || props.project.content || props.project.createdDate || props.project.title || props.project.title ||  props.project.techStack.length > 0 || props.project.appLink || props.project.isProfessional) &&
-                <button style={{ width: '20%' }} type='button' onClick={() => props.clearFields()}>Clear</button>}
+                <button style={{ width: '20%' }} type='button' onClick={() => props.clearFields()}>{props.project.id ? 'Cancel' : 'Clear'}</button>}
             </div>
         </form>
     )
