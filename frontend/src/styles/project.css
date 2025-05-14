@@ -215,7 +215,7 @@
 /* Laptop scale */
 @media (min-width: 1024px) {
     .projectSection {
-        padding: 40px 40px 0 40px;
+        padding: 40px;
         background-size: 50% 60%;
     }
     .project {
@@ -227,6 +227,6 @@
     }
     .projectSection > form {
         width: 40%;
-        margin: 0 auto 10px auto;
+        margin: 0 auto;
     }
 }
