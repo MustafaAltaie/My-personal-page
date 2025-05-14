@@ -3,6 +3,8 @@ import { forwardRef, useState } from 'react';
 import { useSendContactEmailMutation } from '../features/portfolioApi.js';
 
 const Footer = forwardRef((props, ref) => {
+    const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
     const [formData, setFormData] = useState({
         name: '', email: '', message: ''
     });
@@ -20,19 +22,33 @@ const Footer = forwardRef((props, ref) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setSuccessMsg('');
+        setErrorMsg('');
+
+        if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+            setErrorMsg('Alla fält är obligatoriska.');
+            return;
+        }
+
+        if (!isValidEmail(formData.email)) {
+            setErrorMsg('Ange en giltig e-postadress.');
+            return;
+        }
+
         setDisableButton(true);
 
         try {
-        await sendContactEmail(formData).unwrap();
-        setDisableButton(false);
-        setSuccessMsg('Message sent successfully!');
-        setFormData({ name: '', email: '', message: '' });
-        setTimeout(() => {
-            setSuccessMsg('');
-            setErrorMsg('');
-        }, 2000);
+            await sendContactEmail(formData).unwrap();
+            setSuccessMsg('Meddelandet har skickats!');
+            setFormData({ name: '', email: '', message: '' });
         } catch (err) {
-            setErrorMsg('Failed to send message. Please try again.');
+            setErrorMsg('Det gick inte att skicka meddelandet. Försök igen.');
+        } finally {
+            setDisableButton(false);
+            setTimeout(() => {
+                setSuccessMsg('');
+                setErrorMsg('');
+            }, 3000);
         }
     }
 
@@ -69,9 +85,36 @@ const Footer = forwardRef((props, ref) => {
                 <div className="footerContactFormWrapper flexColumn">
                     <p>Har du en idé eller ett projekt? Tveka inte att höra av dig!</p>
                     <form onSubmit={handleSubmit} className='footerContactForm flexColumn'>
-                        <input type="text" placeholder='Namn' title='Namn' name='name' value={formData.name} onChange={handleChange} />
-                        <input type="email" placeholder='Email' title='email' name='email' value={formData.email} onChange={handleChange} />
-                        <textarea title='meddelande' name='message' placeholder='Meddelande' value={formData.message} onChange={handleChange}></textarea>
+                        <input
+                            type="text"
+                            name="name"
+                            placeholder="Namn"
+                            required
+                            minLength={2}
+                            maxLength={50}
+                            title="Skriv ditt namn"
+                            value={formData.name}
+                            onChange={handleChange}
+                        />
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="Email"
+                            required
+                            title="Skriv en giltig e-postadress"
+                            value={formData.email}
+                            onChange={handleChange}
+                        />
+                        <textarea
+                            name="message"
+                            placeholder="Meddelande"
+                            required
+                            minLength={10}
+                            maxLength={1000}
+                            title="Skriv ditt meddelande"
+                            value={formData.message}
+                            onChange={handleChange}
+                        />
                         <button style={disableButton ? { background: '#888', pointerEvents: 'none' } : { background: '', pointerEvents: 'unset' }}>Skicka</button>
                     </form>
                     {successMsg && <h6 style={{ color: 'green', position: 'absolute', bottom: '10px' }}>{successMsg}</h6>}

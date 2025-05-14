@@ -57,7 +57,7 @@ const ProjectSettingsForm = (props) => {
             </div>
             <div className='formTextInput'>
                 <h5>Content *</h5>
-                <input type="text" placeholder='Content *' title='Content' name='content' value={props.project.content || ''} onChange={props.prepareProject} />
+                <textarea placeholder='Content *' title='Content' name='content' value={props.project.content || ''} onChange={props.prepareProject}></textarea>
             </div>
             <div className='formTextInput'>
                 <h5>App link</h5>

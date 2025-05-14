@@ -1,10 +1,21 @@
 import express from 'express';
 import { Resend } from 'resend';
+import validator from 'validator';
 const router = express.Router();
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 router.post('/send', async (req, res) => {
-    const { name, email, message } = req.body;
+    let { name, email, message } = req.body;
+
+    // Sanitize
+    name = validator.escape(name.trim());
+    email = validator.normalizeEmail(email.trim());
+    message = validator.escape(message.trim());
+
+    // Validate
+    if (!validator.isEmail(email) || !name || !message) {
+        return res.status(400).json({ success: false, error: 'Invalid input data.' });
+    }
 
     try {
       const response = await resend.emails.send({
