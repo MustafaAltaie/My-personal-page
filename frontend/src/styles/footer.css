@@ -92,6 +92,7 @@ footer > div:first-child {
 }
 .footerContactForm > button {
     background: rgb(50, 59, 175);
+    font-weight: 100;
     color: white !important;
 }
 .footerContactForm > button:hover {

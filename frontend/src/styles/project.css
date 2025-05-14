@@ -149,6 +149,7 @@
 }
 .project > .projectLowerPart > h6 {
     white-space: nowrap;
+    font-weight: normal;
 }
 .darkMode .project > .projectLowerPart > button {
     background: #00000077;

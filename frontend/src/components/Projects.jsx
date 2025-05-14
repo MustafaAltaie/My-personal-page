@@ -33,6 +33,12 @@ const Projects = forwardRef((props, ref) => {
                     <Project key={index} project={project} />
                 )}
             </div>
+            <p>
+                <span>Och det finns några fler projekt på GitHub. </span> 
+                <a href="https://github.com/MustafaAltaie" target='_blank' rel='noopener noreferrer'>
+                    Besök gärna min GitHub-sida <i className="fa-solid fa-arrow-right"></i>
+                </a>
+            </p>
         </section>
     )
 });

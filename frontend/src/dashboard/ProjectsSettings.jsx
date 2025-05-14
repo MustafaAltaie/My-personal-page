@@ -42,7 +42,9 @@ const Projects = forwardRef((props, ref) => {
                 setTimeout(() => {
                     formRef.current.style.maxHeight = `${formRef.current.scrollHeight}px`;
                 }, 10);
-                formRef.current.scrollIntoView({ block: 'center' });
+                setTimeout(() => {
+                    formRef.current.scrollIntoView({ block: 'center' });
+                }, 200);
             } else {
                 formRef.current.style.maxHeight = '0px';
             }
@@ -205,6 +207,12 @@ const Projects = forwardRef((props, ref) => {
                     handleDeleteProject={handleDeleteProject}
                 />)}
             </div>
+            <p>
+                <span>Och det finns några fler projekt på GitHub. </span> 
+                <a href="https://github.com/MustafaAltaie" target='_blank' rel='noopener noreferrer'>
+                    Besök gärna min GitHub-sida <i className="fa-solid fa-arrow-right"></i>
+                </a>
+            </p>
             <h1 className={`showFormButton ${form ? 'showFormButtonOn' : ''}`} onClick={() => {setForm(!form); clearFields()}}>+</h1>
             <ProjectSettingsForm
                 formRef={formRef}
