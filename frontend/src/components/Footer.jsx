@@ -121,7 +121,7 @@ const Footer = forwardRef((props, ref) => {
                     {errorMsg && <h6 style={{ color: 'red', position: 'absolute', bottom: '10px' }}>{errorMsg}</h6>}
                 </div>
                 <div className='footerIconsMainWrapper flexColumn'>
-                    <p>Denna portfolio är utvecklad med moderna tekniker (MongoDB, Express.js, React.js, Node.js, Redux, RTK Query, Resend) – redo för nya uppdrag eller anställning. Skapad den 1 juni 2025.</p>
+                    <p>Denna portfolio är utvecklad med moderna tekniker (MongoDB, Express.js, React.js, Node.js, Redux, RTK Query, Resend) – redo för nya uppdrag eller anställning. Skapad den 14 mars 2025.</p>
                     <div className="footerIcons">
                         <img src="../../images/mongodb.png" alt="mongoDB" />
                         <img src="../../images/express.png" alt="express" />
