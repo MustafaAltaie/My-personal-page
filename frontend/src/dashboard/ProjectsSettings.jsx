@@ -1,6 +1,8 @@
 import { useState, forwardRef, useRef, useEffect } from 'react';
 import '../styles/project.css';
 import { useCreateProjectMutation } from '../features/portfolioApi';
+import ProjectSettingsForm from './ProjectSettingsForm';
+import ProjectsSettingsProject from './ProjectsSettingsProject';
 
 const Projects = forwardRef((props, ref) => {
     const [list, setList] = useState([
@@ -179,98 +181,30 @@ const Projects = forwardRef((props, ref) => {
             <div className="projectMainWrapper">
                 {/* Project */}
                 {list.map((project, index) => project.title && 
-                <div
+                <ProjectsSettingsProject
                     key={index}
-                    className="project flexColumn"
-                    draggable
-                    onDragStart={() => handleDragStart(index)}
-                    onDragOver={e => handleDragOver(e, index)}
-                    onDrop={handleDrop}
-                >
-                    {project.isProfessional &&
-                    <i className="fa-solid fa-briefcase projectLabel"></i>}
-                    <div className='flexColumn projectUpperPart'>
-                        <div>
-                            <h3><span>{project.title}</span></h3>
-                            <h1><i className="fa-brands fa-github"></i></h1>
-                        </div>
-                        <p>{project.content}</p>
-                        <ul className='projectTechStack flexColumn'>
-                            <h5><span>Teknikstack som användes i denna applikation</span></h5>
-                            {project.techStack.map(tech =>
-                                <li key={tech}>{tech}</li>
-                            )}
-                        </ul>
-                    </div>
-                    <div className='projectLowerPart'>
-                        <h6>Skapad: {project.createdDate}</h6>
-                        <button>Visa på GitHub<i className="fa-solid fa-arrow-right"></i></button>
-                    </div>
-                </div>)}
+                    handleDragStart={handleDragStart}
+                    handleDragOver={handleDragOver}
+                    project={project}
+                />)}
                 <h1 className={`showFormButton ${form ? 'showFormButtonOn' : ''}`} onClick={() => {setForm(!form); clearFields()}}>+</h1>
-                <form ref={formRef} onSubmit={handleCreateProject}>
-                    <div className='formTextInput'>
-                        <h5>Title *</h5>
-                        <input type="text" placeholder='Title *' title='Title' name='title' value={project.title || ''} onChange={prepareProject} />
-                    </div>
-                    <div className='formTextInput'>
-                        <h5>Created date</h5>
-                        <input type="date" placeholder='Created date' title='Created date' name='createdDate' value={project.createdDate || ''} onChange={prepareProject} />
-                    </div>
-                    <div className='formTextInput'>
-                        <h5>Content *</h5>
-                        <input type="text" placeholder='Content *' title='Content' name='content' value={project.content || ''} onChange={prepareProject} />
-                    </div>
-                    <div className='formTextInput'>
-                        <h5>App link</h5>
-                        <input type="text" placeholder='App link' title='App link' name='appLink' value={project.appLink || ''} onChange={prepareProject} />
-                    </div>
-                    {project.techStack.length > 0 &&
-                    <ul>
-                        {project.techStack.map(techStack =>
-                            <li
-                                key={techStack}
-                                className={`
-                                    ${techStack === existedTech ? 'projectThisTech' : ''}
-                                    ${techStack === addedTech ? 'projectAddedTech' : ''}
-                                    ${techStack === deletedTech ? 'projectDeletedTech' : ''}
-                                `}
-                            >
-                                {techStack} <span onClick={() => handleDeleteTech(techStack)}>🗑️</span>
-                            </li>
-                        )}
-                    </ul>}
-                    <div className='formTextInput'>
-                        <h5>Tech stack</h5>
-                        <div style={{ display: 'flex', gap: '15px' }}>
-                            <input
-                                ref={techRef}
-                                type="text"
-                                placeholder='Tech stack'
-                                title='Tech stack'
-                                name='techStack'
-                                value={tech || ''}
-                                onChange={e => setTech(e.target.value)} style={{ width: '100%' }}
-                                onKeyDown={e => e.key === 'Enter' && prepareProjectList}
-                            />
-                            {tech.trim() &&
-                            <button style={{ width: '20%' }} type='button' onClick={() => prepareProjectList(tech)}>Add</button>}
-                        </div>
-                    </div>
-                    <label>
-                        <input type="checkbox" checked={project.isProfessional}
-                        onChange={() => setProject(prev => ({
-                            ...prev, isProfessional: !prev.isProfessional
-                        }))} /> Professional project
-                    </label>
-                    <div style={{ display: 'flex', gap: '15px' }}>
-                        <button style={{ width: '100%' }} type='submit'>Save</button>
-                        {(project.title || project.content || project.createdDate || project.title || project.title ||  project.techStack.length > 0 || project.appLink || project.isProfessional) &&
-                        <button style={{ width: '20%' }} type='button' onClick={() => clearFields()}>Clear</button>}
-                    </div>
-                </form>
+                <ProjectSettingsForm
+                    formRef={formRef}
+                    handleCreateProject={handleCreateProject}
+                    project={project}
+                    prepareProject={prepareProject}
+                    prepareProjectList={prepareProjectList}
+                    setProject={setProject}
+                    clearFields={clearFields}
+                    techRef={techRef}
+                    tech={tech}
+                    setTech={setTech}
+                    existedTech={existedTech}
+                    addedTech={addedTech}
+                    deletedTech={deletedTech}
+                    handleDeleteTech={handleDeleteTech}
+                />
             </div>
-            
         </section>
     )
 });

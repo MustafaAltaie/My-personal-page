@@ -225,4 +225,7 @@
     .projectLabel {
         top: 10px;
     }
+    .projectMainWrapper > form {
+        width: 50%;
+    }
 }
