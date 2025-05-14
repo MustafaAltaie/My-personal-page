@@ -14,7 +14,7 @@ import emailRoutes from './routes/emailRoutes.js';
 
 const app = express();
 app.use(express.json());
-app.use(cors({ origin: 'https://mustafaaltaieportfolio.netlify.app' }));
+app.use(cors({ origin: 'https://Mustafa-altaie-portfolio.netlify.app' }));
 dotenv.config();
 connectDB();
 
