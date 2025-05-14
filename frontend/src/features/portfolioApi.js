@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const portfolioApi = createApi({
     reducerPath: 'portfolioApi',
-    baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/api' }),
+    baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_API_BASE_URL }),
     tagTypes: [
         'profile',
         'educations',
