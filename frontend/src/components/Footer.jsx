@@ -2,6 +2,10 @@ import '../styles/footer.css';
 import { forwardRef } from 'react';
 
 const Footer = forwardRef((props, ref) => {
+    const handleSendEmail = (e) => {
+        e.preventDefault();
+    }
+
     return (
         <footer ref={ref}>
             {/* footer upper part */}
@@ -34,11 +38,11 @@ const Footer = forwardRef((props, ref) => {
             <div className="footerCenter">
                 <div className="footerContactFormWrapper flexColumn">
                     <p>Har du en idé eller ett projekt? Tveka inte att höra av dig!</p>
-                    <div className='footerContactForm flexColumn'>
+                    <form onSubmit={handleSendEmail} className='footerContactForm flexColumn'>
                         <input type="text" placeholder='Namn' title='namn' name='name' />
                         <textarea title='meddelande' name='message' placeholder='Meddelande'></textarea>
                         <button>Skicka</button>
-                    </div>
+                    </form>
                 </div>
                 <div className='footerIconsMainWrapper flexColumn'>
                     <p>Denna portfolio är utvecklad med moderna tekniker (MongoDB, Express.js, React.js, Node.js, Redux, RTK Query, Resend) – redo för nya uppdrag eller anställning. Skapad den 1 juni 2025.</p>
