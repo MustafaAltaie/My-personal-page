@@ -63,7 +63,7 @@
     color: #d69600;
 }
 .lightMode .skill > p > span {
-    color: #07a;
+    color: #07a !important;
 }
 
 

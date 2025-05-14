@@ -1,9 +1,39 @@
 import '../styles/footer.css';
-import { forwardRef } from 'react';
+import { forwardRef, useState } from 'react';
+import { useSendContactEmailMutation } from '../features/portfolioApi.js';
 
 const Footer = forwardRef((props, ref) => {
-    const handleSendEmail = (e) => {
+    const [formData, setFormData] = useState({
+        name: '', email: '', message: ''
+    });
+
+    const [successMsg, setSuccessMsg] = useState('');
+    const [errorMsg, setErrorMsg] = useState('');
+    const [disableButton, setDisableButton] = useState(false);
+    const [sendContactEmail] = useSendContactEmailMutation();
+
+    const handleChange = e => {
+        setFormData(prev => ({
+            ...prev, [e.target.name]: e.target.value
+        }));
+    }
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        setDisableButton(true);
+
+        try {
+        await sendContactEmail(formData).unwrap();
+        setDisableButton(false);
+        setSuccessMsg('Message sent successfully!');
+        setFormData({ name: '', email: '', message: '' });
+        setTimeout(() => {
+            setSuccessMsg('');
+            setErrorMsg('');
+        }, 2000);
+        } catch (err) {
+            setErrorMsg('Failed to send message. Please try again.');
+        }
     }
 
     return (
@@ -38,11 +68,14 @@ const Footer = forwardRef((props, ref) => {
             <div className="footerCenter">
                 <div className="footerContactFormWrapper flexColumn">
                     <p>Har du en idé eller ett projekt? Tveka inte att höra av dig!</p>
-                    <form onSubmit={handleSendEmail} className='footerContactForm flexColumn'>
-                        <input type="text" placeholder='Namn' title='namn' name='name' />
-                        <textarea title='meddelande' name='message' placeholder='Meddelande'></textarea>
-                        <button>Skicka</button>
+                    <form onSubmit={handleSubmit} className='footerContactForm flexColumn'>
+                        <input type="text" placeholder='Namn' title='Namn' name='name' value={formData.name} onChange={handleChange} />
+                        <input type="email" placeholder='Email' title='email' name='email' value={formData.email} onChange={handleChange} />
+                        <textarea title='meddelande' name='message' placeholder='Meddelande' value={formData.message} onChange={handleChange}></textarea>
+                        <button style={disableButton ? { background: '#888', pointerEvents: 'none' } : { background: '', pointerEvents: 'unset' }}>Skicka</button>
                     </form>
+                    {successMsg && <h6 style={{ color: 'green', position: 'absolute', bottom: '10px' }}>{successMsg}</h6>}
+                    {errorMsg && <h6 style={{ color: 'red', position: 'absolute', bottom: '10px' }}>{errorMsg}</h6>}
                 </div>
                 <div className='footerIconsMainWrapper flexColumn'>
                     <p>Denna portfolio är utvecklad med moderna tekniker (MongoDB, Express.js, React.js, Node.js, Redux, RTK Query, Resend) – redo för nya uppdrag eller anställning. Skapad den 1 juni 2025.</p>

@@ -10,6 +10,7 @@ import otherSkillsRoutes from './routes/otherSkillsRoutes.js';
 import softSkillsRoutes from './routes/softSkillsRoutes.js';
 import experiencesRoutes from './routes/experiencesRoutes.js';
 import projectRoutes from './routes/projectsRoutes.js';
+import emailRoutes from './routes/emailRoutes.js';
 
 const app = express();
 app.use(express.json());
@@ -25,6 +26,7 @@ app.use('/api/otherSkills', otherSkillsRoutes);
 app.use('/api/softSkills', softSkillsRoutes);
 app.use('/api/experiences', experiencesRoutes);
 app.use('/api/projects', projectRoutes);
+app.use('/api/email', emailRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log('App is running on port: ', PORT));

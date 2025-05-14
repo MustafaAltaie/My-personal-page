@@ -170,6 +170,10 @@ export const portfolioApi = createApi({
             query: (data) => ({ url: 'projects', method: 'PUT', body: data }),
             invalidatesTags: ['projects']
         }),
+        // send email
+        sendContactEmail: builder.mutation({
+            query: (data) => ({ url: 'email/send', method: 'POST', body: data }),
+        }),
     })
 });
 
@@ -219,4 +223,6 @@ export const {
     useUpdateProjectMutation,
     useDeleteProjectMutation,
     useUpdateProjectListMutation,
+    // send email
+    useSendContactEmailMutation,
 } = portfolioApi;

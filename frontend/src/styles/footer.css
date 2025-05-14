@@ -91,12 +91,12 @@ footer > div:first-child {
     color: #000 !important;
 }
 .footerContactForm > button {
-    background: rgb(50, 59, 175);
+    background: #124c7c;
     font-weight: 100;
     color: white !important;
 }
 .footerContactForm > button:hover {
-    background: rgb(75, 84, 214);
+    background: #16629f;
 }
 /* footer middle part */
 /* footerIconsMainWrapper */
