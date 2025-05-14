@@ -7,7 +7,7 @@ import {
     useDeleteEducationMutation,
     useUpdateEducationsListMutation
 } from '../features/portfolioApi.js';
-import Education from './education.jsx';
+import Education from './Education.jsx';
 
 const Educations = forwardRef((props, ref) => {
     const [draggedIndex, setDraggedIndex] = useState(null);
