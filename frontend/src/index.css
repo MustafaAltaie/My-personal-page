@@ -174,7 +174,7 @@ form .formTextInput > input, form > .formTextInput > textarea {
 
 @media (min-width: 1024px) {
     .darkMode * :not([class*="fa-"]):not(form textarea, form button):not(span) {
-        color: var(--darkText);
+        color: #ffffffaa;
     }
     .lightMode * :not([class*="fa-"]) {
         color: var(--lightText);

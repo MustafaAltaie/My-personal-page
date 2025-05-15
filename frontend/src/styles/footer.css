@@ -127,6 +127,9 @@ footer > div:first-child {
 
 /* Laptop scale */
 @media (min-width: 1024px) {
+    footer * {
+        color: #ffffffaa !important;
+    }
     footer > div {
         border-top: solid 0.5px #ffffff55;
     }
