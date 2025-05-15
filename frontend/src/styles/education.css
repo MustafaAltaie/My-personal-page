@@ -92,6 +92,9 @@ h3.educationText::before, h3.educationText::before {
     h3.educationText {
         transform: translateY(-10px);
     }
+    .darkMode h3.educationText {
+        font-weight: normal;
+    }
     .educationForm {
         width: 500px;
         margin: 0 auto 20px auto;

@@ -105,6 +105,9 @@
     .darkMode .skill, .lightMode .skill {
         border-left: none;
     }
+    .darkMode .skill > p > span {
+        font-weight: normal;
+    }
 
     /* settings */
     .skillSection form {

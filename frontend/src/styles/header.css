@@ -61,7 +61,7 @@ body.lightMode .toggleModeButton {
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    background: #0064b6;
+    background: #00557c;
     transition: 0.2s;
 }
 .darkToggleThumb {
@@ -102,7 +102,6 @@ nav > ul {
     list-style: none;
 }
 nav > ul > li {
-    position: relative;
     padding: 20px;
     cursor: pointer;
 }
@@ -117,7 +116,7 @@ body.darkMode .actionNavOption {
     color: #fff;
 }
 body.lightMode .actionNavOption {
-    background-color: #4d96d2;
+    background-color: #0076ad;
     color: #fff;
 }
 
@@ -174,31 +173,5 @@ body.lightMode .actionNavOption {
     body.darkMode nav > ul > li,
     body.lightMode nav > ul > li {
         border-top: none;
-    }
-    body.darkMode .actionNavOption::after,
-    body.lightMode .actionNavOption::after {
-        content: '';
-        position: absolute;
-        width: 70%;
-        height: 2px;
-        left: 50%;
-        top: 80%;
-        transform: translateX(-50%);
-    }
-    body.darkMode .actionNavOption::after {
-        background: #c58c28;
-        box-shadow: 0 0 5px 1px #c58c28;
-    }
-    body.lightMode .actionNavOption::after {
-        background: #0064b6;
-    }
-    body.darkMode .actionNavOption,
-    body.lightMode .actionNavOption {
-        border: none;
-        border-image: none;
-        color: #ebab3c;
-    }
-    body.lightMode .actionNavOption {
-        color: #0064b6;
     }
 }

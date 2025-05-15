@@ -17,6 +17,9 @@ const Header = (props) => {
         } else if(navRef.current) {
             navRef.current.style.height = '0px';
         }
+        if(window.innerWidth >= 1024) {
+            setNav(true);
+        }
     }, [nav]);
 
     useEffect(() => {

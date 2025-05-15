@@ -21,8 +21,8 @@ footer > div:first-child {
 /* footer upper part */
 .footerTop {
     align-items: center;
-    gap: 20px;
-    padding: 20px 0 30px 0;
+    gap: 15px;
+    padding: 15px 0;
 }
 .footerTop > div {
     gap: 10px;
@@ -40,6 +40,7 @@ footer > div:first-child {
     width: 40px;
     height: 40px;
     background: #b97900dd;
+    color: #ffffffaa !important;
     border-radius: 50%;
     margin: 0;
 }
@@ -126,6 +127,12 @@ footer > div:first-child {
 
 /* Laptop scale */
 @media (min-width: 1024px) {
+    footer > div {
+        border-top: solid 0.5px #ffffff55;
+    }
+    .footerTop {
+        gap: 10px;
+    }
     .footerTop > div {
         gap: 25px;
     }
@@ -157,7 +164,7 @@ footer > div:first-child {
     }
     .footerIconsMainWrapper > p, .footerIcons {
         border-top: none;
-        border-right: solid 0.5px #ffffffaa;
+        border-right: solid 0.5px #ffffff55;
     }
     .footerIconsMainWrapper > p {
         padding: 10px 50px;

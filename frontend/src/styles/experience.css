@@ -103,4 +103,7 @@
     .experienceColumn2 {
         width: 70%;
     }
+    .darkMode .experience > div h5:nth-child(1), .darkMode .experience > div p:nth-child(1) {
+        font-weight: normal;
+    }
 }
