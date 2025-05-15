@@ -31,7 +31,7 @@ p.educationText {
     padding-bottom: 30px;
 }
 .darkMode .educationText5 {
-    color: #008cff !important;
+    color: #00aaff !important;
     border-top: solid 0.5px #ffffffcc;
 }
 .lightMode .educationText5 {
@@ -51,7 +51,7 @@ h3.educationText {
     padding-top: 0;
 }
 .lightMode h3.educationText {
-    color: #004ccf !important;
+    color: #0083ca !important;
 }
 h3.educationText::before, h3.educationText::before {
     top: 50%;
