@@ -16,12 +16,14 @@ const app = express();
 app.use(express.json());
 
 const allowedOrigins = [
+  'http://localhost:5173',
   'https://mustafa-altaie-portfolio.netlify.app',
-  'https://Mustafa-altaie-portfolio.netlify.app'
-];
+  'https://mustafaaltaie.uk',
+  'https://www.mustafaaltaie.uk',
+]
 const corsOptions = {
   origin: (origin, callback) => {
-    if (allowedOrigins.includes(origin)) {
+    if (!origin || allowedOrigins.includes(origin.toLowerCase())) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
@@ -29,7 +31,7 @@ const corsOptions = {
   },
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-};
+}
 app.use(cors(corsOptions));
 
 dotenv.config();
