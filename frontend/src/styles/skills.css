@@ -23,19 +23,18 @@
 }
 /* Frontend */
 .skillMainTitle {
-    font-weight: normal;
     padding: 10px 0 10px 20px;
 }
 .darkMode .skillMainTitle {
-    border-left: solid 0.5px #ffffff55;
-    border-top: solid 0.5px #ffffff55;
-    border-bottom: solid 0.5px #ffffff55;
-    color: #009dff !important;
+    border-left: solid 0.5px #ffffffaa;
+    border-top: solid 0.5px #ffffffaa;
+    border-bottom: solid 0.5px #ffffffaa;
+    color: #00aaff !important;
 }
 .lightMode .skillMainTitle {
-    border-left: solid 0.5px #000000aa;
-    border-top: solid 0.5px #000000aa;
-    border-bottom: solid 0.5px #000000aa;
+    border-left: solid 0.5px #000000cc;
+    border-top: solid 0.5px #000000cc;
+    border-bottom: solid 0.5px #000000cc;
     color: #a70 !important;
 }
 .skill {
@@ -46,11 +45,11 @@
 }
 .darkMode .skill {
     position: relative;
-    border-left: solid 0.5px #ffffff55;
+    border-left: solid 0.5px #ffffffaa;
 }
 .lightMode .skill {
     position: relative;
-    border-left: solid 0.5px #000000aa;
+    border-left: solid 0.5px #000000cc;
 }
 .skill::before {
     left: 0;
@@ -60,7 +59,7 @@
     font-weight: bold;
 }
 .darkMode .skill > p > span {
-    color: #d69600;
+    color: #d69600 !important;
 }
 .lightMode .skill > p > span {
     color: #07a !important;
@@ -88,7 +87,7 @@
     }
     .darkMode .skillsContainer {
         border-bottom: none;
-        border: solid 0.5px #ffffff55;
+        border: solid 0.5px #ffffffaa;
     }
     .lightMode .skillsContainer {
         border-bottom: none;
