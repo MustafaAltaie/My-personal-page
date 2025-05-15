@@ -1,6 +1,12 @@
 import '../styles/home.css';
 import { forwardRef, useState, useEffect, useRef } from 'react';
-import { useReadProfileQuery, useUpdateProfileMutation } from '../features/portfolioApi.js';
+import {
+    useReadProfileQuery,
+    useUpdateProfileMutation,
+    useUploadHomeImageMutation,
+    useReadHomeImageQuery,
+    useDeleteHomeImageMutation,
+} from '../features/portfolioApi.js';
 
 const Home = forwardRef((props, ref) => {
     const { data: profile, isLoading, isError } = useReadProfileQuery();
@@ -8,6 +14,10 @@ const Home = forwardRef((props, ref) => {
     const [profileText, setProfileText] = useState('');
     const [settings, setSettings] = useState(false);
     const formRef = useRef(null);
+    const [file, setFile] = useState('');
+    const [uploadHomeImage] = useUploadHomeImageMutation();
+    const { data: files = [], refetch } = useReadHomeImageQuery();
+    const [deleteHomeImage] = useDeleteHomeImageMutation();
 
     useEffect(() => {
         if(formRef.current) {
@@ -31,6 +41,37 @@ const Home = forwardRef((props, ref) => {
         return () => document.addEventListener('mousedown', handleClickOutside);
     }, []);
 
+    useEffect(() => {
+        if(file) {
+            handleAddFile();
+        }
+    }, [file]);
+
+    const handleAddFile = async () => {
+        if(!file) return;
+        const formData = new FormData();
+        formData.append('image', file);
+        try {
+            await uploadHomeImage(formData).unwrap();
+            setFile('');
+            await refetch();
+        } catch (err) {
+            console.log('Error occurred while uploading', err);
+            alert('Kunde inte ladda upp bilden');
+        }
+    }
+
+    const handleDelete = async () => {
+        const deleteConfirm = confirm('Vill du radera bilder?');
+        if(!deleteConfirm) return;
+        try {
+            await deleteHomeImage(file).unwrap();
+        } catch (err) {
+            console.error('Delete error:', err);
+            alert('Kunde inte radera.');
+        }
+    }
+
     const handleUpdate = async (e) => {
         e.preventDefault();
         try {
@@ -48,7 +89,15 @@ const Home = forwardRef((props, ref) => {
     return (
         <section ref={ref} className="homeSection">
             <div className="homeImageWrapper">
-                <img src={props.darkMode ? 'https://cdn.pixabay.com/photo/2023/04/28/07/16/man-7956041_1280.jpg' : 'https://cdn.pixabay.com/photo/2016/03/26/14/43/young-1280694_1280.jpg'} alt="homeImage" />
+                <div className='homeImageSettingsWrapper flexColumn'>
+                    <label className='changeImageLabel'>
+                        <input type="file" name='file' placeholder='File' onChange={e => setFile(e.target.files[0])} />
+                        <p>{files.length > 0 ? 'Change image' : 'Upload image'}</p>
+                    </label>
+                    <p onClick={handleDelete}>Delete image</p>
+                </div>
+                {files.length > 0 &&
+                <img src={`${import.meta.env.VITE_API_BASE_URL.replace('/api', '')}/images/home-image/homeImage.png`} alt="homeImage" />}
             </div>
             <div className='homeProfileWrapper'>
                 <h1 style={{ display: 'flex', justifyContent: 'space-between' }}>Profile <span style={{ cursor: 'pointer' }} onClick={() => setSettings(true)}>🖋️</span></h1>

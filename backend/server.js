@@ -11,6 +11,12 @@ import softSkillsRoutes from './routes/softSkillsRoutes.js';
 import experiencesRoutes from './routes/experiencesRoutes.js';
 import projectRoutes from './routes/projectsRoutes.js';
 import emailRoutes from './routes/emailRoutes.js';
+import homeImageRoutes from './routes/homeImageRoutes.js';
+import path from 'path';
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const app = express();
 app.use(express.json());
@@ -46,6 +52,8 @@ app.use('/api/softSkills', softSkillsRoutes);
 app.use('/api/experiences', experiencesRoutes);
 app.use('/api/projects', projectRoutes);
 app.use('/api/email', emailRoutes);
+app.use('/api/homeImages', homeImageRoutes);
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.post('/api/password-check', (req, res) => {
   const { password } = req.body;

@@ -8,6 +8,7 @@
     align-items: flex-end;
     height: 70vh;
 }
+
 .homeImageWrapper > img {
     width: 100%;
     height: 95%;
@@ -23,6 +24,21 @@
 }
 
 /* settings */
+.homeImageSettingsWrapper {
+    position: absolute;
+    top: 70px;
+    left: 10px;
+    gap: 5px;
+}
+.homeImageSettingsWrapper > label > p, .homeImageSettingsWrapper > p {
+    padding: 10px;
+    background: #00000055;
+    color: white !important;
+    cursor: pointer;
+}
+.changeImageLabel > input {
+    display: none;
+}
 .homeSection form > textarea {
     margin-top: 20px;
 }
@@ -45,11 +61,5 @@
         justify-content: center;
         text-align: center;
         padding: 0 100px;
-    }
-    .darkMode .homeImageWrapper {
-        background: #000;
-    }
-    .lightMode .homeImageWrapper {
-        background: #fff;
     }
 }

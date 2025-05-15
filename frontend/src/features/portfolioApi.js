@@ -12,6 +12,7 @@ export const portfolioApi = createApi({
         'softSkills',
         'experiences',
         'projects',
+        'homeImages'
     ],
     endpoints: (builder) => ({
         // profile
@@ -177,7 +178,20 @@ export const portfolioApi = createApi({
         // password check
         checkPassword: builder.mutation({
             query: (password) => ({ url: 'password-check', method: 'POST', body: { password } })
-        })
+        }),
+        // home image
+        uploadHomeImage: builder.mutation({
+            query: (formData) => ({ url: 'homeImages', method: 'POST', body: formData }),
+            invalidatesTags: ['homeImages']
+        }),
+        readHomeImage: builder.query({
+            query: () => 'homeImages',
+            providesTags: ['homeImages']
+        }),
+        deleteHomeImage: builder.mutation({
+            query: (file) => ({ url: `homeImages/${file}`, method: 'DELETE' }),
+            invalidatesTags: ['homeImages']
+        }),
     })
 });
 
@@ -231,4 +245,8 @@ export const {
     useSendContactEmailMutation,
     // check password
     useCheckPasswordMutation,
+    // home image
+    useUploadHomeImageMutation,
+    useReadHomeImageQuery,
+    useDeleteHomeImageMutation,
 } = portfolioApi;

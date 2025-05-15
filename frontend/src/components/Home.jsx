@@ -1,16 +1,18 @@
 import '../styles/home.css';
 import { motion } from 'framer-motion';
 import { forwardRef } from 'react';
-import { useReadProfileQuery } from '../features/portfolioApi.js';
+import { useReadProfileQuery, useReadHomeImageQuery } from '../features/portfolioApi.js';
 
 const Home = forwardRef((props, ref) => {
     const { data: profile, isLoading, isError } = useReadProfileQuery();
+    const { data: files = [] } = useReadHomeImageQuery();
 
     return (
-        <section ref={ref} className="homeSection">
+        <section ref={ref} className="homeSection" style={{ paddingTop: files.length > 0 ? '25px' : '60px' }}>
+            {files.length > 0 &&
             <div className="homeImageWrapper">
-                <img src={props.darkMode ? 'https://cdn.pixabay.com/photo/2023/04/28/07/16/man-7956041_1280.jpg' : 'https://cdn.pixabay.com/photo/2016/03/26/14/43/young-1280694_1280.jpg'} alt="homeImage" />
-            </div>
+                <img src={`${import.meta.env.VITE_API_BASE_URL.replace('/api', '')}/images/home-image/homeImage.png`} alt="homeImage" />
+            </div>}
             <motion.div
                 className='homeProfileWrapper'
                 initial={{ opacity: 0, x: -50 }}
