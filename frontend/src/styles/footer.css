@@ -75,7 +75,7 @@ footer > div:first-child {
 }
 .footerContactFormWrapper > p {
     text-align: center;
-    padding: 0 40px;
+    padding: 0 30px;
     font-size: 14px;
 }
 .footerContactForm > input,
@@ -107,13 +107,13 @@ footer > div:first-child {
 .footerIconsMainWrapper > p {
     text-align: center;
     border-top: solid 0.5px #ffffff55;
-    padding: 20px 40px;
+    padding: 20px 30px;
 }
 .footerIcons {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 15px;
     padding: 20px 40px;
     border-top: solid 0.5px #ffffff55;
 }
@@ -126,7 +126,7 @@ footer > div:first-child {
 /* footer lower part */
 .footerBottom {
     text-align: center;
-    padding: 20px;
+    padding: 10px;
 }
 
 

@@ -27,7 +27,7 @@ const Educations = forwardRef((props, ref) => {
                 {list.map((education, index) => 
                 <div key={index} className='educationWrapper'>
                     <h3 className='educationText dottedElement'>{education.title}</h3>
-                    <h5 className='educationText5'>{education.date}</h5>
+                    <h4 className='educationText5'>{education.date}</h4>
                     <p className='educationText'>{education.content}</p>
                 </div>
                 )}
