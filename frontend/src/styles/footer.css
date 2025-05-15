@@ -9,7 +9,7 @@ footer *:not(i) {
     font-family: var(--thinFont) !important;
 }
 footer > div {
-    border-top: solid 0.5px #ffffff55;
+    border-top: solid 0.5px #ffffffaa;
 }
 footer > div:first-child {
     border-top: solid 1px #fff;
@@ -100,7 +100,7 @@ footer > div:first-child {
 }
 .footerIconsMainWrapper > p {
     text-align: center;
-    border-top: solid 0.5px #ffffff55;
+    border-top: solid 0.5px #ffffffaa;
     padding: 20px 30px;
 }
 .footerIcons {
@@ -109,11 +109,11 @@ footer > div:first-child {
     flex-wrap: wrap;
     gap: 15px;
     padding: 20px 40px;
-    border-top: solid 0.5px #ffffff55;
+    border-top: solid 0.5px #ffffffaa;
 }
 .footerIcons > img {
     height: 25px;
-    opacity: 0.5;
+    opacity: 0.8;
     pointer-events: none;
 }
 
@@ -157,7 +157,7 @@ footer > div:first-child {
     }
     .footerIconsMainWrapper > p, .footerIcons {
         border-top: none;
-        border-right: solid 0.5px #ffffff55;
+        border-right: solid 0.5px #ffffffaa;
     }
     .footerIconsMainWrapper > p {
         padding: 10px 50px;
