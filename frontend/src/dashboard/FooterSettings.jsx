@@ -13,23 +13,23 @@ const Footer = forwardRef((props, ref) => {
                 <h3>Kontakta mig direkt</h3>
                 <div className='flexMiddle'>
                     <a href="tel:+46763122455" className='flexColumn' rel="noopener">
-                        <i className="fa-solid fa-phone-volume"></i>
+                        <i className="fa-solid fa-phone-volume flexMiddle"></i>
                         <h6>Ring mig</h6>
                     </a>
                     <a href="mailto:mustafaphoto111@email.com" className='flexColumn'>
-                        <i className="fa-solid fa-envelope"></i>
+                        <i className="fa-solid fa-envelope flexMiddle"></i>
                         <h6>Mejla mig</h6>
                     </a>
                     <a href="https://www.linkedin.com/in/mustafa-altaie-b35356178" className='flexColumn' target="_blank" rel="noopener noreferrer">
-                        <i className="fa-brands fa-linkedin"></i>
+                        <i className="fa-brands fa-linkedin flexMiddle"></i>
                         <h6>LinkedIn</h6>
                     </a>
                     <a href="https://m.me/mustafa.altaie.1986" className='flexColumn' target="_blank" rel="noopener noreferrer">
-                        <i className="fa-brands fa-facebook-messenger"></i>
+                        <i className="fa-brands fa-facebook-messenger flexMiddle"></i>
                         <h6>Messenger</h6>
                     </a>
                     <a href="https://wa.me/46725255471" className='flexColumn' target="_blank" rel="noopener noreferrer">
-                        <i className="fa-brands fa-whatsapp"></i>
+                        <i className="fa-brands fa-whatsapp flexMiddle"></i>
                         <h6>WhatsApp</h6>
                     </a>
                 </div>
