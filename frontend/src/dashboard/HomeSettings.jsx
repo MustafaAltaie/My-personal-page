@@ -94,7 +94,8 @@ const Home = forwardRef((props, ref) => {
                         <input type="file" name='file' placeholder='File' onChange={e => setFile(e.target.files[0])} />
                         <p>{files.length > 0 ? 'Change image' : 'Upload image'}</p>
                     </label>
-                    <p onClick={handleDelete}>Delete image</p>
+                    {files.length > 0 &&
+                    <p onClick={handleDelete}>Delete image</p>}
                 </div>
                 {files.length > 0 &&
                 <img src={`${import.meta.env.VITE_API_BASE_URL.replace('/api', '')}/images/home-image/homeImage.png`} alt="homeImage" />}
