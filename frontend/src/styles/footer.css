@@ -38,7 +38,7 @@ footer > div:first-child {
     font-size: 20px;
     width: 40px;
     height: 40px;
-    background: #986300dd;
+    background: #b97900dd;
     border-radius: 50%;
     margin: 0;
 }
@@ -85,12 +85,12 @@ footer > div:first-child {
     color: #000 !important;
 }
 .footerContactForm > button {
-    background: #124c7c;
+    background: #135d9a;
     font-weight: 100;
     color: white !important;
 }
 .footerContactForm > button:hover {
-    background: #16629f;
+    background: #1467aa;
 }
 /* footer middle part */
 /* footerIconsMainWrapper */
