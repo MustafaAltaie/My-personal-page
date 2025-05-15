@@ -6,6 +6,7 @@ import ExperiencesSettings from './ExperiencesSettings';
 import ProjectsSettings from './ProjectsSettings';
 import FooterSettings from './FooterSettings';
 import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
     const [darkMode, setDarkMode] = useState(true);
@@ -15,6 +16,14 @@ const Dashboard = () => {
     const experienceRef = useRef(null);
     const projectRef = useRef(null);
     const contactRef = useRef(null);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const auth = localStorage.getItem('authenticated');
+        if (auth !== 'true') {
+            navigate('/dashboard');
+        }
+    }, [navigate]);
 
     useEffect(() => {
         toggleMode();

@@ -174,6 +174,10 @@ export const portfolioApi = createApi({
         sendContactEmail: builder.mutation({
             query: (data) => ({ url: 'email/send', method: 'POST', body: data }),
         }),
+        // password check
+        checkPassword: builder.mutation({
+            query: (password) => ({ url: 'password-check', method: 'POST', body: { password } })
+        })
     })
 });
 
@@ -225,4 +229,6 @@ export const {
     useUpdateProjectListMutation,
     // send email
     useSendContactEmailMutation,
+    // check password
+    useCheckPasswordMutation,
 } = portfolioApi;

@@ -47,5 +47,13 @@ app.use('/api/experiences', experiencesRoutes);
 app.use('/api/projects', projectRoutes);
 app.use('/api/email', emailRoutes);
 
+app.post('/api/password-check', (req, res) => {
+  const { password } = req.body;
+  if(password === process.env.DASHBOARD_PASSWORD) {
+    return res.json({ valid: true });
+  }
+  res.json({ valid: false });
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log('App is running on port: ', PORT));
