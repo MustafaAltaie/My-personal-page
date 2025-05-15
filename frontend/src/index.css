@@ -26,11 +26,11 @@
 .darkMode * :not([class*="fa-"]):not(form textarea, form button):not(span) {
     font-family: var(--thinFont);
     letter-spacing: 0.3px;
-    color: var(--darkText);
+    color: #ffffffdd;
 }
 .lightMode * :not([class*="fa-"]) {
     font-family: var(--formalFont);
-    color: var(--lightText);
+    color: #000000dd;
 }
 i {
     margin-right: 10px;
@@ -171,6 +171,12 @@ form .formTextInput > input, form > .formTextInput > textarea {
 }
 
 @media (min-width: 1024px) {
+    .darkMode * :not([class*="fa-"]):not(form textarea, form button):not(span) {
+        color: var(--darkText);
+    }
+    .lightMode * :not([class*="fa-"]) {
+        color: var(--lightText);
+    }
     p {
         font-size: 14px;
     }

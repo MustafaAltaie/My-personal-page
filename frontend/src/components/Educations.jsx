@@ -11,7 +11,7 @@ const Educations = forwardRef((props, ref) => {
             const transformed = educations.map(edu => ({
                 id: edu._id,
                 title: edu.title,
-                date: `${edu.dateFrom} - ${edu.dateTo} | ${edu.school}, ${edu.city} - ${edu.country}`,
+                date: `${edu.dateFrom.slice(0, 7)} - ${edu.dateTo.slice(0, 7)} | ${edu.school}, ${edu.city} ${edu.country && '-'} ${edu.country}`,
                 content: edu.content
             }));
             setList(transformed);

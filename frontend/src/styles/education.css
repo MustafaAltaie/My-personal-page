@@ -15,10 +15,10 @@
     transition: 1s;
 }
 .darkMode .educationWrapper {
-    border-left: solid 0.5px #ffffff55;
+    border-left: solid 0.5px #ffffffcc;
 }
 .lightMode .educationWrapper {
-    border-left: solid 0.7px #00000055;
+    border-left: solid 0.7px #00000088;
 }
 .educationText, .educationText5 {
     padding-left: 20px;
@@ -31,13 +31,13 @@ p.educationText {
     padding-bottom: 30px;
 }
 .darkMode .educationText5 {
-    color: #ffffff33 !important;
-    border-top: solid 0.5px #ffffff55;
+    color: #008cff !important;
+    border-top: solid 0.5px #ffffffcc;
 }
 .lightMode .educationText5 {
     color: #0066ba !important;
     font-weight: normal;
-    border-top: solid 0.7px #00000055;
+    border-top: solid 0.7px #00000088;
 }
 h3.educationText {
     position: relative;
@@ -76,6 +76,18 @@ h3.educationText::before, h3.educationText::before {
     }
     .educationMainWrapper {
         width: 50%;
+    }
+    .darkMode .educationWrapper {
+        border-left: solid 0.5px #ffffff55;
+    }
+    .lightMode .educationWrapper {
+        border-left: solid 0.7px #00000055;
+    }
+    .darkMode .educationText5 {
+        border-top: solid 0.5px #ffffff55;
+    }
+    .lightMode .educationText5 {
+        border-top: solid 0.7px #00000055;
     }
     h3.educationText {
         transform: translateY(-10px);
