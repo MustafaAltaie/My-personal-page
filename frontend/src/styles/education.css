@@ -26,6 +26,7 @@
 .educationText5 {
     padding-top: 10px;
     margin-bottom: 5px;
+    font-weight: normal;
 }
 p.educationText {
     padding-bottom: 30px;
@@ -36,7 +37,6 @@ p.educationText {
 }
 .lightMode .educationText5 {
     color: #0066ba !important;
-    font-weight: normal;
     border-top: solid 0.7px #00000088;
 }
 h3.educationText {

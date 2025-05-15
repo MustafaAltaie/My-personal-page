@@ -8,7 +8,7 @@
     --lightBG: #fff;
 
     /* Colors */
-    --darkText: #ffffffaa;
+    --darkText: #fff;
     --lightText: #000000aa;
     --darkBlue: #00ccff;
     --darkYellow: #f5d400dd;
@@ -28,7 +28,7 @@
 .darkMode * :not([class*="fa-"]):not(form textarea, form button):not(span) {
     font-family: var(--thinFont);
     letter-spacing: 0.3px;
-    color: #ffffffdd;
+    color: var(--darkText);
 }
 .lightMode * :not([class*="fa-"]) {
     font-family: var(--formalFont);
@@ -46,7 +46,7 @@ button {
 .lightMode i {
     color: #000000aa;
 }
-.darkMode header, body.darkMode {
+body.darkMode {
     background-image: linear-gradient(150deg, #000, #112845, #112845, #000);
     background-attachment: fixed;
 }

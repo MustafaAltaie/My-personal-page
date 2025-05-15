@@ -11,7 +11,7 @@ header {
     transform: translateY(-100%);
 }
 body.darkMode header {
-    border-bottom: solid 0.5px #ffffff55;
+    border-bottom: solid 0.5px #ffffffaa;
     background-color: var(--darkBG);
 }
 body.lightMode header {
@@ -29,7 +29,7 @@ body.lightMode header {
     font-weight: normal;
 }
 .darkMode .headerPart1 > h2 > span {
-    color: #ffb300;
+    color: var(--darkYellow);
 }
 .lightMode .headerPart1 > h2 > span {
     color: #0064b6;
@@ -50,7 +50,7 @@ body.lightMode header {
     cursor: pointer;
 }
 body.darkMode .toggleModeButton {
-    border: solid 0.7px #ffffff77;
+    border: solid 0.7px #ffffffaa;
 }
 body.lightMode .toggleModeButton {
     border: solid 0.7px #00000055;
@@ -107,16 +107,18 @@ nav > ul > li {
     cursor: pointer;
 }
 body.darkMode nav > ul > li {
-    border-top: solid 0.5px #ffffff55;
+    border-top: solid 0.5px #ffffffaa;
 }
 body.lightMode nav > ul > li {
     border-top: solid 0.5px #000000aa;
 }
-body.darkMode .actionNavOption,
+body.darkMode .actionNavOption {
+    background-color: #00557c;
+    color: #fff;
+}
 body.lightMode .actionNavOption {
-    border: 1px solid transparent;
-    border-image: linear-gradient(130deg, #ffd000, #0064b6, #8c00ff, #ff8000);
-    border-image-slice: 1;
+    background-color: #4d96d2;
+    color: #fff;
 }
 
 

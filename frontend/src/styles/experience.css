@@ -52,7 +52,7 @@
     font-size: 16px;
 }
 .darkMode .experience > div h5:nth-child(1), .darkMode .experience > div p:nth-child(1) {
-    color: #d69600;
+    color: var(--darkYellow);
     font-weight: bold;
 }
 .lightMode .experience > div h5:nth-child(1), .lightMode .experience > div p:nth-child(1) {
@@ -60,7 +60,7 @@
     font-weight: bold;
 }
 .darkMode .experience > div h5:nth-child(2) {
-    color: #3baaff;
+    color: var(--darkBlue);
     font-weight: normal;
 }
 .lightMode .experience > div h5:nth-child(2) {
