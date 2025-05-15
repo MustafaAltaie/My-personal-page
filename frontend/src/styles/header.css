@@ -53,7 +53,7 @@ body.darkMode .toggleModeButton {
     border: solid 0.7px #ffffffaa;
 }
 body.lightMode .toggleModeButton {
-    border: solid 0.7px #00000055;
+    border: solid 0.7px #000000aa;
 }
 
 .toggleModeButton > div {
