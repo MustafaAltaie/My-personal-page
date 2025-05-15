@@ -10,6 +10,8 @@
     /* Colors */
     --darkText: #ffffffaa;
     --lightText: #000000aa;
+    --darkBlue: #40bfffce;
+    --darkYellow: #f5d400dd;
 }
 * {
     margin: 0;
