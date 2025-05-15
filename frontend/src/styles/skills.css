@@ -24,19 +24,18 @@
 /* Frontend */
 .skillMainTitle {
     padding: 10px 0 10px 20px;
+    font-weight: normal;
 }
 .darkMode .skillMainTitle {
     border-left: solid 0.5px #ffffffaa;
     border-top: solid 0.5px #ffffffaa;
     border-bottom: solid 0.5px #ffffffaa;
     color: var(--darkBlue) !important;
-    font-weight: normal;
 }
 .lightMode .skillMainTitle {
     border-left: solid 0.5px #000000cc;
     border-top: solid 0.5px #000000cc;
     border-bottom: solid 0.5px #000000cc;
-    color: #a70 !important;
 }
 .skill {
     display: flex;
@@ -60,7 +59,7 @@
     font-weight: bold;
 }
 .darkMode .skill > p > span {
-    color: #d69600 !important;
+    color: var(--darkYellow) !important;
 }
 .lightMode .skill > p > span {
     color: #07a !important;
