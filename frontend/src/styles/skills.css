@@ -29,7 +29,8 @@
     border-left: solid 0.5px #ffffffaa;
     border-top: solid 0.5px #ffffffaa;
     border-bottom: solid 0.5px #ffffffaa;
-    color: #00aaff !important;
+    color: var(--darkBlue) !important;
+    font-weight: normal;
 }
 .lightMode .skillMainTitle {
     border-left: solid 0.5px #000000cc;
