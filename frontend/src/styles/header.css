@@ -109,7 +109,7 @@ nav > ul > li {
     cursor: pointer;
 }
 body.darkMode nav > ul > li {
-    border-top: solid 0.5px #ffffff77;
+    border-top: solid 0.5px #ffffff55;
 }
 body.lightMode nav > ul > li {
     border-top: solid 0.5px #000000aa;
