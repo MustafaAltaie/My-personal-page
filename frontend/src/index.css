@@ -51,7 +51,7 @@ button {
     background-attachment: fixed;
     background-color: #000;
 }
-.lightMode, .lightMode {
+.lightMode, header, .lightMode {
     background-image: radial-gradient(circle at 0 0, #0080ff3e, transparent 40%),
     radial-gradient(circle at 50% 110%, #e4cc6a4e, transparent 30%),
     radial-gradient(circle at 120% 50%, #1de5ff51, transparent 40%);
