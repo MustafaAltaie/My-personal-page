@@ -159,6 +159,7 @@
     background: #e3a20a;
     color: #fff;
     font-family: var(--thinFont);
+    font-weight: bold;
 }
 .lightMode .project > .projectLowerPart > button > i {
     color: #fff;
@@ -225,6 +226,9 @@
     }
     .projectLabel {
         top: 10px;
+    }
+    .lightMode .project > .projectLowerPart > button {
+        font-weight: normal;
     }
     .projectSection > form {
         width: 40%;
