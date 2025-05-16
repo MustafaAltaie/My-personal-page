@@ -34,9 +34,6 @@
     font-family: var(--formalFont);
     color: #000000dd;
 }
-main {
-    min-height: 100vh;
-}
 i {
     margin-right: 10px;
 }
