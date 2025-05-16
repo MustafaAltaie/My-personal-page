@@ -14,6 +14,10 @@ footer > div {
 footer > div:first-child {
     border-top: solid 1px #fff;
 }
+.darkMode footer,
+.lightMode footer {
+    background: #111;
+}
 /* footer upper part */
 .footerTop {
     align-items: center;
