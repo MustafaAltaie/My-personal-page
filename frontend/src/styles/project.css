@@ -5,7 +5,7 @@
     background-image: url('../../images/nodejs-logo.png');
     background-position: center;
     background-attachment: fixed;
-    background-size: 90% 30%;
+    background-size: 80% 40%;
     background-repeat: no-repeat;
 }
 .darkMode .projectSection {
@@ -67,8 +67,8 @@
 /* projectLabel the bag icon */
 .projectLabel {
     position: absolute;
-    top: 7px;
-    right: 0;
+    top: 12px;
+    right: 5px;
 }
 .darkMode .projectLabel {
     color: var(--darkYellow);

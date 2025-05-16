@@ -35,10 +35,10 @@
     padding: 30px;
 }
 .darkMode .homeProfileWrapper {
-    border-top: solid 1px #ffffff;
+    border-top: solid 0.5px #ffffffaa;
 }
 .lightMode .homeProfileWrapper {
-    border-top: solid 1px #000;
+    border-top: solid 0.5px #000000aa;
 }
 .darkMode .homeProfileWrapper > p {
     margin-top: 10px;

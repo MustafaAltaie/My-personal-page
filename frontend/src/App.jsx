@@ -42,7 +42,7 @@ function App() {
 
 
   return (
-    <>
+    <main>
       <Header
         toggleMode={toggleMode}
         darkMode={darkMode}
@@ -59,7 +59,7 @@ function App() {
       <Experiences ref={experienceRef} />
       <Projects ref={projectRef} />
       <Footer ref={contactRef} />
-    </>
+    </main>
   )
 }
 
