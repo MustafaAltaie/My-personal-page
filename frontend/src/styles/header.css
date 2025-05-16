@@ -15,7 +15,7 @@ header {
 }
 body.darkMode header {
     border-bottom: solid 0.5px #ffffff77;
-    background: #111;
+    background-color: #111;
 }
 body.lightMode header {
     border-bottom: solid 0.5px #000000aa;
