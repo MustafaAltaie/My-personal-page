@@ -1,6 +1,9 @@
 header {
     z-index: 100;
     position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -110,14 +113,6 @@ body.darkMode nav > ul > li {
 }
 body.lightMode nav > ul > li {
     border-top: solid 0.5px #000000aa;
-}
-body.darkMode .actionNavOption {
-    background-color: #00557c;
-    color: #fff;
-}
-body.lightMode .actionNavOption {
-    background-color: #0076ad;
-    color: #fff;
 }
 
 

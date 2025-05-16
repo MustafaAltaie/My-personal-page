@@ -46,11 +46,11 @@ button {
 .lightMode i {
     color: #000000aa;
 }
-body.darkMode {
+.darkMode {
     background-image: linear-gradient(150deg, #000, #112845, #112845, #000);
     background-attachment: fixed;
 }
-.lightMode header, body.lightMode {
+.lightMode header, .lightMode {
     background-image: radial-gradient(circle at 0 0, #0080ff28, transparent 40%),
     radial-gradient(circle at 50% 110%, #e4cb6a27, transparent 30%),
     radial-gradient(circle at 120% 50%, #1de5ff34, transparent 40%);

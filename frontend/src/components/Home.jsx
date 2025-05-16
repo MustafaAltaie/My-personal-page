@@ -8,6 +8,11 @@ const Home = forwardRef((props, ref) => {
     const { data: files = [] } = useReadHomeImageQuery();
 
     return (
+        <>
+        {isLoading &&
+        <div className="startServerModel">
+            <h1>Vänta lite medan servern startas upp...</h1>
+        </div>}
         <section ref={ref} className="homeSection" style={{ paddingTop: files.length > 0 ? '25px' : '60px' }}>
             {files.length > 0 &&
             <div className="homeImageWrapper">
@@ -25,7 +30,9 @@ const Home = forwardRef((props, ref) => {
                 {isError && <p>Error reading profile</p>}
                 <p>{profile?.profile}</p>
             </motion.div>
-        </section>
+        </section>    
+        </>
+
     )
 });
 

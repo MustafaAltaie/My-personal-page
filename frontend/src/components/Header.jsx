@@ -5,7 +5,6 @@ import { motion } from 'framer-motion';
 const Header = (props) => {
     const [nav, setNav] = useState(false);
     const navRef = useRef(null);
-    const [navOption, setNavOption] = useState('Home');
     const lastScrollYRef = useRef(window.scrollY);
     const [showHeader, setShowHeader] = useState(true);
 
@@ -69,12 +68,12 @@ const Header = (props) => {
                     transition={{ duration: 0.5, ease: 'easeInOut' }}
                     viewport={{ once: true, amount: 0 }}
                 >
-                    <li onClick={() => {setNavOption('Home'); props.scrollToHome(); setNav(false)}} className={navOption === 'Home' ? 'actionNavOption' : ''}>Home</li>
-                    <li onClick={() => {setNavOption('Educations'); props.scrollToEducations(); setNav(false) }} className={navOption === 'Educations' ? 'actionNavOption' : ''}>Educations</li>
-                    <li onClick={() => {setNavOption('Skills'); props.scrollToSkills(); setNav(false) }} className={navOption === 'Skills' ? 'actionNavOption' : ''}>Skills</li>
-                    <li onClick={() => {setNavOption('Experience'); props.scrollToExperiences(); setNav(false) }} className={navOption === 'Experience' ? 'actionNavOption' : ''}>Experience</li>
-                    <li onClick={() => {setNavOption('Projects'); props.scrollToProjects(); setNav(false) }} className={navOption === 'Projects' ? 'actionNavOption' : ''}>Projects</li>
-                    <li onClick={() => {setNavOption('Contact'); props.scrollToContact(); setNav(false) }} className={navOption === 'Contact' ? 'actionNavOption' : ''}>Contact</li>
+                    <li onClick={() => {props.scrollToHome(); setNav(false)}}>Home</li>
+                    <li onClick={() => {props.scrollToEducations(); setNav(false) }}>Educations</li>
+                    <li onClick={() => {props.scrollToSkills(); setNav(false) }}>Skills</li>
+                    <li onClick={() => {props.scrollToExperiences(); setNav(false) }}>Experience</li>
+                    <li onClick={() => {props.scrollToProjects(); setNav(false) }}>Projects</li>
+                    <li onClick={() => {props.scrollToContact(); setNav(false) }}>Contact</li>
                 </motion.ul>
             </nav>
         </header>
